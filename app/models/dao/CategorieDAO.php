@@ -39,8 +39,8 @@ class CategorieDAO
     {
         $sql = "INSERT INTO categories (nom, code) VALUES (:nom, :code)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':nom', $categorie->nom);
-        $stmt->bindParam(':code', $categorie->code);
+        $stmt->bindParam(':nom', $categorie->getNom());
+        $stmt->bindParam(':code', $categorie->getCode());
         $stmt->execute();
 
         return $this->pdo->lastInsertId();
@@ -50,9 +50,9 @@ class CategorieDAO
     {
         $sql = "UPDATE categories SET nom = :nom, code = :code WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':nom', $categorie->nom);
-        $stmt->bindParam(':code', $categorie->code);
-        $stmt->bindParam(':id', $categorie->id);
+        $stmt->bindParam(':nom', $categorie->getNom());
+        $stmt->bindParam(':code', $categorie->getCode());
+        $stmt->bindParam(':id', $categorie->getId());
         $stmt->execute();
     }
 
