@@ -45,4 +45,22 @@ class Contact
     {
         $this->prenom = $prenom;
     }
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+    public function getNumeroTel()
+    {
+        return $this->numeroTel;
+    }
+
+    public function setNumeroTel($numeroTel)
+    {
+        $this->numeroTel = $numeroTel;
+    }
 }

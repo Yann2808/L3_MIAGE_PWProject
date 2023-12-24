@@ -3,12 +3,12 @@ class Categorie
 {
     private $id;
     private $nom;
-    private $codeRaccourci;
+    private $code;
 
-    public function __construct($nom, $codeRaccourci)
+    public function __construct($nom, $code)
     {
         $this->nom = $nom;
-        $this->codeRaccourci = $codeRaccourci;
+        $this->code = $code;
     }
 
     public function getId()
@@ -33,11 +33,11 @@ class Categorie
 
     public function getCode()
     {
-        return $this->codeRaccourci;
+        return $this->code;
     }
 
-    public function setCode($codeRaccourci)
+    public function setCode($code)
     {
-        $this->codeRaccourci = $codeRaccourci;
+        $this->code = $code;
     }
 }
