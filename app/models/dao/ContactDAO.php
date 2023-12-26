@@ -33,14 +33,6 @@ class ContactDAO
             return null;
         }
 
-        $contact = new Contact();
-        $contact->setId($row['id']);
-        $contact->setNom($row['nom']);
-        $contact->setPrenom($row['prenom']);
-        $contact->setEmail($row['email']);
-        $contact->setnumeroTel($row['numeroTel']);
-
-        return $contact;
     }
 
     public function update(Contact $contact)
