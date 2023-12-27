@@ -10,12 +10,13 @@ class ContactDAO
 
     public function create(Contact $contact)
     {
-        $query = "INSERT INTO contacts (nom, prenom, email, telephone) VALUES (:nom, :prenom, :email, :telephone)";
+        $query = "INSERT INTO contacts (nom, prenom, email, numeroTel) VALUES (:nom, :prenom, :email, :telephone)";
         $stmt = $this->connexion->pdo->prepare($query);
+        
         $stmt->bindValue(':nom', $contact->getNom());
         $stmt->bindValue(':prenom', $contact->getPrenom());
         $stmt->bindValue(':email', $contact->getEmail());
-        $stmt->bindValue(':telephone', $contact->getnumeroTel());
+        $stmt->bindValue(':telephone',$contact->getnumeroTel());
         $stmt->execute();
 
         return $this->connexion->pdo->lastInsertId();

@@ -11,7 +11,7 @@
     <h1>Ajouter un Contact</h1>
     <a href="HomeController.php">Retour à la liste des contacts</a>
 
-    <form action="AddContactController" method="post">
+    <form action="AddContactController.php" method="post">
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" required><br>
 
@@ -22,7 +22,7 @@
         <input type="email" id="email" name="email"><br>
 
         <label for="telephone">Téléphone :</label>
-        <input type="text" id="telephone" name="telephone"><br>
+        <input type="text" id="numeroTel" name="telephone"><br>
 
         <input type="submit" name="action" value="Ajouter">
     </form>

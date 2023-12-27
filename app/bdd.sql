@@ -11,7 +11,7 @@ CREATE TABLE contacts (
     nom VARCHAR(255) NOT NULL,
     prenom VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
-    numero_tel VARCHAR(15) NOT NULL
+    numeroTel VARCHAR(15) NOT NULL
 );
 
 -- Table pour les licenciés
