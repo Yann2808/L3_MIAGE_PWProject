@@ -8,13 +8,15 @@ class Contact
     private $email;
     private $numeroTel;
 
-    public function __construct($nom, $prenom, $email, $numeroTel)
-    {
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->email = $email;
-        $this->numeroTel = $numeroTel;
-    }
+    /*
+        public function __construct($nom, $prenom, $email, $numeroTel)
+        {
+            $this->nom = $nom;
+            $this->prenom = $prenom;
+            $this->email = $email;
+            $this->numeroTel = $numeroTel;
+        }
+    */
 
     public function getId()
     {

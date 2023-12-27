@@ -58,4 +58,8 @@ class ContactDAO
 
         return $stmt->rowCount();
     }
+
+    public function getById(int $id){
+        
+    }
 }
