@@ -1,20 +1,24 @@
 <?php
 
-// Définition de la chaîne de connexion à la base de données
-$dsn = 'mysql:host=localhost;
-        dbname=pwproject_db';
+class pdo{
 
-// Définition du nom d'utilisateur de la base de données
-$username = 'root';
+ public $pdo;
+    
+    public function __construct(){ 
+    
+    global $host;
+    global $database;
+    global $username;
+    global $password;
+    // Connexion à la base de données en utilisant PDO
+    try {
+    $this->pdo = new PDO("mysql:host=$host;dbname=$database", $username, $password);
+    // Définir le mode d'erreur PDO à exception
+    $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+    // En cas d'erreur de connexion, afficher un message d'erreur
+    die("Erreur de connexion à la base de données : " . $e->getMessage());
+    }
+    }
 
-// Définition du mot de passe de la base de données
-$password = '';
-
-// Création d'une nouvelle instance de la classe PDO
-$pdo = new PDO($dsn, $username, $password);
-
-// Activation de l'exception pour les erreurs PDO
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-// Renvoi de l'instance de PDO
-return $pdo;
+}

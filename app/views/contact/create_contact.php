@@ -11,7 +11,7 @@
     <h1>Ajouter un Contact</h1>
     <a href="HomeController.php">Retour à la liste des contacts</a>
 
-    <form action="AddContactController.php" method="post">
+    <form action="../app/controllers/contact/AddContactController" method="post">
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" required><br>
 
