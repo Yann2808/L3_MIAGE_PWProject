@@ -1,30 +1,30 @@
 <?php
 class ContactDAO
 {
-    private PDO $pdo;
+    private $connexion ;
 
-    public function __construct(PDO $pdo)
+    public function __construct(Connexion $connexion)
     {
-        $this->pdo = $pdo;
+        $this->connexion = $connexion;
     }
 
     public function create(Contact $contact)
     {
         $query = "INSERT INTO contacts (nom, prenom, email, telephone) VALUES (:nom, :prenom, :email, :telephone)";
-        $stmt = $this->pdo->prepare($query);
+        $stmt = $this->connexion->pdo->prepare($query);
         $stmt->bindValue(':nom', $contact->getNom());
         $stmt->bindValue(':prenom', $contact->getPrenom());
         $stmt->bindValue(':email', $contact->getEmail());
         $stmt->bindValue(':telephone', $contact->getnumeroTel());
         $stmt->execute();
 
-        return $this->pdo->lastInsertId();
+        return $this->connexion->pdo->lastInsertId();
     }
 
     public function read($id)
     {
         $query = "SELECT * FROM contacts WHERE id = :id";
-        $stmt = $this->pdo->prepare($query);
+        $stmt = $this->connexion->pdo->prepare($query);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
 
@@ -38,7 +38,7 @@ class ContactDAO
     public function update(Contact $contact)
     {
         $query = "UPDATE contacts SET nom = :nom, prenom = :prenom, email = :email, telephone = :numeroTel WHERE id = :id";
-        $stmt = $this->pdo->prepare($query);
+        $stmt = $this->connexion->pdo->prepare($query);
         $stmt->bindValue(':id', $contact->getId());
         $stmt->bindValue(':nom', $contact->getNom());
         $stmt->bindValue(':prenom', $contact->getPrenom());
@@ -52,7 +52,7 @@ class ContactDAO
     public function delete($id)
     {
         $query = "DELETE FROM contacts WHERE id = :id";
-        $stmt = $this->pdo->prepare($query);
+        $stmt = $this->connexion->pdo->prepare($query);
         $stmt->bindValue(':id', $id);
         $stmt->execute();
 

@@ -8,7 +8,7 @@ class AddContactController {
 
     public function index() {
     // Inclure la vue pour afficher le formulaire d'ajout de contact
-        include('../views/contact/create_contact.php'); 
+        include('../../views/contact/create_contact.php'); 
     }
     
     public function addContact() {
@@ -27,8 +27,7 @@ class AddContactController {
             // Appeler la méthode du modèle (ContactDAO) pour ajouter le contact
             if ($this->contactDAO->create($nouveauContact)) {
                 // Rediriger vers la page d'accueil après l'ajout
-                header('Location:HomeController.php');
-                exit();
+               echo"contact ajouté";
             } else {
                 // Gérer les erreurs d'ajout de contact
                 echo "Erreur lors de l'ajout du contact.";
@@ -36,16 +35,16 @@ class AddContactController {
         }
 
         // Inclure la vue pour afficher le formulaire d'ajout de contact
-        include('../views/contact/create_contact.php');
+        include('../../views/contact/create_contact.php');
     }
 }
 
 
-require_once("../app/config/config.php");
-require_once("../app/config/pdo.php");
-require_once("../app/models/Contact.php");
-require_once("../app/models/dao/ContactDAO.php");
-$contactDAO=new ContactDAO(new pdo());
+require_once("../../config/config.php");
+require_once("../../config/connexion.php");
+require_once("../../models/Contact.php");
+require_once("../../models/dao/ContactDAO.php");
+$contactDAO=new ContactDAO(new Connexion());
 $controller=new AddContactController($contactDAO);
 if(!isset($_POST['action'])){
 $controller->index();

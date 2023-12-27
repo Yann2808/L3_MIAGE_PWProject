@@ -1,11 +1,12 @@
 <?php
-
-class pdo{
-
- public $pdo;
-    
-    public function __construct(){ 
-    
+ 
+ 
+class Connexion{
+ 
+ 
+   public $pdo;
+    public function __construct(){
+   
     global $host;
     global $database;
     global $username;
@@ -20,5 +21,7 @@ class pdo{
     die("Erreur de connexion à la base de données : " . $e->getMessage());
     }
     }
-
+ 
 }
+?>
+ 
