@@ -11,7 +11,7 @@
     <h1>Ajouter une Catégorie</h1>
     <a href="HomeController.php">Retour à la liste des contacts</a>
 
-    <form action="CategorieController.php" method="post">
+    <form action="AddCategorieController.php" method="post">
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" required><br>
 

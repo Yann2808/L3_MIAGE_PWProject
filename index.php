@@ -1,3 +1,3 @@
 <?php
-header("Location:app/controllers/contact/AddContactController.php");
+header("Location:app/controllers/categorie/AddCategorieController.php");
 ?>
