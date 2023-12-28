@@ -1,24 +1,49 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Supprimer un Contact</title>
-    <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
-        <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
-    <h1>Supprimer un Contact</h1>
-    <a href="HomeController.php">Retour à la liste des contacts</a>
+<?php
+class DeleteContactController {
+    private $contactDAO;
 
-    <?php if ($contact): ?>
-        <p>Voulez-vous vraiment supprimer le contact "<?php echo $contact->getNom(); ?> <?php echo $contact->getPrenom(); ?>" ?</p>
-        <form action="/app/controllers/contact/DeleteContactController.php?id=<?php echo $contact->getId(); ?>" method="post">
-            <input type="submit" value="Oui, Supprimer">
-        </form>
-    <?php else: ?>
-        <p>Le contact n'a pas été trouvé.</p>
-    <?php endif; ?>
+    public function __construct(ContactDAO $contactDAO) {
+        $this->contactDAO = $contactDAO;
+    }
 
-</body>
-</html>
+    public function delete($id) {
+        // Récupérer le contact à supprimer en utilisant son ID
+        $contact = $this->contactDAO->getId($id);
+
+        if (!$contact) {
+            // Le contact n'a pas été trouvé, vous pouvez rediriger ou afficher un message d'erreur
+            echo "Le contact n'a pas été trouvé.";
+            return;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Supprimer le contact en appelant la méthode du modèle (ContactDAO)
+            if ($this->contactDAO->delete($id)) {
+                // Rediriger vers la page d'accueil après la suppression
+                echo"contact supprimé";
+                
+            } else {
+                // Gérer les erreurs de suppression du contact
+                echo "Erreur lors de la suppression du contact.";
+            }
+            
+        }
+
+        // Inclure la vue pour afficher la confirmation de suppression du contact
+        include('../../views/contact/delete_contact.php');
+    }
+}
+
+require_once("../../config/config.php");
+require_once("../../config/connexion.php");
+require_once("../../models/Contact.php");
+require_once("../../models/dao/ContactDAO.php");
+$contactDAO=new ContactDAO(new Connexion());
+$controller=new DeleteContactController($contactDAO);
+$controller->delete($_GET['id']);
+if ($id === null) {
+    echo "L'ID n'est pas défini dans l'URL.";
+    return;
+}
+?>
 

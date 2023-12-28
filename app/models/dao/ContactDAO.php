@@ -12,7 +12,7 @@ class ContactDAO
     {
         $query = "INSERT INTO contacts (nom, prenom, email, numero_tel) VALUES (:nom, :prenom, :email, :telephone)";
         $stmt = $this->connexion->pdo->prepare($query);
-        
+
         $stmt->bindValue(':nom', $contact->getNom());
         $stmt->bindValue(':prenom', $contact->getPrenom());
         $stmt->bindValue(':email', $contact->getEmail());
@@ -22,19 +22,22 @@ class ContactDAO
         return $this->connexion->pdo->lastInsertId();
     }
 
-    public function read($id)
-    {
-        $query = "SELECT * FROM contacts WHERE id = :id";
-        $stmt = $this->connexion->pdo->prepare($query);
-        $stmt->bindValue(':id', $id);
-        $stmt->execute();
+    public function getAll() {
+        try {
+            $stmt = $this->connexion->pdo->query("SELECT * FROM contacts");
+            $contacts = [];
 
-        $row = $stmt->fetch();
-        if ($row === false) {
-            return null;
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $contacts[] = new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numeroTel']);
+            }
+
+            return $contacts;
+        } catch (PDOException $e) {
+            // GÃ©rer les erreurs de rÃ©cupÃ©ration ici
+            return [];
         }
-
     }
+
 
     public function update(Contact $contact)
     {
@@ -50,7 +53,7 @@ class ContactDAO
         return $stmt->rowCount();
     }
 
-    public function delete($id)
+    public function delete( $id)
     {
         $query = "DELETE FROM contacts WHERE id = :id";
         $stmt = $this->connexion->pdo->prepare($query);
@@ -59,51 +62,20 @@ class ContactDAO
 
         return $stmt->rowCount();
     }
-
-    // Méthode pour supprimer un contact par son ID
-    public function deleteById($id) {
-        try {
-            $query = "DELETE FROM contacts WHERE id = ?";
-            $stmt = $this->connexion->pdo->prepare($query);
-            $stmt->execute([$id]);
-            return true;
-        } catch (PDOException $e) {
-            // Gérer les erreurs de suppression ici
-            return false;
-        }
-    }
-
-    public function getById($id) {
+    public function getId($id){
         try {
             $stmt = $this->connexion->pdo->prepare("SELECT * FROM contacts WHERE id = ?");
             $stmt->execute([$id]);
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($row) {
-                return new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numero_tel']);
+                return new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numeroTel']);
             } else {
-                return null; // Aucun contact trouvé avec cet ID
+                return null; // Aucun contact trouvÃ© avec cet ID
             }
         } catch (PDOException $e) {
-            // Gérer les erreurs de récupération ici
+            // GÃ©rer les erreurs de rÃ©cupÃ©ration ici
             return null;
-        }
-    }
-
-    // MÃ©thode pour récupérer la liste de tous les contacts
-    public function getAll() {
-        try {
-            $stmt = $this->connexion->pdo->query("SELECT * FROM contacts");
-            $contacts = [];
-
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $contacts[] = new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numero_tel']);
-            }
-
-            return $contacts;
-        } catch (PDOException $e) {
-            // Gérer les erreurs de récupération ici
-            return [];
         }
     }
 }

@@ -2,7 +2,7 @@
 CREATE TABLE categories (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255) NOT NULL,
-    code_raccourci VARCHAR(10) NOT NULL
+    code VARCHAR(10) NOT NULL
 );
 
 -- Table pour les contacts

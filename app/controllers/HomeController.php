@@ -11,14 +11,14 @@ class HomeController {
         $contacts = $this->contactDAO->getAll();
 
         // Inclure la vue pour afficher la liste des contacts
-        include('../views/home.php');
+        include('../../views/home.php');
     }
 }
 
-require_once("../config/config.php");
-require_once("../config/Connexion.php");
-require_once("../models/Contact.php");
-require_once("../models/dao/ContactDAO.php");
+require_once("../../config/config.php");
+require_once("../../config/connexion.php");
+require_once("../../models/Contact.php");
+require_once("../../models/dao/ContactDAO.php");
 $contactDAO=new ContactDAO(new Connexion());
 $controller=new HomeController($contactDAO);
 $controller->index();

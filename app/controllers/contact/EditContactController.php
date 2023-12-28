@@ -1,14 +1,15 @@
 <?php
 class EditContactController {
     private $contactDAO;
+    public $id;
 
     public function __construct(ContactDAO $contactDAO) {
         $this->contactDAO = $contactDAO;
     }
 
-    public function editContact($contactId) {
+    public function update($id) {
         // Récupérer le contact à modifier en utilisant son ID
-        $contact = $this->contactDAO->getById($contactId);
+        $contact = $this->contactDAO->getId($id);
 
         if (!$contact) {
             // Le contact n'a pas été trouvé, vous pouvez rediriger ou afficher un message d'erreur
@@ -21,7 +22,7 @@ class EditContactController {
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
             $email = $_POST['email'];
-            $telephone = $_POST['telephone'];
+            $telephone = $_POST['numeroTel'];
 
             // Valider les données du formulaire (ajoutez des validations si nécessaire)
 
@@ -29,13 +30,13 @@ class EditContactController {
             $contact->setNom($nom);
             $contact->setPrenom($prenom);
             $contact->setEmail($email);
-            $contact->setTelephone($telephone);
+            $contact->setNumeroTel($telephone);
 
             // Appeler la méthode du modèle (ContactDAO) pour mettre à jour le contact
             if ($this->contactDAO->update($contact)) {
                 // Rediriger vers la page de détails du contact après la modification
-                header('Location:EditContactController.php?id=' . $contactId);
-                exit();
+                echo"contact modifié";
+                
             } else {
                 // Gérer les erreurs de mise à jour du contact
                 echo "Erreur lors de la modification du contact.";
@@ -43,7 +44,7 @@ class EditContactController {
         }
 
         // Inclure la vue pour afficher le formulaire de modification du contact
-        include('../views/edit_contact.php');
+        include('../../views/contact/edit_contact.php');
     }
 }
 
@@ -53,6 +54,11 @@ require_once("../../models/Contact.php");
 require_once("../../models/dao/ContactDAO.php");
 $contactDAO=new ContactDAO(new Connexion());
 $controller=new EditContactController($contactDAO);
-$controller->editContact($_GET['id']);
+$controller->update($_GET['id']);
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+if ($id === null) {
+    echo "L'ID n'est pas défini dans l'URL.";
+    return;
+}
 ?>
 

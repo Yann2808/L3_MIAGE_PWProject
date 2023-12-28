@@ -8,9 +8,9 @@
 </head>
 <body>
     <h1>Liste des Contacts</h1>
-    <a href="AddContactController.php">Ajouter un contact</a>
+    <a href="HomeController.php">Ajouter un contact</a>
 
-    <?php if (count($contacts) > 0): ?>
+    <?php if ($contacts) : ?>
         <table>
             <thead>
                 <tr>

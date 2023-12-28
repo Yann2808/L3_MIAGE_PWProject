@@ -22,7 +22,7 @@
             <input type="email" id="email" name="email" value="<?php echo $contact->getEmail(); ?>"><br>
 
             <label for="telephone">Téléphone :</label>
-            <input type="text" id="telephone" name="telephone" value="<?php echo $contact->getTelephone(); ?>"><br>
+            <input type="text" id="telephone" name="telephone" value="<?php echo $contact->getNumeroTel(); ?>"><br>
 
             <input type="submit" value="Modifier">
         </form>

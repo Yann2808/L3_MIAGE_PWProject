@@ -1,17 +1,17 @@
 <?php
 class CategorieDAO
 {
-    private $pdo;
+    private $connexion;
 
-    public function __construct(PDO $pdo)
+    public function __construct(Connexion $connexion)
     {
-        $this->pdo = $pdo;
+        $this->connexion = $connexion;
     }
 
     public function findAll()
     {
         $sql = "SELECT * FROM categories";
-        $stmt = $this->pdo->query($sql);
+        $stmt = $this->connexion->pdo->query($sql);
         $categories = [];
         while ($row = $stmt->fetch()) {
             $categories[] = new Categorie($row['nom'], $row['code']);
@@ -23,7 +23,7 @@ class CategorieDAO
     public function findById($id)
     {
         $sql = "SELECT * FROM categories WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->connexion->pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
@@ -38,18 +38,18 @@ class CategorieDAO
     public function create(Categorie $categorie)
     {
         $sql = "INSERT INTO categories (nom, code) VALUES (:nom, :code)";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->connexion->pdo->prepare($sql);
         $stmt->bindParam(':nom', $categorie->getNom());
         $stmt->bindParam(':code', $categorie->getCode());
         $stmt->execute();
 
-        return $this->pdo->lastInsertId();
+        return $this->connexion->pdo->lastInsertId();
     }
 
     public function update(Categorie $categorie)
     {
         $sql = "UPDATE categories SET nom = :nom, code = :code WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->connexion->pdo->prepare($sql);
         $stmt->bindParam(':nom', $categorie->getNom());
         $stmt->bindParam(':code', $categorie->getCode());
         $stmt->bindParam(':id', $categorie->getId());
@@ -59,7 +59,7 @@ class CategorieDAO
     public function deleteById($id)
     {
         $sql = "DELETE FROM categories WHERE id = :id";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->connexion->pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
