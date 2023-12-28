@@ -29,9 +29,9 @@
                         <td><?php echo $contact->getEmail(); ?></td>
                         <td><?php echo $contact->getNumeroTel(); ?></td>
                         <td>
-                            <a href="ViewContactController.php?id=<?php echo $contact->getId(); ?>">Voir</a>
-                            <a href="EditContactController.php?id=<?php echo $contact->getId(); ?>">Modifier</a>
-                            <a href="DeleteContactController.php?id=<?php echo $contact->getId(); ?>">Supprimer</a>
+                            <a href="../controllers/contact/ViewContactController.php?id=<?php echo $contact->getId(); ?>">Voir</a>
+                            <a href="../controllers/contact/EditContactController.php?id=<?php echo $contact->getId(); ?>">Modifier</a>
+                            <a href="../controllers/contact/DeleteContactController.php?id=<?php echo $contact->getId(); ?>">Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
