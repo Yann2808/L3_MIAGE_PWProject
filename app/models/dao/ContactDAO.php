@@ -62,8 +62,20 @@ class ContactDAO
 
         return $stmt->rowCount();
     }
+    public function getId($id){
+        try {
+            $stmt = $this->connexion->pdo->prepare("SELECT * FROM contacts WHERE id = ?");
+            $stmt->execute([$id]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    public function getById(int $id){
-        
+            if ($row) {
+                return new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numeroTel']);
+            } else {
+                return null; // Aucun contact trouvÃ© avec cet ID
+            }
+        } catch (PDOException $e) {
+            // GÃ©rer les erreurs de rÃ©cupÃ©ration ici
+            return null;
+        }
     }
 }

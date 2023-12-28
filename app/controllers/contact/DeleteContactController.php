@@ -8,7 +8,7 @@ class DeleteContactController {
 
     public function delete($id) {
         // Récupérer le contact à supprimer en utilisant son ID
-        $contact = $this->contactDAO->getById($id);
+        $contact = $this->contactDAO->getId($id);
 
         if (!$contact) {
             // Le contact n'a pas été trouvé, vous pouvez rediriger ou afficher un message d'erreur
