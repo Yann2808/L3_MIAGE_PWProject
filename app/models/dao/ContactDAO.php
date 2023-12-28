@@ -12,7 +12,7 @@ class ContactDAO
     {
         $query = "INSERT INTO contacts (nom, prenom, email, numeroTel) VALUES (:nom, :prenom, :email, :telephone)";
         $stmt = $this->connexion->pdo->prepare($query);
-        
+
         $stmt->bindValue(':nom', $contact->getNom());
         $stmt->bindValue(':prenom', $contact->getPrenom());
         $stmt->bindValue(':email', $contact->getEmail());
@@ -22,19 +22,22 @@ class ContactDAO
         return $this->connexion->pdo->lastInsertId();
     }
 
-    public function read($id)
-    {
-        $query = "SELECT * FROM contacts WHERE id = :id";
-        $stmt = $this->connexion->pdo->prepare($query);
-        $stmt->bindValue(':id', $id);
-        $stmt->execute();
+    public function getAll() {
+        try {
+            $stmt = $this->connexion->pdo->query("SELECT * FROM contacts");
+            $contacts = [];
 
-        $row = $stmt->fetch();
-        if ($row === false) {
-            return null;
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $contacts[] = new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numeroTel']);
+            }
+
+            return $contacts;
+        } catch (PDOException $e) {
+            // GÃ©rer les erreurs de rÃ©cupÃ©ration ici
+            return [];
         }
-
     }
+
 
     public function update(Contact $contact)
     {
@@ -50,7 +53,7 @@ class ContactDAO
         return $stmt->rowCount();
     }
 
-    public function delete($id)
+    public function delete( $id)
     {
         $query = "DELETE FROM contacts WHERE id = :id";
         $stmt = $this->connexion->pdo->prepare($query);
@@ -60,7 +63,18 @@ class ContactDAO
         return $stmt->rowCount();
     }
 
-    public function getById(int $id){
-        
+    public function getById($id){
+        $sql = "SELECT * FROM contacts WHERE id = :id";
+        $stmt = $this->connexion->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
+        if ($stmt->rowCount() === 1) {
+            $row = $stmt->fetch();
+            return new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numeroTel']);
+        } else {
+            return null;
+        }
+
     }
 }
