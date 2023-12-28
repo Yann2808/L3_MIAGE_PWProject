@@ -27,7 +27,7 @@
                         <td><?php echo $contact->getNom(); ?></td>
                         <td><?php echo $contact->getPrenom(); ?></td>
                         <td><?php echo $contact->getEmail(); ?></td>
-                        <td><?php echo $contact->getTelephone(); ?></td>
+                        <td><?php echo $contact->getNumeroTel(); ?></td>
                         <td>
                             <a href="ViewContactController.php?id=<?php echo $contact->getId(); ?>">Voir</a>
                             <a href="EditContactController.php?id=<?php echo $contact->getId(); ?>">Modifier</a>

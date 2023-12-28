@@ -10,7 +10,7 @@ class ContactDAO
 
     public function create(Contact $contact)
     {
-        $query = "INSERT INTO contacts (nom, prenom, email, numeroTel) VALUES (:nom, :prenom, :email, :telephone)";
+        $query = "INSERT INTO contacts (nom, prenom, email, numero_tel) VALUES (:nom, :prenom, :email, :telephone)";
         $stmt = $this->connexion->pdo->prepare($query);
         
         $stmt->bindValue(':nom', $contact->getNom());
@@ -60,7 +60,50 @@ class ContactDAO
         return $stmt->rowCount();
     }
 
-    public function getById(int $id){
-        
+    // Méthode pour supprimer un contact par son ID
+    public function deleteById($id) {
+        try {
+            $query = "DELETE FROM contacts WHERE id = ?";
+            $stmt = $this->connexion->pdo->prepare($query);
+            $stmt->execute([$id]);
+            return true;
+        } catch (PDOException $e) {
+            // Gérer les erreurs de suppression ici
+            return false;
+        }
+    }
+
+    public function getById($id) {
+        try {
+            $stmt = $this->connexion->pdo->prepare("SELECT * FROM contacts WHERE id = ?");
+            $stmt->execute([$id]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($row) {
+                return new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numero_tel']);
+            } else {
+                return null; // Aucun contact trouvé avec cet ID
+            }
+        } catch (PDOException $e) {
+            // Gérer les erreurs de récupération ici
+            return null;
+        }
+    }
+
+    // MÃ©thode pour récupérer la liste de tous les contacts
+    public function getAll() {
+        try {
+            $stmt = $this->connexion->pdo->query("SELECT * FROM contacts");
+            $contacts = [];
+
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $contacts[] = new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numero_tel']);
+            }
+
+            return $contacts;
+        } catch (PDOException $e) {
+            // Gérer les erreurs de récupération ici
+            return [];
+        }
     }
 }
