@@ -11,7 +11,7 @@ class ViewContactController {
         $contact = $this->contactDAO->getId($id);
 
         // Inclure la vue pour afficher les détails du contact
-        include('../../views/contact/viewContact.php');
+        include('../../views/contact/view_contact.php');
     }
 }
 

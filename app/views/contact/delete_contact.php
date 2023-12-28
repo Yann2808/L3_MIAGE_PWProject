@@ -8,7 +8,8 @@
 </head>
 <body>
     <h1>Supprimer un Contact</h1>
-    <a href="HomeController.php">Retour à la liste des contacts</a>
+    <a href="../HomeController.php">Retour à la liste des contacts</a>
+    <hr>
 
     <?php if ($contact): ?>
         <p>Voulez-vous vraiment supprimer le contact "<?php echo $contact->getNom(); ?> <?php echo $contact->getPrenom(); ?>" ?</p>

@@ -11,7 +11,7 @@ class HomeController {
         $contacts = $this->contactDAO->getAll();
 
         // Inclure la vue pour afficher la liste des contacts
-        include('../../views/home.php');
+        include('../views/home.php');
     }
 }
 

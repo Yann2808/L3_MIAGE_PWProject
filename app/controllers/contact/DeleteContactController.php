@@ -21,6 +21,8 @@ class DeleteContactController {
             if ($this->contactDAO->delete($id)) {
                 // Rediriger vers la page d'accueil après la suppression
                 echo"contact supprimé";
+                header('Location: ../HomeController.php');
+                exit();
                 
             } else {
                 // Gérer les erreurs de suppression du contact
@@ -40,7 +42,8 @@ require_once("../../models/Contact.php");
 require_once("../../models/dao/ContactDAO.php");
 $contactDAO=new ContactDAO(new Connexion());
 $controller=new DeleteContactController($contactDAO);
-$controller->delete($_GET['id']);
+$id = $_GET['id'];
+$controller->delete($id);
 if ($id === null) {
     echo "L'ID n'est pas défini dans l'URL.";
     return;

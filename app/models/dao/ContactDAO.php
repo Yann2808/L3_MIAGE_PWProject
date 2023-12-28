@@ -28,7 +28,7 @@ class ContactDAO
             $contacts = [];
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $contacts[] = new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numeroTel']);
+                $contacts[] = new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numero_tel']);
             }
 
             return $contacts;
@@ -69,7 +69,7 @@ class ContactDAO
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($row) {
-                return new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numeroTel']);
+                return new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numero_tel']);
             } else {
                 return null; // Aucun contact trouvÃ© avec cet ID
             }

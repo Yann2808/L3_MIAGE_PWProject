@@ -9,9 +9,10 @@
 <body>
     <h1>Modifier un Contact</h1>
     <a href="../HomeController.php">Retour à la liste des contacts</a>
-
+    <hr>
+    
     <?php if ($contact): ?>
-        <form action="../EditContactController.php?id=<?php echo $contact->getId(); ?>" method="post">
+        <form action="EditContactController.php?id=<?php echo $contact->getId(); ?>" method="post">
             <label for="nom">Nom :</label>
             <input type="text" id="nom" name="nom" value="<?php echo $contact->getNom(); ?>" required><br>
 
