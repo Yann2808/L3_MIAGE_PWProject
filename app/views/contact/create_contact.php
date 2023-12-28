@@ -9,7 +9,8 @@
 </head>
 <body>
     <h1>Ajouter un Contact</h1>
-    <a href="HomeController.php">Retour à la liste des contacts</a>
+    <a href="../HomeController.php">Retour à la liste des contacts</a>
+    <hr>
 
     <form action="AddContactController.php" method="post">
         <label for="nom">Nom :</label>

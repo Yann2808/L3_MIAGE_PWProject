@@ -10,7 +10,7 @@ class ContactDAO
 
     public function create(Contact $contact)
     {
-        $query = "INSERT INTO contacts (nom, prenom, email, numeroTel) VALUES (:nom, :prenom, :email, :telephone)";
+        $query = "INSERT INTO contacts (nom, prenom, email, numero_tel) VALUES (:nom, :prenom, :email, :telephone)";
         $stmt = $this->connexion->pdo->prepare($query);
 
         $stmt->bindValue(':nom', $contact->getNom());
@@ -63,18 +63,7 @@ class ContactDAO
         return $stmt->rowCount();
     }
 
-    public function getById($id){
-        $sql = "SELECT * FROM contacts WHERE id = :id";
-        $stmt = $this->connexion->pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-
-        if ($stmt->rowCount() === 1) {
-            $row = $stmt->fetch();
-            return new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numeroTel']);
-        } else {
-            return null;
-        }
-
+    public function getById(int $id){
+        
     }
 }

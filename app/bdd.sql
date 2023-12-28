@@ -10,8 +10,8 @@ CREATE TABLE contacts (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nom VARCHAR(255) NOT NULL,
     prenom VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    numeroTel VARCHAR(15) NOT NULL
+    email VARCHAR(255) UNIQUE NOT NULL,
+    numeroTel VARCHAR(15) UNIQUE NOT NULL
 );
 
 -- Table pour les licenciés
