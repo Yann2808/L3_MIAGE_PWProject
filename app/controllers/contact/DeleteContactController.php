@@ -27,6 +27,8 @@ class DeleteContactController {
             } else {
                 // Gérer les erreurs de suppression du contact
                 echo "Erreur lors de la suppression du contact.";
+                header('Location: ../HomeController.php');
+                exit();
             }
             
         }

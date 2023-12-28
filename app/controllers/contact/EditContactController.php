@@ -36,10 +36,14 @@ class EditContactController {
             if ($this->contactDAO->update($contact)) {
                 // Rediriger vers la page de détails du contact après la modification
                 echo"contact modifié";
+                header('Location: ../HomeController.php');
+                exit();
                 
             } else {
                 // Gérer les erreurs de mise à jour du contact
                 echo "Erreur lors de la modification du contact.";
+                header('Location: ../HomeController.php');
+                exit();
             }
         }
 
