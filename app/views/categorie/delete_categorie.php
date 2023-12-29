@@ -8,7 +8,8 @@
 </head>
 <body>
     <h1>Supprimer une catégorie</h1>
-    <a href="HomeController.php">Retour à la liste des catégories</a>
+    <a href="../../controllers/categorie/IndexCategorieController.php">Retour à la liste des catégories</a>
+    <hr>
 
     <?php if ($category): ?>
         <p>Voulez-vous vraiment supprimer la catégorie "<?php echo $category->getNom(); ?>" ?</p>

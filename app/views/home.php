@@ -52,15 +52,15 @@
             </li>
 
             <li>
-                <a href="">Catégories</a>
+                <a href="../controllers/categorie/IndexCategorieController.php">Catégories</a>
             </li>
 
             <li>
-                <a href="">Licenciés</a>
+                <a href="../controllers/licencie/IndexLicencieController.php">Licenciés</a>
             </li>
 
             <li>
-                <a href="">Educateurs</a>
+                <a href="../controllers/educateur/IndexEducateurController.php">Educateurs</a>
             </li>
         </ul>
     <hr>
