@@ -16,7 +16,7 @@ class ContactDAO
         $stmt->bindValue(':nom', $contact->getNom());
         $stmt->bindValue(':prenom', $contact->getPrenom());
         $stmt->bindValue(':email', $contact->getEmail());
-        $stmt->bindValue(':telephone',$contact->getnumeroTel());
+        $stmt->bindValue(':telephone',$contact->getNumeroTel());
         $stmt->execute();
 
         return $this->connexion->pdo->lastInsertId();
@@ -47,7 +47,7 @@ class ContactDAO
         $stmt->bindValue(':nom', $contact->getNom());
         $stmt->bindValue(':prenom', $contact->getPrenom());
         $stmt->bindValue(':email', $contact->getEmail());
-        $stmt->bindValue(':telephone', $contact->getnumeroTel());
+        $stmt->bindValue(':telephone', $contact->getNumeroTel());
         $stmt->execute();
 
         return $stmt->rowCount();
