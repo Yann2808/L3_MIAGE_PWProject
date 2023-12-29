@@ -66,7 +66,7 @@ class LicencieDAO {
         }
 
         $contactDAO = new ContactDAO($this->db);
-        $contact = $contactDAO->getById($licencieData['contact_id']);
+        $contact = $contactDAO->getId($licencieData['contact_id']);
 
         $licencie = new Licencie(
             $licencieData['numero_licence'],

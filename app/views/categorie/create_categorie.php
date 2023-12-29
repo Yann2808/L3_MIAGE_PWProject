@@ -9,7 +9,8 @@
 </head>
 <body>
     <h1>Ajouter une Catégorie</h1>
-    <a href="HomeController.php">Retour à la liste des categorie</a>
+    <a href="../../controllers/categorie/IndexCategorieController.php">Retour à la liste des catégories</a>
+    <hr>
 
     <form action="AddCategorieController.php" method="post">
         <label for="nom">Nom :</label>
