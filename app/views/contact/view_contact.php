@@ -9,6 +9,7 @@
 <body>
     <h1>Détails du Contact</h1>
     <a href="../../controllers/contact/IndexContactController.php">Retour à la liste des contacts</a>
+    <hr>
 
     <?php if ($contact): ?>
         <p><strong>Nom :</strong> <?php echo $contact->getNom(); ?></p>

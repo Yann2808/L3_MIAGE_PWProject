@@ -47,26 +47,29 @@
 </head>
 <body>
 <ul class="menu">
-            <li>
-                <a href="../contact/IndexContactController.php">Contacts</a>
-            </li>
+    <li>
+        <a href="../../controllers/HomeController.php">Accueil</a>
+    </li>
+    <li>
+        <a href="../contact/IndexContactController.php">Contacts</a>
+    </li>
 
-            <li>
-                <a href="../categorie/IndexCategorieController.php">Catégories</a>
-            </li>
+    <li>
+        <a href="../categorie/IndexCategorieController.php">Catégories</a>
+    </li>
 
-            <li>
-                <a href="">Licenciés</a>
-            </li>
+    <li>
+        <a href="">Licenciés</a>
+    </li>
 
-            <li>
-                <a href="">Educateurs</a>
-            </li>
-        </ul>
+    <li>
+        <a href="">Educateurs</a>
+    </li>
+</ul>
     <hr>
 
     <h1>Liste des Contacts</h1>
-    <a href="../controllers/contact/AddContactController.php">Ajouter un contact</a>
+    <a href="../contact/AddContactController.php">Ajouter un contact</a>
 
     <?php if ($contacts) : ?>
         <table>

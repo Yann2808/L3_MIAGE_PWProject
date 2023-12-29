@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Supprimer un Contact</h1>
-    <a href="../HomeController.php">Retour à la liste des contacts</a>
+    <a href="../../controllers/contact/IndexContactController.php">Retour à la liste des contacts</a>
     <hr>
 
     <?php if ($contact): ?>

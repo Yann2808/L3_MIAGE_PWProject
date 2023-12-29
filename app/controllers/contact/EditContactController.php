@@ -22,7 +22,7 @@ class EditContactController {
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
             $email = $_POST['email'];
-            $telephone = $_POST['numeroTel'];
+            $telephone = $_POST['telephone'];
 
             // Valider les données du formulaire (ajoutez des validations si nécessaire)
 
@@ -36,13 +36,13 @@ class EditContactController {
             if ($this->contactDAO->update($contact)) {
                 // Rediriger vers la page de détails du contact après la modification
                 echo"contact modifié";
-                header('Location: ../HomeController.php');
+                header('Location: ../contact/IndexContactController.php');
                 exit();
                 
             } else {
                 // Gérer les erreurs de mise à jour du contact
                 echo "Erreur lors de la modification du contact.";
-                header('Location: ../HomeController.php');
+                header('Location: ../contact/IndexContactController.php');
                 exit();
             }
         }

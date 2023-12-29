@@ -10,7 +10,7 @@ class ContactDAO
 
     public function create(Contact $contact)
     {
-        $query = "INSERT INTO contacts (nom, prenom, email, numero_tel) VALUES (:nom, :prenom, :email, :telephone)";
+        $query = "INSERT INTO contacts (nom, prenom, email, numeroTel) VALUES (:nom, :prenom, :email, :telephone)";
         $stmt = $this->connexion->pdo->prepare($query);
 
         $stmt->bindValue(':nom', $contact->getNom());
@@ -28,7 +28,7 @@ class ContactDAO
             $contacts = [];
 
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $contacts[] = new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numero_tel']);
+                $contacts[] = new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numeroTel']);
             }
 
             return $contacts;
@@ -41,7 +41,7 @@ class ContactDAO
 
     public function update(Contact $contact)
     {
-        $query = "UPDATE contacts SET nom = :nom, prenom = :prenom, email = :email, telephone = :numeroTel WHERE id = :id";
+        $query = "UPDATE contacts SET nom = :nom, prenom = :prenom, email = :email, numeroTel = :telephone WHERE id = :id";
         $stmt = $this->connexion->pdo->prepare($query);
         $stmt->bindValue(':id', $contact->getId());
         $stmt->bindValue(':nom', $contact->getNom());
@@ -69,7 +69,7 @@ class ContactDAO
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($row) {
-                return new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numero_tel']);
+                return new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numeroTel']);
             } else {
                 return null; // Aucun contact trouvÃ© avec cet ID
             }
