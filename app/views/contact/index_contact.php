@@ -48,11 +48,11 @@
 <body>
 <ul class="menu">
             <li>
-                <a href="../controllers/contact/IndexContactController.php">Contacts</a>
+                <a href="../contact/IndexContactController.php">Contacts</a>
             </li>
 
             <li>
-                <a href="">Catégories</a>
+                <a href="../categorie/IndexCategorieController.php">Catégories</a>
             </li>
 
             <li>
@@ -64,6 +64,7 @@
             </li>
         </ul>
     <hr>
+
     <h1>Liste des Contacts</h1>
     <a href="../controllers/contact/AddContactController.php">Ajouter un contact</a>
 
@@ -86,9 +87,9 @@
                         <td><?php echo $contact->getEmail(); ?></td>
                         <td><?php echo $contact->getNumeroTel(); ?></td>
                         <td>
-                            <a href="../controllers/contact/ViewContactController.php?id=<?php echo $contact->getId(); ?>">Voir</a>
-                            <a href="../controllers/contact/EditContactController.php?id=<?php echo $contact->getId(); ?>">Modifier</a>
-                            <a href="../controllers/contact/DeleteContactController.php?id=<?php echo $contact->getId(); ?>">Supprimer</a>
+                            <a href="../contact/ViewContactController.php?id=<?php echo $contact->getId(); ?>">Voir</a>
+                            <a href="../contact/EditContactController.php?id=<?php echo $contact->getId(); ?>">Modifier</a>
+                            <a href="../contact/DeleteContactController.php?id=<?php echo $contact->getId(); ?>">Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
