@@ -47,26 +47,30 @@
 </head>
 <body>
 <ul class="menu">
-            <li>
-                <a href="../controllers/contact/IndexContactController.php">Contacts</a>
-            </li>
+    <li>
+        <a href="../../controllers/HomeController.php">Accueil</a>
+    </li>
+    <li>
+        <a href="../contact/IndexContactController.php">Contacts</a>
+    </li>
 
-            <li>
-                <a href="">Catégories</a>
-            </li>
+    <li>
+        <a href="../categorie/IndexCategorieController.php">Catégories</a>
+    </li>
 
-            <li>
-                <a href="">Licenciés</a>
-            </li>
+    <li>
+        <a href="">Licenciés</a>
+    </li>
 
-            <li>
-                <a href="">Educateurs</a>
-            </li>
-        </ul>
+    <li>
+        <a href="">Educateurs</a>
+    </li>
+</ul>
     <hr>
+
     <h1>Liste des Contacts</h1>
-    <a href="../controllers/contact/AddContactController.php">Ajouter un contact</a>
-    
+    <a href="../contact/AddContactController.php">Ajouter un contact</a>
+
     <?php if ($contacts) : ?>
         <table>
             <thead>
@@ -86,9 +90,9 @@
                         <td><?php echo $contact->getEmail(); ?></td>
                         <td><?php echo $contact->getNumeroTel(); ?></td>
                         <td>
-                            <a href="../controllers/contact/ViewContactController.php?id=<?php echo $contact->getId(); ?>">Voir</a>
-                            <a href="../controllers/contact/EditContactController.php?id=<?php echo $contact->getId(); ?>">Modifier</a>
-                            <a href="../controllers/contact/DeleteContactController.php?id=<?php echo $contact->getId(); ?>">Supprimer</a>
+                            <a href="../contact/ViewContactController.php?id=<?php echo $contact->getId(); ?>">Voir</a>
+                            <a href="../contact/EditContactController.php?id=<?php echo $contact->getId(); ?>">Modifier</a>
+                            <a href="../contact/DeleteContactController.php?id=<?php echo $contact->getId(); ?>">Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -98,6 +102,5 @@
         <p>Aucun contact trouvé.</p>
     <?php endif; ?>
 </body>
-
 </html>
 

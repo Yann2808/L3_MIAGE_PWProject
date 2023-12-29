@@ -28,12 +28,12 @@ class AddContactController {
             if ($this->contactDAO->create($nouveauContact)) {
                 // Rediriger vers la page d'accueil après l'ajout
                echo"contact ajouté";
-               header('Location: ../HomeController.php');
+               header('Location: ../contact/IndexContactController.php');
                 exit();
             } else {
                 // Gérer les erreurs d'ajout de contact
                 echo "Erreur lors de l'ajout du contact.";
-                header('Location: ../HomeController.php');
+                header('Location: ../contact/IndexContactController.php');
                 exit();
             }
         }

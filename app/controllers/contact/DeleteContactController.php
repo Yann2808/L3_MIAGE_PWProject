@@ -21,13 +21,13 @@ class DeleteContactController {
             if ($this->contactDAO->delete($id)) {
                 // Rediriger vers la page d'accueil après la suppression
                 echo"contact supprimé";
-                header('Location: ../HomeController.php');
+                header('Location: ../contact/IndexContactController.php');
                 exit();
                 
             } else {
                 // Gérer les erreurs de suppression du contact
                 echo "Erreur lors de la suppression du contact.";
-                header('Location: ../HomeController.php');
+                header('Location: ../contact/IndexContactController.php');
                 exit();
             }
             

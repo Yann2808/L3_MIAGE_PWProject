@@ -41,7 +41,7 @@ class ContactDAO
 
     public function update(Contact $contact)
     {
-        $query = "UPDATE contacts SET nom = :nom, prenom = :prenom, email = :email, telephone = :numeroTel WHERE id = :id";
+        $query = "UPDATE contacts SET nom = :nom, prenom = :prenom, email = :email, numeroTel = :telephone WHERE id = :id";
         $stmt = $this->connexion->pdo->prepare($query);
         $stmt->bindValue(':id', $contact->getId());
         $stmt->bindValue(':nom', $contact->getNom());
