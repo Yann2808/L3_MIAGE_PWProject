@@ -26,9 +26,13 @@ class AddCategorieController {
             if ($this->categorieDAO->create($nouvelleCategorie)) {
                 // Rediriger vers la page d'accueil après l'ajout
                echo"categorie ajouté";
+               header('Location: ../HomeController.php');
+                exit();
             } else {
                 // Gérer les erreurs d'ajout de contact
                 echo "Erreur lors de l'ajout du contact.";
+                header('Location: ../HomeController.php');
+                exit();
             }
         }
 

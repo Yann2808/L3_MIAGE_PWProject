@@ -50,9 +50,9 @@ class CategorieDAO
     {
         $sql = "UPDATE categories SET nom = :nom, code = :code WHERE id = :id";
         $stmt = $this->connexion->pdo->prepare($sql);
+        $stmt->bindParam(':id', $categorie->getId());
         $stmt->bindParam(':nom', $categorie->getNom());
         $stmt->bindParam(':code', $categorie->getCode());
-        $stmt->bindParam(':id', $categorie->getId());
         $stmt->execute();
     }
 
