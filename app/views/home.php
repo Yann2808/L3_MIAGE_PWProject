@@ -66,7 +66,7 @@
     <hr>
     <h1>Liste des Contacts</h1>
     <a href="../controllers/contact/AddContactController.php">Ajouter un contact</a>
-
+    
     <?php if ($contacts) : ?>
         <table>
             <thead>
@@ -98,5 +98,6 @@
         <p>Aucun contact trouvé.</p>
     <?php endif; ?>
 </body>
+
 </html>
 
