@@ -5,8 +5,9 @@ class Categorie
     private $nom;
     private $code;
 
-    public function __construct($nom, $code)
+    public function __construct($id, $nom, $code)
     {
+        $this->id = $id;
         $this->nom = $nom;
         $this->code = $code;
     }

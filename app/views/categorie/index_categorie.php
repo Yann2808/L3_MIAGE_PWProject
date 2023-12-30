@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Liste des Contacts</title>
+    <title>Liste des Catégories</title>
     <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
     <link rel="stylesheet" href="../css/styles.css">
- 
+
     <style>
         .menu{
             display: flex;              /* Transformation en flexbox */
@@ -16,20 +16,20 @@
             text-decoration: none;
             text-transform: uppercase;
             display:flex;
- 
+
         }
- 
+
         .menu li {
             list-style-type: none ;       /* Suppression des puces */
         }
- 
+
         .menu a {
             display:block;                /* Transformation en block */
             min-width: 120px;             /* Largeur minimale des liens */
- 
+
             margin: 0.5rem;               /* Marges externes (1 valeurs = 4 directions) */
             padding: 0.4rem 0;            /* Marges internes (2 valeurs = haut/bas et gauche/droite)*/
-            text-align: center;           /* Centrage du texte */  
+            text-align: center;           /* Centrage du texte */   
             background-color: #1ABC9C;    /* Couleur d'arrière-plan */
             color: #fff;                  /* Couleur du texte */
             text-decoration: none;        /* Suppression du soulignement */
@@ -37,7 +37,7 @@
             border-radius: 4px;           /* Arrondis des bordures */
             transition: all 1s ;          /* Ajout des effets de transition */
         }
- 
+
         .menu a:hover {
             background-color: #fff;
             color: #aef;
@@ -53,53 +53,52 @@
     <li>
         <a href="../contact/IndexContactController.php">Contacts</a>
     </li>
- 
+
     <li>
         <a href="../categorie/IndexCategorieController.php">Catégories</a>
     </li>
- 
+
     <li>
         <a href="">Licenciés</a>
     </li>
- 
+
     <li>
         <a href="">Educateurs</a>
     </li>
 </ul>
     <hr>
- 
-    <h1>Liste des Contacts</h1>
-    <a href="../contact/AddContactController.php">Ajouter un contact</a>
- 
-    <?php if ($contacts) : ?>
+
+    <h1>Liste des Catégories</h1>
+    <a href="../categorie/AddCategorieController.php">Ajouter une catégorie</a>
+
+    <?php if ($categories) : ?>
         <table>
             <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Email</th>
-                    <th>Téléphone</th>
+                    <th>N°</th>
+                    <th>Nom de la catégorie</th>
+                    <th>Code raccourci</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($contacts as $contact): ?>
+                <?php foreach ($categories as $category): ?>
                     <tr>
-                        <td><?php echo $contact->getNom(); ?></td>
-                        <td><?php echo $contact->getPrenom(); ?></td>
-                        <td><?php echo $contact->getEmail(); ?></td>
-                        <td><?php echo $contact->getNumeroTel(); ?></td>
+                        <td><?php echo $category->getId(); ?></td>
+                        <td><?php echo $category->getNom(); ?></td>
+                        <td><?php echo $category->getCode(); ?></td>
                         <td>
-                            <a href="../contact/ViewContactController.php?id=<?php echo $contact->getId(); ?>">Voir</a>
-                            <a href="../contact/EditContactController.php?id=<?php echo $contact->getId(); ?>">Modifier</a>
-                            <a href="../contact/DeleteContactController.php?id=<?php echo $contact->getId(); ?>">Supprimer</a>
+                            <a href="../categorie/ViewCategorieController.php?id=<?php echo $category->getId(); ?>">Voir</a>
+                            <a href="../categorie/EditCategorieController.php?id=<?php echo $category->getId(); ?>">Modifier</a>
+                            <a href="../categorie/DeleteCategorieController.php?id=<?php echo $category->getId(); ?>">Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     <?php else: ?>
-        <p>Aucun contact trouvé.</p>
+        <p>Aucune catégorie trouvée.</p>
     <?php endif; ?>
 </body>
 </html>
+

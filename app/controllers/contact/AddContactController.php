@@ -22,7 +22,7 @@ class AddContactController {
             // Valider les données du formulaire (ajoutez des validations si nécessaire)
 
             // Créer un nouvel objet ContactModel avec les données du formulaire
-            $nouveauContact = new Contact(0,$nom, $prenom, $email, $telephone);
+            $nouveauContact = new Contact($nom, $prenom, $email, $telephone);
 
             // Appeler la méthode du modèle (ContactDAO) pour ajouter le contact
             if ($this->contactDAO->create($nouveauContact)) {
@@ -33,13 +33,13 @@ class AddContactController {
             } else {
                 // Gérer les erreurs d'ajout de contact
                 echo "Erreur lors de l'ajout du contact.";
-                header('Location: ../contact/IndexContactController.php');
+                header('Location: ../categorie/IndexCategorieController.php');
                 exit();
             }
         }
 
         // Inclure la vue pour afficher le formulaire d'ajout de contact
-        include('../../views/contact/create_contact.php');
+        include('../../views/categorie/create_categorie.php');
     }
 }
 

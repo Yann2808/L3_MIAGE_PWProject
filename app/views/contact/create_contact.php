@@ -69,6 +69,9 @@
     </ul>
     <hr>
 
+    <h1>Ajout d'un nouveau contact</h1>
+    <a href="../../controllers/contact/IndexContactController.php">Retour à la liste des contacts</a>
+
     <form action="AddContactController.php" method="post">
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" required><br>
