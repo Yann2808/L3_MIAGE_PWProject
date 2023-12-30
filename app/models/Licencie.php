@@ -4,18 +4,20 @@ require_once 'Contact.php';
 class Licencie
 {
     private $id;
-    private $numeroLicence;
+    private $numero_licence;
     private $nom;
     private $prenom;
     private $contact; //Utilisation de la classe Contact
+    private $categorie;
 
-    public function __construct($id, $numeroLicence, $nom, $prenom, $contact)
+    public function __construct($id, $numero_licence, $nom, $prenom, $contact,$categorie)
     {
         $this->id = $id;
-        $this->numeroLicence = $numeroLicence;
+        $this->numero_licence = $numero_licence;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->contact = $contact;
+        $this->categorie = $categorie;
     }
 
     public function getId()
@@ -30,12 +32,12 @@ class Licencie
 
     public function getNumeroLicence()
     {
-        return $this->numeroLicence;
+        return $this->numero_licence;
     }
 
-    public function setNumeroLicence($numeroLicence)
+    public function setNumeroLicence($numero_licence)
     {
-        $this->numeroLicence = $numeroLicence;
+        $this->numero_licence = $numero_licence;
     }
 
     public function getNom()
@@ -66,5 +68,14 @@ class Licencie
     public function setContact($contact)
     {
         $this->contact = $contact;
+    }
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
     }
 }
