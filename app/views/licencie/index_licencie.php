@@ -86,7 +86,7 @@
             <tbody>
                 <?php foreach ($licencies as $licencie): ?>
                     <tr>
-                        <td><?php echo $licencie->getNumeroLicence(); ?></td>
+                        <td><?php echo $licencie->getNumeroLicencie(); ?></td>
                         <td><?php echo $licencie->getNom(); ?></td>
                         <td><?php echo $licencie->getPrenom(); ?></td>
                         <td><?php echo $licencie->getContact(); ?></td>

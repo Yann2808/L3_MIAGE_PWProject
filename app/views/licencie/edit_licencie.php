@@ -75,18 +75,29 @@
     
     <?php if ($licencie): ?>
         <form action="EditLicencieController.php?id=<?php echo $contact->getId(); ?>" method="post">
-            <label for="nom">Numéro de Licence :</label>
-            <input type="text" id="numero_licence" name="numero_licence" value="<?php echo $licencie->getNumeroLicence(); ?>" required><br>
+            <label for="numero_licence">Numéro du Licencie :</label>
+            <input type="text" id="numero_licencie" name="numero_licencie" value="<?php echo $licencie->getNumeroLicence(); ?>" required><br>
 
-            <label for="prenom">Nom :</label>
+            <label for="nom">Nom :</label>
             <input type="text" id="nom" name="nom" value="<?php echo $licencie->getNom(); ?>" required><br>
 
-            <label for="email">Prénom :</label>
-            <input type="email" id="prenom" name="prenom" value="<?php echo $licencie->getPrénom(); ?>"><br>
-
-            <label for="telephone">Contact :</label>
-            <input type="text" id="telephone" name="telephone" value="<?php echo $licencie->getContact(); ?>"><br>
-
+            <label for="prenom">Prénom :</label>
+            <input type="prenom" id="prenom" name="prenom" value="<?php echo $licencie->getPrenom(); ?>"><br>
+            <select name="contact_id" required>
+        <?php foreach ($contacts as $contact): ?>
+            <option value="<?= $contact->getId(); ?>"><?= $contact->getEmail(); ?></option>
+        <?php endforeach; ?>
+    </select>
+    <br>
+ 
+    <label for="categorie_id">Catégorie:</label>
+    <select name="categorie_id" required>
+        <?php foreach ($categories as $categorie): ?>
+            <option value="<?= $categorie->getId(); ?>"><?= $categorie->getCode(); ?></option>
+        <?php endforeach; ?>
+    </select>
+    <br>
+            
             <input type="submit" value="Modifier">
         </form>
     <?php else: ?>

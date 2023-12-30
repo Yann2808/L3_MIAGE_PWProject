@@ -14,10 +14,10 @@ class LicencieDAO {
         $categorieDAO = new CategorieDAO($this->connexion);
         
         // Ensuite, créer le licencié
-        $query = "INSERT INTO licencies (numero_licence, nom, prenom, contact_id,categorie_id) VALUES (:numero_licence, :nom, :prenom, :contact_id, :categorie_id)";
+        $query = "INSERT INTO licencies (numero_licencie, nom, prenom, contact_id,categorie_id) VALUES (:numero_licencie, :nom, :prenom, :contact_id, :categorie_id)";
         $stmt = $this->connexion->pdo->prepare($query);
         
-        $stmt->bindValue(':numero_licence', $licencie->getNumeroLicence());
+        $stmt->bindValue(':numero_licencie', $licencie->getNumeroLicencie());
         $stmt->bindValue(':nom', $licencie->getNom());
         $stmt->bindValue(':prenom', $licencie->getPrenom());
         $stmt->bindValue(':contact_id',$licencie->getContact()->getId());
@@ -38,8 +38,8 @@ class LicencieDAO {
         // Mettre à jour la categorie associé
         $categorieDAO->update($licencie->getCategorie());
         // Mettre à jour le licencié
-        $stmt = $this->connexion->pdo->prepare('UPDATE licencies SET numero_licence = ?, nom = ?, prenom = ? WHERE id = ?');
-        $stmt->execute([$licencie->getNumeroLicence(), $licencie->getNom(), $licencie->getPrenom(), $licencie->getId()]);
+        $stmt = $this->connexion->pdo->prepare('UPDATE licencies SET numero_licencie = ?, nom = ?, prenom = ?  WHERE id = ?');
+        $stmt->execute([$licencie->getNumeroLicencie(), $licencie->getNom(), $licencie->getPrenom(), $licencie->getId()]);
     }
 
     public function delete($id) {
@@ -69,7 +69,7 @@ class LicencieDAO {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
  
             if ($row) {
-                $licencie[] = new Licencie($row['id'],$row['numero_licence'], $row['nom'], $row['prenom'], $row['contact_id'],$row['categorie_id']);
+                $licencie[] = new Licencie($row['id'],$row['numero_licencie'], $row['nom'], $row['prenom'], $row['contact_id'],$row['categorie_id']);
             } else {
                 return null; // Aucun contact trouvÃ© avec cet ID
             }
