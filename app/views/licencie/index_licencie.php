@@ -91,9 +91,9 @@
                         <td><?php echo $licencie->getPrenom(); ?></td>
                         <td><?php echo $licencie->getContact(); ?></td>
                         <td>
-                            <a href="../contact/ViewContactController.php?id=<?php echo $licencie->getId(); ?>">Voir</a>
-                            <a href="../contact/EditContactController.php?id=<?php echo $licencie->getId(); ?>">Modifier</a>
-                            <a href="../contact/DeleteContactController.php?id=<?php echo $licencie->getId(); ?>">Supprimer</a>
+                            <a href="../licencie/ViewLicencieController.php?id=<?php echo $licencie->getId(); ?>">Voir</a>
+                            <a href="../licencie/EditLicencieController.php?id=<?php echo $licencie->getId(); ?>">Modifier</a>
+                            <a href="../licencie/DeleteLicencieController.php?id=<?php echo $licencie->getId(); ?>">Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

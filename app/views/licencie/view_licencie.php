@@ -69,17 +69,17 @@
         </li>
     </ul>
 
-    <h1>Détails du Contact</h1>
-    <a href="../../controllers/contact/IndexContactController.php">Retour à la liste des contacts</a>
+    <h1>Détails du Licencié</h1>
+    <a href="../../controllers/licencie/IndexLicencieController.php">Retour à la liste des licenciés</a>
     <hr>
 
-    <?php if ($contact): ?>
-        <p><strong>Nom :</strong> <?php echo $contact->getNom(); ?></p>
-        <p><strong>Prénom :</strong> <?php echo $contact->getPrenom(); ?></p>
-        <p><strong>Email :</strong> <?php echo $contact->getEmail(); ?></p>
-        <p><strong>Téléphone :</strong> <?php echo $contact->getNumeroTel(); ?></p>
+    <?php if ($licencie): ?>
+        <p><strong>Numéro de Licence :</strong> <?php echo $licencie->getNumeroLicence(); ?></p>
+        <p><strong>Nom :</strong> <?php echo $licencie->getNom(); ?></p>
+        <p><strong>Prénom :</strong> <?php echo $licencie->getPrénom(); ?></p>
+        <p><strong>Contact :</strong> <?php echo $licencie->getContact(); ?></p>
     <?php else: ?>
-        <p>Le contact n'a pas été trouvé.</p>
+        <p>Le Licencié n'a pas été trouvé.</p>
     <?php endif; ?>
 </body>
 </html>
