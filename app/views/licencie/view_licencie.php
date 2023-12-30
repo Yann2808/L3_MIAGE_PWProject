@@ -61,7 +61,7 @@
         </li>
 
         <li>
-            <a href="../licencie/IndexLicencieController.php">Licenciés</a>
+            <a href="../../licencie/IndexLicencieController.php">Licenciés</a>
         </li>
 
         <li>
@@ -74,15 +74,11 @@
     <hr>
 
     <?php if ($licencie): ?>
-        <?php var_dump($licencie); // Vérifiez le licencié dans la console ou sur la page ?>
-        <p><strong>Numéro de Licence :</strong> <?php echo $licencie->getNumeroLicence(); ?></p>
+        <p><strong>Numéro de Licence :</strong> <?php echo $licencie->getNumeroLicencie(); ?></p>
         <p><strong>Nom :</strong> <?php echo $licencie->getNom(); ?></p>
         <p><strong>Prénom :</strong> <?php echo $licencie->getPrenom(); ?></p>
-        <?php if ($licencie && $licencie->getContact()): ?>
-            <p><strong>Contact :</strong> <?php echo $licencie->getContact()->getName(); ?></p>
-        <?php else: ?>
-            <p><strong>Contact :</strong> Aucun contact associé</p>
-        <?php endif; ?>
+        <p><strong>Contact :</strong> <?php echo $licencie->getContact(); ?></p>
+        <p><strong>Categorie :</strong> <?php echo $licencie->getCategorie(); ?></p>
     <?php else: ?>
         <p>Le Licencié n'a pas été trouvé.</p>
     <?php endif; ?>

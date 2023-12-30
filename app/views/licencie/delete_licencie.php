@@ -68,16 +68,19 @@
         </li>
     </ul>
     <h1>Supprimer un Contact</h1>
-    <a href="../../controllers/contact/IndexContactController.php">Retour à la liste des contacts</a>
+    <a href="../../controllers/licencie/IndexLicencieController.php">Retour à la liste des contacts</a>
     <hr>
 
-    <?php if ($contact): ?>
-        <p>Voulez-vous vraiment supprimer le contact "<?php echo $contact->getNom(); ?> <?php echo $contact->getPrenom(); ?>" ?</p>
-        <form action="DeleteContactController.php?id=<?php echo $contact->getId(); ?>" method="post">
+    <?php if ($licencie): ?>
+        <p>Voulez-vous vraiment supprimer le contact "<?php echo $licencie->getNumeroLicencie(); ?>;
+        <?php echo $licencie->getNom(); ?> <?php echo $licencie->getPrenom(); ?>" ?
+    
+    </p>
+        <form action="DeleteLicencieController.php?id=<?php echo $licencie->getId(); ?>" method="post">
             <input type="submit" value="Oui, Supprimer">
         </form>
     <?php else: ?>
-        <p>Le contact n'a pas été trouvé.</p>
+        <p>Le licencie n'a pas été trouvé.</p>
     <?php endif; ?>
 
 </body>

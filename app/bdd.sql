@@ -17,12 +17,12 @@ CREATE TABLE contacts (
 -- Table pour les licenciés
 CREATE TABLE licencies (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    numero_licence VARCHAR(20) UNIQUE NOT NULL,
+    numero_licencie VARCHAR(20) UNIQUE NOT NULL,
     nom VARCHAR(255) NOT NULL,
     prenom VARCHAR(255) NOT NULL,
     contact_id INT,  -- Clé étrangère vers la table contacts
+    categorie_id INT, --Clé étrangère vers la table categorie
     FOREIGN KEY (contact_id) REFERENCES contacts(id)
-    categorie_id INT,  -- Clé étrangère vers la table catégorie
     FOREIGN KEY (categorie_id) REFERENCES categories(id)
 );
 

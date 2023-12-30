@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Ajouter un Contact</title>
+    <title>Ajouter un licencié</title>
     <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
         <link rel="stylesheet" href="../css/styles.css">
    
@@ -69,26 +69,34 @@
     </ul>
     <hr>
 
-    <h1>Ajout d'un nouveau contact</h1>
+    <h1>Ajout d'un nouveau licencié</h1>
     <a href="../../controllers/licencie/IndexLicencieController.php">Retour à la liste des licenciés</a>
 
     <form action="AddLicencieController.php" method="post">
-        <label for="nom">Numéro de licence :</label>
-        <input type="text" id="numeroLicence" name="numeroLicence" required><br>
+    <label for="numero_licencie">Numero Licencié :</label>
+        <input type="text" id="numero_licencie" name="numero_licencie" required><br>
 
         <label for="nom">Nom :</label>
         <input type="text" id="nom" name="nom" required><br>
 
         <label for="prenom">Prénom :</label>
         <input type="text" id="prenom" name="prenom" required><br>
-
-        <label for="contact">Contact :</label>
-        <select name="contact">
-            <option value=""></option>
-            <?php foreach ($contacts as $contact): ?>
-                <option value="<?php echo $contact->getId(); ?>"><?php echo $contact->getNom().' '.$contact->getPrenom(); ?></option>
-            <?php endforeach; ?>
-        </select><br>
+        <label for="contact_id">Contact:</label>
+    <select name="contact_id" required>
+        <?php foreach ($contacts as $contact): ?>
+            <option value="<?= $contact->getId(); ?>"><?= $contact->getEmail(); ?></option>
+        <?php endforeach; ?>
+    </select>
+    <br>
+ 
+    <label for="categorie_id">Catégorie:</label>
+    <select name="categorie_id" required>
+        <?php foreach ($categories as $categorie): ?>
+            <option value="<?= $categorie->getId(); ?>"><?= $categorie->getCode(); ?></option>
+        <?php endforeach; ?>
+    </select>
+    <br>
+ 
 
         <label for="categorie">Catégorie :</label>
         <select name="categorie">
