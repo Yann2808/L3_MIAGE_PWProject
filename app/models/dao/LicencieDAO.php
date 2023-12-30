@@ -16,7 +16,6 @@ class LicencieDAO {
         // Ensuite, créer le licencié
         $query = "INSERT INTO licencies (numero_licencie, nom, prenom, contact_id,categorie_id) VALUES (:numero_licencie, :nom, :prenom, :contact_id, :categorie_id)";
         $stmt = $this->connexion->pdo->prepare($query);
-        
         $stmt->bindValue(':numero_licencie', $licencie->getNumeroLicencie());
         $stmt->bindValue(':nom', $licencie->getNom());
         $stmt->bindValue(':prenom', $licencie->getPrenom());
