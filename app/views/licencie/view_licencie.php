@@ -74,10 +74,15 @@
     <hr>
 
     <?php if ($licencie): ?>
+        <?php var_dump($licencie); // Vérifiez le licencié dans la console ou sur la page ?>
         <p><strong>Numéro de Licence :</strong> <?php echo $licencie->getNumeroLicence(); ?></p>
         <p><strong>Nom :</strong> <?php echo $licencie->getNom(); ?></p>
-        <p><strong>Prénom :</strong> <?php echo $licencie->getPrénom(); ?></p>
-        <p><strong>Contact :</strong> <?php echo $licencie->getContact(); ?></p>
+        <p><strong>Prénom :</strong> <?php echo $licencie->getPrenom(); ?></p>
+        <?php if ($licencie && $licencie->getContact()): ?>
+            <p><strong>Contact :</strong> <?php echo $licencie->getContact()->getName(); ?></p>
+        <?php else: ?>
+            <p><strong>Contact :</strong> Aucun contact associé</p>
+        <?php endif; ?>
     <?php else: ?>
         <p>Le Licencié n'a pas été trouvé.</p>
     <?php endif; ?>

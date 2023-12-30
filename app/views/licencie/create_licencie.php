@@ -90,6 +90,14 @@
             <?php endforeach; ?>
         </select><br>
 
+        <label for="categorie">Catégorie :</label>
+        <select name="categorie">
+            <option value=""></option>
+            <?php foreach ($categories as $categorie): ?>
+                <option value="<?php echo $categorie->getId(); ?>"><?php echo $categorie->getNom(); ?></option>
+            <?php endforeach; ?>
+        </select><br>
+
         <input type="submit" name="action" value="Ajouter">
     </form>
 

@@ -8,14 +8,16 @@ class Licencie
     private $nom;
     private $prenom;
     private $contact; //Utilisation de la classe Contact
+    private $categorie; //Utilisation de la classe Catégorie
 
-    public function __construct($id, $numeroLicence, $nom, $prenom, $contact)
+    public function __construct($id, $numeroLicence, $nom, $prenom, $contact, $categorie)
     {
         $this->id = $id;
         $this->numeroLicence = $numeroLicence;
         $this->nom = $nom;
         $this->prenom = $prenom;
         $this->contact = $contact;
+        $this->categorie = $categorie;
     }
 
     public function getId()
@@ -66,5 +68,15 @@ class Licencie
     public function setContact($contact)
     {
         $this->contact = $contact;
+    }
+
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
     }
 }
