@@ -21,7 +21,9 @@ CREATE TABLE licencies (
     nom VARCHAR(255) NOT NULL,
     prenom VARCHAR(255) NOT NULL,
     contact_id INT,  -- Clé étrangère vers la table contacts
+    categorie_id INT, --Clé étrangère vers la table categorie
     FOREIGN KEY (contact_id) REFERENCES contacts(id)
+    FOREIGN KEY (categorie_id) REFERENCES categories(id)
 );
 
 -- Table pour les éducateurs
