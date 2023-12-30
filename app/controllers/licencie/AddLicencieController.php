@@ -62,7 +62,7 @@ class AddLicencieController {
     public function addLicencie() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Récupérer les données du formulaire
-            $numeroLicencie = $_POST['numero_licencie'];
+            $numero_licencie = $_POST['numero_licencie'];
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
             $contactId = $_POST['contact_id'];
@@ -86,7 +86,7 @@ class AddLicencieController {
             // Vérifier si le contact est défini avant de créer le nouvel objet Licencie
             if ($contact) {
                 // Créer un nouvel objet Licencie avec les données du formulaire
-                $nouveauLicencie = new Licencie(0, $numeroLicencie, $nom, $prenom, $contact,$categorie);
+                $nouveauLicencie = new Licencie(0, $numero_licencie, $nom, $prenom, $contact,$categorie);
     
                 // Appeler la méthode du modèle (LicencieDAO) pour ajouter le contact
                 if ($this->licencieDAO->create($nouveauLicencie)) {

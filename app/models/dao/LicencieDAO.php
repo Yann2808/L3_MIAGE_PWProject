@@ -23,11 +23,9 @@ class LicencieDAO {
         $stmt->bindValue(':contact_id',$licencie->getContact()->getId());
         $stmt->bindValue(':categorie_id',$licencie->getCategorie()->getId());
         $stmt->execute();
-
         // Retourner l'ID du nouveau licencié
         return $this->connexion->pdo->lastInsertId();
     }
-
     public function update(Licencie $licencie) {
         $contactDAO = new ContactDAO($this->connexion);
         $categorieDAO= new CategorieDAO($this->connexion);
