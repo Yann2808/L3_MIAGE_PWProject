@@ -6,7 +6,7 @@ class ViewCategorieController {
         $this->categorieDAO = $categorieDAO;
     }
 
-    public function viewContact($id) {
+    public function viewCategorie($id) {
         // Récupérer le contact à afficher en utilisant son ID
         $categorie = $this->categorieDAO->getById($id);
 
@@ -21,7 +21,7 @@ require_once("../../models/Categorie.php");
 require_once("../../models/dao/CategorieDAO.php");
 $categorieDAO=new CategorieDAO(new Connexion());
 $controller=new ViewCategorieController($categorieDAO);
-$controller->viewContact($_GET['id']);
+$controller->viewCategorie($_GET['id']);
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 if ($id === null) {
     echo "L'ID n'est pas défini dans l'URL.";
