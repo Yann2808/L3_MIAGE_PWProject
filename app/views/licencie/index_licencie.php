@@ -69,38 +69,38 @@
     </ul>
     <hr>
  
-    <h1>Liste des Contacts</h1>
-    <a href="../contact/AddContactController.php">Ajouter un contact</a>
+    <h1>Liste des Licenciés</h1>
+    <a href="../licencie/AddLicencieController.php">Ajouter un licencié</a>
  
-    <?php if ($contacts) : ?>
+    <?php if ($licencies) : ?>
         <table>
             <thead>
                 <tr>
+                    <th>Numéro de Licence</th>
                     <th>Nom</th>
                     <th>Prénom</th>
-                    <th>Email</th>
-                    <th>Téléphone</th>
-                    <th>Action</th>
+                    <th>Contact</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($contacts as $contact): ?>
+                <?php foreach ($licencies as $licencie): ?>
                     <tr>
-                        <td><?php echo $contact->getNom(); ?></td>
-                        <td><?php echo $contact->getPrenom(); ?></td>
-                        <td><?php echo $contact->getEmail(); ?></td>
-                        <td><?php echo $contact->getNumeroTel(); ?></td>
+                        <td><?php echo $licencie->getNumeroLicence(); ?></td>
+                        <td><?php echo $licencie->getNom(); ?></td>
+                        <td><?php echo $licencie->getPrenom(); ?></td>
+                        <td><?php echo $licencie->getContact(); ?></td>
                         <td>
-                            <a href="../contact/ViewContactController.php?id=<?php echo $contact->getId(); ?>">Voir</a>
-                            <a href="../contact/EditContactController.php?id=<?php echo $contact->getId(); ?>">Modifier</a>
-                            <a href="../contact/DeleteContactController.php?id=<?php echo $contact->getId(); ?>">Supprimer</a>
+                            <a href="../contact/ViewContactController.php?id=<?php echo $licencie->getId(); ?>">Voir</a>
+                            <a href="../contact/EditContactController.php?id=<?php echo $licencie->getId(); ?>">Modifier</a>
+                            <a href="../contact/DeleteContactController.php?id=<?php echo $licencie->getId(); ?>">Supprimer</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     <?php else: ?>
-        <p>Aucun contact trouvé.</p>
+        <p>Aucun licencié trouvé.</p>
     <?php endif; ?>
 </body>
 </html>

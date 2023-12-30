@@ -30,7 +30,6 @@ class ContactDAO
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $contacts[] = new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numeroTel']);
             }
- 
             return $contacts;
         } catch (PDOException $e) {
             // GÃ©rer les erreurs de rÃ©cupÃ©ration ici
@@ -62,6 +61,7 @@ class ContactDAO
  
         return $stmt->rowCount();
     }
+    
     public function getById($id){
         try {
             $stmt = $this->connexion->pdo->prepare("SELECT * FROM contacts WHERE id = ?");

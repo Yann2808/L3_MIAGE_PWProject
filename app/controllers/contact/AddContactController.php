@@ -22,7 +22,7 @@ class AddContactController {
             // Valider les données du formulaire (ajoutez des validations si nécessaire)
 
             // Créer un nouvel objet ContactModel avec les données du formulaire
-            $nouveauContact = new Contact($nom, $prenom, $email, $telephone);
+            $nouveauContact = new Contact(0, $nom, $prenom, $email, $telephone);
 
             // Appeler la méthode du modèle (ContactDAO) pour ajouter le contact
             if ($this->contactDAO->create($nouveauContact)) {
