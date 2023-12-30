@@ -6,7 +6,7 @@
     <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
         <link rel="stylesheet" href="../css/styles.css">
    
-        <style>
+    <style>
         .menu{
             display: flex;              /* Transformation en flexbox */
             padding:0;                  /* Suppression des marges internes */
@@ -60,11 +60,11 @@
         </li>
 
         <li>
-            <a href="">Licenciés</a>
+            <a href="../controllers/licencie/IndexLicencieController.php">Licenciés</a>
         </li>
 
         <li>
-            <a href="">Educateurs</a>
+            <a href="../controllers/educateur/IndexEducateurController.php">Educateurs</a>
         </li>
     </ul>
     <hr>

@@ -3,20 +3,20 @@ require_once 'Licencie.php';
 require_once 'ContactDAO.php'; // Assurez-vous d'inclure le DAO pour Contact
 
 class LicencieDAO {
-    private $db;
+    private $connexion;
 
-    public function __construct(PDO $db) {
-        $this->db = $db;
+    public function __construct(Connexion $connexion) {
+        $this->connexion = $connexion;
     }
 
     public function create(Licencie $licencie) {
-        $contactDAO = new ContactDAO($this->db);
+        $contactDAO = new ContactDAO($this->connexion);
 
         // Créer d'abord le contact associé
         $contactId = $contactDAO->create($licencie->getContact());
 
         // Ensuite, créer le licencié
-        $stmt = $this->db->prepare(
+        $stmt = $this->connexion->pdo->prepare(
             'INSERT INTO licencies (numero_licence, nom, prenom, contact_id) 
             VALUES (?, ?, ?, ?)'
         );
@@ -65,7 +65,7 @@ class LicencieDAO {
             return null;
         }
 
-        $contactDAO = new ContactDAO($this->db);
+        $contactDAO = new ContactDAO($this->connexion->pdo->db);
         $contact = $contactDAO->getId($licencieData['contact_id']);
 
         $licencie = new Licencie(

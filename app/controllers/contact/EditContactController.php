@@ -9,7 +9,7 @@ class EditContactController {
 
     public function update($id) {
         // Récupérer le contact à modifier en utilisant son ID
-        $contact = $this->contactDAO->getId($id);
+        $contact = $this->contactDAO->getById($id);
 
         if (!$contact) {
             // Le contact n'a pas été trouvé, vous pouvez rediriger ou afficher un message d'erreur

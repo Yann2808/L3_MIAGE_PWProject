@@ -8,7 +8,7 @@ class ViewContactController {
 
     public function viewContact($id) {
         // Récupérer le contact à afficher en utilisant son ID
-        $contact = $this->contactDAO->getId($id);
+        $contact = $this->contactDAO->getById($id);
 
         // Inclure la vue pour afficher les détails du contact
         include('../../views/contact/view_contact.php');
