@@ -11,6 +11,7 @@ class LicencieDAO {
 
     public function create(Licencie $licencie) {
         $contactDAO = new ContactDAO($this->connexion);
+        $categorieDAO = new CategorieDAO($this->connexion);
         
         // Ensuite, créer le licencié
         $query = "INSERT INTO licencies (numero_licence, nom, prenom, contact_id,categorie_id) VALUES (:numero_licence, :nom, :prenom, :contact_id, :categorie_id)";
