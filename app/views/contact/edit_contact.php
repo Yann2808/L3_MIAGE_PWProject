@@ -61,11 +61,11 @@
         </li>
 
         <li>
-            <a href="../controllers/licencie/IndexLicencieController.php">Licenciés</a>
+            <a href="../licencie/IndexLicencieController.php">Licenciés</a>
         </li>
 
         <li>
-            <a href="../controllers/educateur/IndexEducateurController.php">Educateurs</a>
+            <a href="../educateur/IndexEducateurController.php">Educateurs</a>
         </li>
     </ul>
     
