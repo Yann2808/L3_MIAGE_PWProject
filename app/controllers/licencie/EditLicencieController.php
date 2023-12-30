@@ -16,7 +16,9 @@ class EditLicencieController {
     {
         // Récupérer le licencié à modifier en utilisant son ID
         $licencie = $this->licencieDAO->getById($id);
-
+         // Récupérer l'objet Contact correspondant à partir de l'ID
+            
+         
         if (!$licencie) {
             // Le licencié n'a pas été trouvé, vous pouvez rediriger ou afficher un message d'erreur
             echo "Le licencié n'a pas été trouvé.";
@@ -28,16 +30,20 @@ class EditLicencieController {
             $numero_licencie = $_POST['numero_licencie'];
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
+            $contactId = $_POST['contact_id'];
+            $categorieId=$_POST['categorie_id'];
 
             // Valider les données du formulaire (ajoutez des validations si nécessaire)
-
+            $contact =$this->categorieDAO->getById($contactId);
+         // Récupérer l'objet categorie correspondant à partir de l'ID
+     $categorie =$this->categorieDAO->getById($categorieId);
             // Mettre à jour les détails du licencié
-            $licencie->setNumeroLicence($numero_licencie);
-            $licencie->setNom($nom);
-            $licencie->setPrenom($prenom);
+            $l ->setNumeroLicencie($numero_licencie);
+            $l ->setNom($nom);
+            $l ->setPrenom($prenom);
 
             // Appeler la méthode du modèle (LicencieDAO) pour mettre à jour le licencié
-            if ($this->licencieDAO->update($licencie)) {
+            if ($this->licencieDAO->update($l)) {
                 // Rediriger vers la page de détails du licencié après la modification
                 echo "Licencié modifié";
                 header('Location: ../licencie/IndexLicencieController.php');

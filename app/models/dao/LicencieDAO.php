@@ -85,7 +85,7 @@ class LicencieDAO {
             $licencies = [];
     
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $licencies[] = new Licencie($row['id'],$row['numero_licence'], $row['nom'], $row['prenom'], $row['contact_id'],$row['categorie_id']);
+                $licencies[] = new Licencie($row['id'],$row['numero_licencie'], $row['nom'], $row['prenom'], $row['contact_id'],$row['categorie_id']);
             }
             return $licencies;
         } catch (PDOException $e) {
