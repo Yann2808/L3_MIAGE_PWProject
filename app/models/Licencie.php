@@ -9,8 +9,9 @@ class Licencie
     private $prenom;
     private $contact; //Utilisation de la classe Contact
 
-    public function __construct($numeroLicence, $nom, $prenom, Contact $contact)
+    public function __construct($id, $numeroLicence, $nom, $prenom, $contact)
     {
+        $this->id = $id;
         $this->numeroLicence = $numeroLicence;
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -62,7 +63,7 @@ class Licencie
         return $this->contact;
     }
 
-    public function setContact(Contact $contact)
+    public function setContact($contact)
     {
         $this->contact = $contact;
     }

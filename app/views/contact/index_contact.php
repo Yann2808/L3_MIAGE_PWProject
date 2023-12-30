@@ -46,26 +46,27 @@
     </style>
 </head>
 <body>
-<ul class="menu">
-    <li>
-        <a href="../../controllers/HomeController.php">Accueil</a>
-    </li>
-    <li>
-        <a href="../contact/IndexContactController.php">Contacts</a>
-    </li>
- 
-    <li>
-        <a href="../categorie/IndexCategorieController.php">Catégories</a>
-    </li>
- 
-    <li>
-        <a href="">Licenciés</a>
-    </li>
- 
-    <li>
-        <a href="">Educateurs</a>
-    </li>
-</ul>
+    <ul class="menu">
+        <li>
+            <a href="../../controllers/HomeController.php">Accueil</a>
+        </li>
+
+        <li>
+            <a href="../contact/IndexContactController.php">Contacts</a>
+        </li>
+
+        <li>
+            <a href="../categorie/IndexCategorieController.php">Catégories</a>
+        </li>
+
+        <li>
+            <a href="../licencie/IndexLicencieController.php">Licenciés</a>
+        </li>
+
+        <li>
+            <a href="../educateur/IndexEducateurController.php">Educateurs</a>
+        </li>
+    </ul>
     <hr>
  
     <h1>Liste des Contacts</h1>

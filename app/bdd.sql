@@ -17,7 +17,7 @@ CREATE TABLE contacts (
 -- Table pour les licenciés
 CREATE TABLE licencies (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    numero_licence VARCHAR(20) NOT NULL,
+    numero_licence VARCHAR(20) UNIQUE NOT NULL,
     nom VARCHAR(255) NOT NULL,
     prenom VARCHAR(255) NOT NULL,
     contact_id INT,  -- Clé étrangère vers la table contacts

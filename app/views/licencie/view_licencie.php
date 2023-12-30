@@ -2,10 +2,10 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Ajouter un Contact</title>
+    <title>Détails du Contact</title>
     <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
         <link rel="stylesheet" href="../css/styles.css">
-   
+
     <style>
         .menu{
             display: flex;              /* Transformation en flexbox */
@@ -46,6 +46,7 @@
     </style>
 </head>
 <body>
+
     <ul class="menu">
         <li>
             <a href="../../controllers/HomeController.php">Accueil</a>
@@ -67,31 +68,18 @@
             <a href="../educateur/IndexEducateurController.php">Educateurs</a>
         </li>
     </ul>
+
+    <h1>Détails du Licencié</h1>
+    <a href="../../controllers/licencie/IndexLicencieController.php">Retour à la liste des licenciés</a>
     <hr>
 
-    <h1>Ajout d'un nouveau contact</h1>
-    <a href="../../controllers/contact/IndexContactController.php">Retour à la liste des contacts</a>
-
-    <form action="AddContactController.php" method="post">
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required><br>
-
-        <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" required><br>
-
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email"><br>
-
-        <label for="telephone">Téléphone :</label>
-        <input type="text" id="numeroTel" name="telephone"><br>
-
-        <input type="submit" name="action" value="Ajouter">
-    </form>
-
-    <?php
-    
-    ?>
-
+    <?php if ($licencie): ?>
+        <p><strong>Numéro de Licence :</strong> <?php echo $licencie->getNumeroLicence(); ?></p>
+        <p><strong>Nom :</strong> <?php echo $licencie->getNom(); ?></p>
+        <p><strong>Prénom :</strong> <?php echo $licencie->getPrénom(); ?></p>
+        <p><strong>Contact :</strong> <?php echo $licencie->getContact(); ?></p>
+    <?php else: ?>
+        <p>Le Licencié n'a pas été trouvé.</p>
+    <?php endif; ?>
 </body>
 </html>
-

@@ -30,7 +30,6 @@ class ContactDAO
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $contacts[] = new Contact($row['id'],$row['nom'], $row['prenom'], $row['email'], $row['numeroTel']);
             }
- 
             return $contacts;
         } catch (PDOException $e) {
             // GÃ©rer les erreurs de rÃ©cupÃ©ration ici
@@ -62,7 +61,8 @@ class ContactDAO
  
         return $stmt->rowCount();
     }
-    public function getId($id){
+    
+    public function getById($id){
         try {
             $stmt = $this->connexion->pdo->prepare("SELECT * FROM contacts WHERE id = ?");
             $stmt->execute([$id]);
@@ -77,5 +77,24 @@ class ContactDAO
             // GÃ©rer les erreurs de rÃ©cupÃ©ration ici
             return null;
         }
+    }
+
+    public function getByCriteria($nom, $prenom, $email, $numeroTel) {
+        $query = "SELECT * FROM licencies l
+                INNER JOIN contacts c ON l.contact_id = c.id
+                WHERE l.nom = :nom
+                AND l.prenom = :prenom
+                AND c.email = :email
+                AND c.numero_tel = :numeroTel";
+        
+        $stmt = $this->connexion->pdo->prepare($query);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':numeroTel', $numeroTel);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC); // Retourne le licencié s'il existe, sinon retourne false
     }
 }
