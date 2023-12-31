@@ -17,48 +17,7 @@ class AddLicencieController {
         // Inclure la vue pour afficher le formulaire d'ajout de contact
         include('../../views/licencie/create_licencie.php');
     }
-   
-    // public function addLicencie() {
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //         // Récupérer les données du formulaire
-    //         $numeroLicence = $_POST['numeroLicence'];
-    //         $nom = $_POST['nom'];
-    //         $prenom = $_POST['prenom'];
-    //         $contact = $_POST['contact'];
- 
-    //         // Valider les données du formulaire (ajoutez des validations si nécessaire)
- 
-    //         // Récupérer l'objet Contact correspondant à partir de l'ID
-    //         $contactDAO = new ContactDAO(new Connexion());
-    //         $contact = $contactDAO->getById($contact);
- 
-    //         if (!$contact) {
-    //             // Gérer le cas où le contact n'est pas trouvé
-    //             echo "Erreur : Le contact n'a pas été trouvé.";
-    //             return;
-    //         }
- 
-    //         // Créer un nouvel objet Licencie avec les données du formulaire
-    //         $nouveauLicencie = new Licencie($numeroLicence, $nom, $prenom, $contact);
- 
-    //         // Appeler la méthode du modèle (LicencieDAO) pour ajouter le contact
-    //         if ($this->licencieDAO->create($nouveauLicencie)) {
-    //             // Rediriger vers la page d'accueil après l'ajout
-    //            echo"Licencié ajouté";
-    //            header('Location: ../licencie/IndexLicencieController.php');
-    //             exit();
-    //         } else {
-    //             // Gérer les erreurs d'ajout de contact
-    //             echo "Erreur lors de l'ajout du licencié.";
-    //             header('Location: ../licencie/IndexLicencieController.php');
-    //             exit();
-    //         }
-    //     }
- 
-    //     // Inclure la vue pour afficher le formulaire d'ajout de contact
-    //     include('../../views/licencie/create_licencie.php');
-    // }
- 
+    
     public function addLicencie() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Récupérer les données du formulaire
@@ -130,6 +89,5 @@ $controller->index();
 }else{
 $controller->addLicencie();
 }
- 
- 
+
 ?>

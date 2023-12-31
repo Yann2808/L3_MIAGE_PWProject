@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Détails du Contact</title>
+    <title>Détails du Licencié</title>
     <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
         <link rel="stylesheet" href="../css/styles.css">
 
@@ -61,7 +61,7 @@
         </li>
 
         <li>
-            <a href="../../licencie/IndexLicencieController.php">Licenciés</a>
+            <a href="../licencie/IndexLicencieController.php">Licenciés</a>
         </li>
 
         <li>
@@ -78,9 +78,9 @@
         <p><strong>Nom :</strong> <?php echo $licencie->getNom(); ?></p>
         <p><strong>Prénom :</strong> <?php echo $licencie->getPrenom(); ?></p>
         <p><strong>Contact :</strong> <?php echo $licencie->getContact(); ?></p>
-        <p><strong>Categorie :</strong> <?php echo $licencie->getCategorie(); ?></p>
+        <p><strong>Catégorie :</strong> <?php echo $licencie->getCategorie(); ?></p>
     <?php else: ?>
-        <p>Le Licencié n'a pas été trouvé.</p>
+        <p>Le licencié n'a pas été trouvé.</p>
     <?php endif; ?>
 </body>
 </html>

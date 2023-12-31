@@ -84,7 +84,7 @@
         <label for="contact_id">Contact:</label>
     <select name="contact_id" required>
         <?php foreach ($contacts as $contact): ?>
-            <option value="<?= $contact->getId(); ?>"><?= $contact->getEmail(); ?></option>
+            <option value="<?= $contact->getId(); ?>"><?= $contact->getNom().' '.$contact->getPrenom(); ?></option>
         <?php endforeach; ?>
     </select>
     <br>
@@ -92,21 +92,12 @@
     <label for="categorie_id">Catégorie:</label>
     <select name="categorie_id" required>
         <?php foreach ($categories as $categorie): ?>
-            <option value="<?= $categorie->getId(); ?>"><?= $categorie->getCode(); ?></option>
+            <option value="<?= $categorie->getId(); ?>"><?= $categorie->getNom(); ?></option>
         <?php endforeach; ?>
     </select>
     <br>
- 
-
-        <label for="categorie">Catégorie :</label>
-        <select name="categorie">
-            <option value=""></option>
-            <?php foreach ($categories as $categorie): ?>
-                <option value="<?php echo $categorie->getId(); ?>"><?php echo $categorie->getNom(); ?></option>
-            <?php endforeach; ?>
-        </select><br>
-
-        <input type="submit" name="action" value="Ajouter">
+    
+    <input type="submit" name="action" value="Ajouter">
     </form>
 
     <?php
@@ -115,4 +106,3 @@
 
 </body>
 </html>
-
