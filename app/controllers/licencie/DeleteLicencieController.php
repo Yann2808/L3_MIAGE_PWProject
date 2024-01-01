@@ -20,16 +20,16 @@ class DeleteLicencieController {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Supprimer le contact en appelant la méthode du modèle (ContactDAO)
-            if ($this->licencieDAO->delete($id) ) {
+            if ($this->licencieDAO->delete($licencie)) {
                 // Rediriger vers la page d'accueil après la suppression
                 echo"contact supprimé";
-                header('Location: ../contact/IndexLicencieController.php');
+                header('Location: ../licencie/IndexLicencieController.php');
                 exit();
                 
             } else {
                 // Gérer les erreurs de suppression du contact
                 echo "Erreur lors de la suppression du contact.";
-                header('Location: ../contact/IndexLicencieController.php');
+                header('Location: ../licencie/IndexLicencieController.php');
                 exit();
             }
             

@@ -75,7 +75,7 @@
     
     <?php if ($licencie): ?>
         <form action="EditLicencieController.php?id=<?php echo $contact->getId(); ?>" method="post">
-            <label for="numero_licence">Numéro du Licencie :</label>
+            <label for="numero_licencie">Numéro du Licencie :</label>
             <input type="text" id="numero_licencie" name="numero_licencie" value="<?php echo $licencie->getNumeroLicence(); ?>" required><br>
 
             <label for="nom">Nom :</label>
