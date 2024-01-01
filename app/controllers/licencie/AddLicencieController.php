@@ -62,9 +62,10 @@ class AddLicencieController {
                 }
             }
         }
-          // Récupérer la liste des contacts et des catégories
-          $contacts = $this->contactDAO->getAll();
-          $categories = $this->categorieDAO->getAll();
+        
+        // Récupérer la liste des contacts et des catégories
+        $contacts = $this->contactDAO->getAll();
+        $categories = $this->categorieDAO->getAll();
    
         // Inclure la vue pour afficher le formulaire d'ajout de contact
         include('../../views/licencie/create_licencie.php');

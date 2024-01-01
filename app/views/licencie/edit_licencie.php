@@ -102,7 +102,7 @@
             </select>
             <br>
             
-            <input type="submit" value="Modifier">
+            <input type="submit" value="Modifier" name="action">
         </form>
     <?php else: ?>
         <p>Le licencié n'a pas été trouvé.</p>

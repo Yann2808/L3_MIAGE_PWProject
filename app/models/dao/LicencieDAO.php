@@ -25,40 +25,70 @@ class LicencieDAO {
         // Retourner l'ID du nouveau licencié
         return $this->connexion->pdo->lastInsertId();
     }
-    
+
+    // public function update(Licencie $licencie) {
+    //     $contactDAO = new ContactDAO($this->connexion);
+    //     $categorieDAO= new CategorieDAO($this->connexion);
+
+    //     // Mettre à jour le licencié
+    //     $query = 'UPDATE licencies SET numero_licencie = :numero_licencie, nom = :nom, prenom = :prenom,
+    //                 contact_id = :contact_id, categorie_id = :categorie_id WHERE id = :id';
+    //     $stmt = $this->connexion->pdo->prepare($query);
+
+    //     $stmt->bindValue(':numero_licencie', $licencie->getNumeroLicencie());
+    //     $stmt->bindValue(':nom', $licencie->getNom());
+    //     $stmt->bindValue(':prenom', $licencie->getPrenom());
+    //     $stmt->bindValue(':contact_id',$licencie->getContact()->getId());
+    //     $stmt->bindValue(':categorie_id',$licencie->getCategorie()->getId());
+    //     $stmt->bindValue(':id',$licencie->getId());
+    //     $stmt->execute();
+
+    //     // $stmt->execute([$licencie->getNumeroLicencie(), $licencie->getNom(), $licencie->getPrenom(), $licencie->getContact(), $licencie->getCategorie(), $licencie->getId()]);
+        
+    //     // // Mettre à jour le licencié
+    //     // $stmt = $this->connexion->pdo->prepare('UPDATE licencies SET numero_licencie = ?, nom = ?, prenom = ?  WHERE id = ?');
+    //     // $stmt->execute([$licencie->getNumeroLicencie(), $licencie->getNom(), $licencie->getPrenom(), $licencie->getId()]);
+    // }
+
     public function update(Licencie $licencie) {
-        $contactDAO = new ContactDAO($this->connexion);
-        $categorieDAO= new CategorieDAO($this->connexion);
- 
-        // Mettre à jour le contact associé
-        $contactDAO->update($licencie->getContact());
-       
-        // Mettre à jour la categorie associé
-        $categorieDAO->update($licencie->getCategorie());
-        // Mettre à jour le licencié
-        $stmt = $this->connexion->pdo->prepare('UPDATE licencies SET numero_licencie = ?, nom = ?, prenom = ?  WHERE id = ?');
-        $stmt->execute([$licencie->getNumeroLicencie(), $licencie->getNom(), $licencie->getPrenom(), $licencie->getId()]);
+        try {
+            $stmt = $this->connexion->pdo->prepare("UPDATE licencies SET numero_licence=?, nom=?, prenom=?, contact_id=?, categorie_id=? WHERE id=?");
+            $stmt->execute([$licencie->getNumeroLicencie(), $licencie->getNom(), $licencie->getPrenom(), $licencie->getContact()->getId(), $licencie->getCategorie()->getId(), $licencie->getId()]);
+            return true;
+        } catch (PDOException $e) {
+            // Gérer l'erreur
+            echo "Erreur lors de la mise à jour du licencié : " . $e->getMessage();
+            return false;
+        }
+        
     }
  
+    // public function delete($id) {
+    //     // Supprimer d'abord le contact associé
+    //     $stmt = $this->connexion->pdo->prepare('SELECT contact_id FROM licencies WHERE id = ?');
+    //     $stmt->execute([$id]);
+    //     $contactId = $stmt->fetchColumn();
+ 
+    //     $contactDAO = new ContactDAO($this->connexion);
+    //     $contactDAO->delete($contactId);
+    //     //supprimer la categorie associé
+    //     $stmt = $this->connexion->pdo->prepare('SELECT categorie_id FROM categories WHERE id = ?');
+    //     $stmt->execute([$id]);
+    //     $categorieId = $stmt->fetchColumn();
+ 
+    //     $categorieDAO = new CategorieDAO($this->connexion);
+    //     $categorieDAO->deleteById($categorieId);
+    //     // Ensuite, supprimer le licencié
+    //     $stmt = $this->connexion->pdo->prepare('DELETE FROM licencies WHERE id = ?');
+    //     $stmt->execute([$id]);
+    // }
+
     public function delete($id) {
-        // Supprimer d'abord le contact associé
-        $stmt = $this->connexion->pdo->prepare('SELECT contact_id FROM licencies WHERE id = ?');
-        $stmt->execute([$id]);
-        $contactId = $stmt->fetchColumn();
- 
-        $contactDAO = new ContactDAO($this->connexion);
-        $contactDAO->delete($contactId);
-        //supprimer la categorie associé
-        $stmt = $this->connexion->pdo->prepare('SELECT categorie_id FROM categories WHERE id = ?');
-        $stmt->execute([$id]);
-        $categorieId = $stmt->fetchColumn();
- 
-        $categorieDAO = new CategorieDAO($this->connexion);
-        $categorieDAO->deleteById($categorieId);
-        // Ensuite, supprimer le licencié
+        // Supprimer le licencié
         $stmt = $this->connexion->pdo->prepare('DELETE FROM licencies WHERE id = ?');
         $stmt->execute([$id]);
     }
+    
  
     public function getById($id) {
         try {

@@ -83,6 +83,7 @@
         <input type="text" id="prenom" name="prenom" required><br>
         <label for="contact_id">Contact:</label>
         <select name="contact_id" required>
+            <option value="">Sélectionner un contact</option>
             <?php foreach ($contacts as $contact): ?>
                 <option value="<?= $contact->getId(); ?>"><?= $contact->getNom().' '.$contact->getPrenom(); ?></option>
             <?php endforeach; ?>
@@ -91,6 +92,7 @@
     
         <label for="categorie_id">Catégorie:</label>
         <select name="categorie_id" required>
+            <option value="">Sélectionner une catégorie</option>
             <?php foreach ($categories as $categorie): ?>
                 <option value="<?= $categorie->getId(); ?>"><?= $categorie->getNom(); ?></option>
             <?php endforeach; ?>
