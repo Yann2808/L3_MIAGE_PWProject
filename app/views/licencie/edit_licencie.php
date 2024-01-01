@@ -74,29 +74,33 @@
     <hr>
     
     <?php if ($licencie): ?>
-        <form action="EditLicencieController.php?id=<?php echo $contact->getId(); ?>" method="post">
+        <form action="EditLicencieController.php?id=<?php echo $licencie->getId(); ?>" method="post">
             <label for="numero_licence">Numéro du Licencie :</label>
-            <input type="text" id="numero_licencie" name="numero_licencie" value="<?php echo $licencie->getNumeroLicence(); ?>" required><br>
+            <input type="text" id="numero_licencie" name="numero_licencie" value="<?php echo $licencie->getNumeroLicencie(); ?>"required><br>
 
             <label for="nom">Nom :</label>
             <input type="text" id="nom" name="nom" value="<?php echo $licencie->getNom(); ?>" required><br>
 
             <label for="prenom">Prénom :</label>
             <input type="prenom" id="prenom" name="prenom" value="<?php echo $licencie->getPrenom(); ?>"><br>
+
+            <label for="contact">Contact :</label>
             <select name="contact_id" required>
-        <?php foreach ($contacts as $contact): ?>
-            <option value="<?= $contact->getId(); ?>"><?= $contact->getEmail(); ?></option>
-        <?php endforeach; ?>
-    </select>
-    <br>
+                <option value=""></option>
+                <?php foreach ($contacts as $contact): ?>
+                    <option value="<?= $contact->getId(); ?>"><?= $contact->getNom(); ?></option>
+                <?php endforeach; ?>
+            </select>
+            <br>
  
-    <label for="categorie_id">Catégorie:</label>
-    <select name="categorie_id" required>
-        <?php foreach ($categories as $categorie): ?>
-            <option value="<?= $categorie->getId(); ?>"><?= $categorie->getCode(); ?></option>
-        <?php endforeach; ?>
-    </select>
-    <br>
+            <label for="categorie_id">Catégorie:</label>
+            <select name="categorie_id" required>
+                        <option value=""></option>
+                <?php foreach ($categories as $categorie): ?>
+                    <option value="<?= $categorie->getId(); ?>"><?= $categorie->getCode(); ?></option>
+                <?php endforeach; ?>
+            </select>
+            <br>
             
             <input type="submit" value="Modifier">
         </form>

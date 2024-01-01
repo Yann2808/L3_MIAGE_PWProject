@@ -25,6 +25,7 @@ class LicencieDAO {
         // Retourner l'ID du nouveau licencié
         return $this->connexion->pdo->lastInsertId();
     }
+    
     public function update(Licencie $licencie) {
         $contactDAO = new ContactDAO($this->connexion);
         $categorieDAO= new CategorieDAO($this->connexion);
@@ -60,21 +61,21 @@ class LicencieDAO {
     }
  
     public function getById($id) {
-    try {
-        $stmt = $this->connexion->pdo->prepare("SELECT * FROM licencies WHERE id = ?");
-        $stmt->execute([$id]);
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        try {
+            $stmt = $this->connexion->pdo->prepare("SELECT * FROM licencies WHERE id = ?");
+            $stmt->execute([$id]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($row) {
-            return new Licencie($row['id'], $row['numero_licencie'], $row['nom'], $row['prenom'], $row['contact_id'], $row['categorie_id']);
-        } else {
-            return null; // Aucun licencié trouvé avec cet ID
+            if ($row) {
+                return new Licencie($row['id'], $row['numero_licencie'], $row['nom'], $row['prenom'], $row['contact_id'], $row['categorie_id']);
+            } else {
+                return null; // Aucun licencié trouvé avec cet ID
+            }
+        } catch (PDOException $e) {
+            // Gérer les erreurs de récupération ici
+            return null;
         }
-    } catch (PDOException $e) {
-        // Gérer les erreurs de récupération ici
-        return null;
     }
-}
  
     public function getAll(){
         try {
