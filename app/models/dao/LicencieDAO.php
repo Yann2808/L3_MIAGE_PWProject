@@ -97,7 +97,7 @@ class LicencieDAO {
                 $contact = $contactDAO->getById($row['contact_id']);
                 $categorie = $categorieDAO->getById($row['categorie_id']);
                 $licencies[] = new Licencie($row['id'],$row['numero_licencie'], $row['nom'], $row['prenom'], $contact,$categorie);
-                $licencies[] = $licencie;
+                $licencies[] = $licencies;
             }
             return $licencies;
         } catch (PDOException $e) {

@@ -64,23 +64,23 @@
         </li>
 
         <li>
-            <a href="..educateur/IndexEducateurController.php">Educateurs</a>
+            <a href="../educateur/IndexEducateurController.php">Educateurs</a>
         </li>
     </ul>
     <hr>
  
-    <h1>Liste des Licenciés</h1>
-    <a href="../licencie/AddLicencieController.php">Ajouter un licencié</a>
+    <h1>Liste des Liceniés</h1>
+    <a href="../licencie/AddLicencieController.php">Ajouter un contact</a>
  
     <?php if ($licencies) : ?>
         <table>
             <thead>
                 <tr>
-                    <th>Numéro de Licence</th>
+                    <th>Numéro licencié</th>
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Contact</th>
-                    <th>Actions</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -89,7 +89,8 @@
                         <td><?php echo $licencie->getNumeroLicencie(); ?></td>
                         <td><?php echo $licencie->getNom(); ?></td>
                         <td><?php echo $licencie->getPrenom(); ?></td>
-                        <td><?php echo $licencie->getContact(); ?></td>
+                        <td><?php echo $licencie->getContact()->getId(); ?></td>
+                        
                         <td>
                             <a href="../licencie/ViewLicencieController.php?id=<?php echo $licencie->getId(); ?>">Voir</a>
                             <a href="../licencie/EditLicencieController.php?id=<?php echo $licencie->getId(); ?>">Modifier</a>
