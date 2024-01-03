@@ -1,7 +1,12 @@
 <?php
 //require_once '../Licencie.php';
-//require_once 'ContactDAO.php'; // Assurez-vous d'inclure le DAO pour Contact
-//require_once 'CategorieDAO.php';//inclure le DAO pour la categorie
+require_once("../../models/Licencie.php");
+require_once("../../models/dao/LicencieDAO.php");
+require_once("../../models/Contact.php");
+require_once("../../models/dao/ContactDAO.php");
+require_once("../../models/Categorie.php");
+require_once("../../models/dao/CategorieDAO.php");
+
 class LicencieDAO {
     private $connexion;
 
@@ -49,11 +54,14 @@ class LicencieDAO {
  
 
 
-    public function delete(Licencie $licencie) {
+    public function delete($id) {
         try {
-            $stmt = $this->connexion->pdo->prepare("DELETE FROM licencies WHERE id = ?");
-            $stmt->execute([$licencie->getId()]);
-            return true;
+            $query = "DELETE FROM licencies WHERE id = :id";
+        $stmt = $this->connexion->pdo->prepare($query);
+        $stmt->bindValue(':id', $id);
+        $stmt->execute();
+ 
+        return $stmt->rowCount();
         } catch (PDOException $e) {
             // Gérer l'erreur
             return false;
@@ -67,7 +75,14 @@ class LicencieDAO {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
  
             if ($row) {
-                $licencie = new Licencie($row['id'],$row['numero_licencie'], $row['nom'], $row['prenom'], $row['contact_id'],$row['categorie_id']);
+                $contactDAO = new ContactDAO($this->connexion);
+                $categorieDAO = new CategorieDAO($this->connexion);
+ 
+                $contact = $contactDAO->getById($row['contact_id']);
+                $categorie = $categorieDAO->getById($row['categorie_id']);
+ 
+                $licencie = new Licencie($row['id'],$row['numero_licencie'], $row['nom'], $row['prenom'], $contact,$categorie);
+                return $licencie;
             } else {
                 return null; // Aucun contact trouvÃ© avec cet ID
             }
@@ -87,10 +102,10 @@ class LicencieDAO {
                 $categorieDAO = new CategorieDAO($this->connexion);
                 $contact = $contactDAO->getById($row['contact_id']);
                 $categorie = $categorieDAO->getById($row['categorie_id']);
-                $licencies[] = new Licencie($row['id'],$row['numero_licencie'], $row['nom'], $row['prenom'], $contact,$categorie);
-                $licencies[] = $licencies;
+                $licencie[] = new Licencie($row['id'],$row['numero_licencie'], $row['nom'], $row['prenom'], $contact,$categorie);
+                $licencies[] = $licencie;
             }
-            return $licencies;
+            return $licencie;
         } catch (PDOException $e) {
             // GÃ©rer les erreurs de rÃ©cupÃ©ration ici
             return [];
