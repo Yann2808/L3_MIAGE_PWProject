@@ -26,11 +26,11 @@ class EditLicencieController {
  
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Récupérer les données du formulaire
-            $numeroLicencie = $_POST['numeroLicencie'];
+            $numeroLicencie = $_POST['numero_licencie'];
             $nom = $_POST['nom'];
             $prenom = $_POST['prenom'];
-            $contactId = $_POST['contact'];
-            $categorieId = $_POST['categorie'];
+            $contactId = $_POST['contact_id'];
+            $categorieId = $_POST['categorie_id'];
  
             // Valider les données du formulaire (ajoutez des validations si nécessaire)
  
@@ -50,11 +50,12 @@ class EditLicencieController {
             // Appeler la méthode du modèle (LicencieDAO) pour mettre à jour le licencié
             if ($this->licencieDAO->update($licencie)) {
                 // Rediriger vers la page de détails du licencié après la modification
-                header('Location:../LicencieController.php ');
+                header('Location: ../licencie/IndexLicencieController.php ');
                 exit();
             } else {
                 // Gérer les erreurs de mise à jour du licencié
                 echo "Erreur lors de la modification du licencié.";
+                header('Location: ../licencie/IndexLicencieController.php ');
             }
         }
  

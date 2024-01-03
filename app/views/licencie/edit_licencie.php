@@ -71,7 +71,7 @@
     <a href="../../controllers/licencie/IndexLicencieController.php">Retour à la liste des licenciés</a>
  
     <?php if ($licencie): ?>
-        <form action="EditLicencieController.php?id=<?php echo $contact->getId(); ?>" method="post">
+        <form action="EditLicencieController.php?id=<?php echo $licencie->getId(); ?>" method="post">
             <label for="numero_licencie">Numéro du Licencie :</label>
             <input type="text" id="numero_licencie" name="numero_licencie" value="<?php echo $licencie->getNumeroLicencie(); ?>" required><br>
 
