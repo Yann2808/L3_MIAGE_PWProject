@@ -8,8 +8,7 @@
 
         public function create(Educateur $educateur) {
             try {
-                $query = "INSERT INTO educateurs (licencie_id, email, mot_de_passe, isAdmin)
-                             VALUES (?, ?, ?, ?)";
+                $query = "INSERT INTO educateurs (licencie_id, email, mot_de_passe, isAdmin) VALUES (?, ?, ?, ?)";
                 $stmt = $this->connexion->pdo->prepare($query);
                 $stmt->execute([$educateur->getEducateurByLicencieId(), $educateur->getEmail(), $educateur->getMotDePasse(), $educateur->isAdmin()]);
                 return true;
