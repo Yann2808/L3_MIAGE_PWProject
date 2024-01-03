@@ -1,25 +1,25 @@
 <?php
-
-    class Educateur extends Licencie {
-        private $id_educateur;
-        private $numero_licence;
+    // class Educateur extends Licencie
+    class Educateur {
+        private $id;
+        private $licencie_id;
         private $email;
         private $motDePasse;
         private $isAdmin;
 
-        public function __construct($id_educateur, $numero_licence, $email, $motDePasse, $isAdmin) {
-            if(is_int($id_educateur))
+        public function __construct($id, $licencie_id, $email, $motDePasse, $isAdmin) {
+            if(is_int($id))
             {
-                $this->id_educateur = $id_educateur;
+                $this->id = $id;
             }
-            $this->numero_licence = $numero_licence;
+            $this->licencie_id = $licencie_id;
             $this->email = $email;
             $this->motDePasse = $motDePasse;
             $this->isAdmin = $isAdmin;
         }
 
-        public function addEducateur($numero_licence, $email, $motDePasse, $isAdmin){
-            $this->numero_licence = $numero_licence;
+        public function addEducateur($licencie_id, $email, $motDePasse, $isAdmin){
+            $this->licencie_id = $licencie_id;
             $this->email = $email;
             $this->motDePasse = $motDePasse;
             $this->isAdmin = $isAdmin;
@@ -27,20 +27,20 @@
 
         // Getters et Setters pour les propriétés spécifiques à Educateur
 
-        public function getIdEducateur() { 
-            return $this->id_educateur;
+        public function getId() { 
+            return $this->id;
         }
 
-        public function setIdEducateur($id_educateur) { 
-            $this->id_educateur = $id_educateur;
+        public function setId($id) { 
+            $this->id = $id;
         }
 
-        public function getNumeroLicence() { 
-            return $this->numero_licence;
+        public function getEducateurByLicencieId() { 
+            return $this->licencie_id;
         }
 
-        public function setNumeroLicence($numero_licence) { 
-            $this->numero_licence = $numero_licence;
+        public function setEducateurByLicencieId($licencie_id) { 
+            $this->licencie_id = $licencie_id;
         }
 
         public function getEmail() {

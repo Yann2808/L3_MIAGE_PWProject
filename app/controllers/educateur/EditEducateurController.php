@@ -27,7 +27,7 @@ class EditEducateurController {
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Récupérer les données du formulaire
-                $numero_licence = $_POST['numero_licence'];
+                $licencie_id = $_POST['licencie_id'];
                 $email = $_POST['email'];
                 // $mot_de_passe = $_POST['mot_de_passe'];
                 // $hmot_de_passe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
@@ -36,7 +36,7 @@ class EditEducateurController {
                 // Valider les données du formulaire (ajoutez des validations si nécessaire)
 
                 // Mettre à jour les détails du contact
-                $educateur->setNumeroLicence($numero_licence);
+                $educateur->setEducateurByLicencieId($licencie_id);
                 $educateur->setEmail($email);
                 // $educateur->setMotDePasse($hmot_de_passe);
                 $educateur->setAdministrateur($isAdmin  == 'oui' ? 1 : 0);

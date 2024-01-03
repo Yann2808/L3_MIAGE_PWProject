@@ -11,18 +11,18 @@ class AddEducateurController
     }
 
     public function index(){
-        $licence = $this->licencieDAO->getAll();
-        include('../../views/educateur/add_educateur.php');
+        $licencies = $this->licencieDAO->getAll();
+        include('../../views/educateur/create_educateur.php');
     }
 
     public function add_educator(){
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Récupérer les données du formulaire
-                $numero_licence = $_POST['numero_licence'];
+                $licencie_id = $_POST['licencie_id'];
                 $email = $_POST['email'];
                 $mot_de_passe = $_POST['mot_de_passe'];
-                $est_administrateur = $_POST['est_administrateur'];
+                $isAdmin = $_POST['isAdmin'];
 
                 // Valider les données du formulaire
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -37,10 +37,10 @@ class AddEducateurController
 
                 // Hasher le mot de passe
                 $hmot_de_passe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
-                $educateur = new Educateur("", $numero_licence, $email, $hmot_de_passe, $est_administrateur  == "oui" ? 1 : 0);
+                $educateur = new Educateur("", $licencie_id, $email, $hmot_de_passe, $isAdmin  == "oui" ? 1 : 0);
                 if ($this->educateurDAO->create($educateur)) {
                     // Rediriger vers la page d'accueil après l'ajout
-                    header('Location:ListEducateurController.php');
+                    header('Location:IndexEducateurController.php');
                     exit();
                 } else {
                     // Gérer les erreurs d'ajout de l'educateur
@@ -56,7 +56,7 @@ class AddEducateurController
 }
 
 require_once("../../config/config.php");
-require_once("../../classes/dao/Connexion.php");
+require_once("../../config/Connexion.php");
 require_once("../../models/Educateur.php");
 require_once("../../models/Licencie.php");
 require_once("../../models/dao/educateurDAO.php");

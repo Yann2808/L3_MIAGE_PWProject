@@ -9,14 +9,14 @@
 
         public function index() {
             $educateurs = $this->educateurDAO->getAll();
-            include('../../views/educateur/list_educateur.php');
+            include('../../views/educateur/index_educateur.php');
         }
     }
 
-require_once("../../configs/config.php");
-require_once("../../classes/dao/Connexion.php");
-require_once("../../classes/models/educateurModel.php");
-require_once("../../classes/dao/educateurDAO.php");
+require_once("../../config/config.php");
+require_once("../../config/Connexion.php");
+require_once("../../models/Educateur.php");
+require_once("../../models/dao/educateurDAO.php");
 $educateurDAO = new EducateurDAO(new Connexion());
 $controller = new IndexEducateurController($educateurDAO);
 $controller->index();
