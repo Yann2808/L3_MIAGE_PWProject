@@ -65,7 +65,7 @@
         </li>
 
         <li>
-            <a href="../educateur/IndexEducateurController.php">Educateurs</a>
+            <a href="../controllers/educateur/IndexEducateurController.php">Educateurs</a>
         </li>
     </ul>
     

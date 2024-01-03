@@ -80,7 +80,7 @@
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Contact</th>
-                    <th>Action</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -89,8 +89,7 @@
                         <td><?php echo $licencie->getNumeroLicencie(); ?></td>
                         <td><?php echo $licencie->getNom(); ?></td>
                         <td><?php echo $licencie->getPrenom(); ?></td>
-                        <td><?php echo $licencie->getContact()->getId(); ?></td>
-                        
+                        <td><?php echo $licencie->getContact(); ?></td>
                         <td>
                             <a href="../licencie/ViewLicencieController.php?id=<?php echo $licencie->getId(); ?>">Voir</a>
                             <a href="../licencie/EditLicencieController.php?id=<?php echo $licencie->getId(); ?>">Modifier</a>

@@ -59,7 +59,7 @@
     </li>
 
     <li>
-        <a href="">Licenciés</a>
+        <a href="../../controllers/licencie/IndexLicencieController.php">Licenciés</a>
     </li>
 
     <li>

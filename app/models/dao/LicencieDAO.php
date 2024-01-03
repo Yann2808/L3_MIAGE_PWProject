@@ -26,7 +26,6 @@ class LicencieDAO {
         return $this->connexion->pdo->lastInsertId();
     }
     public function update(Licencie $licencie) {
-        try{
 
         
        // $contactDAO = new ContactDAO($this->connexion);
@@ -38,25 +37,17 @@ class LicencieDAO {
         // Mettre à jour la categorie associé
        // $categorieDAO->update($licencie->getCategorie());
         // Mettre à jour le licencié
-        $stmt = $this->connexion->pdo->prepare("UPDATE licencies SET numero_licencie = :numero_licencie, nom = :nom, prenom = :prenom  WHERE id = :id");
-       
-        $stmt->bindValue(':id', $licencie->getId());
-        $stmt->bindValue(':numero_licencie', $licencie->getNumeroLicencie());
-        $stmt->bindValue(':nom', $licencie->getNom());
-        $stmt->bindValue(':prenom', $licencie->getPrenom());
-        $stmt->bindValue(':contact_id',$licencie->getContact()->getId());
-        $stmt->bindValue(':categorie_id',$licencie->getCategorie()->getId());
-       
-        $stmt->execute();
- 
-        return $stmt->rowCount();
-        }   
-        catch (PDOException $e) {
-            // Gérer les erreurs de modification
-            echo "Erreur lors de la modification du licencié : " . $e->getMessage();
-            return null;
-        }  
+        try {
+            $stmt = $this->connexion->pdo->prepare("UPDATE licencies SET numero_licencie=?, nom=?, prenom=?, contact_id=?, categorie_id=? WHERE id=?");
+            $stmt->execute([$licencie->getNumeroLicencie(), $licencie->getNom(), $licencie->getPrenom(), $licencie->getContact()->getId(), $licencie->getCategorie()->getId(), $licencie->getId()]);
+            return true;
+        } catch (PDOException $e) {
+            // Gérer l'erreur
+            return false;
+        }
     }
+ 
+
 
     public function delete(Licencie $licencie) {
         try {

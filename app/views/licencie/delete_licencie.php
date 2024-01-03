@@ -72,10 +72,12 @@
     <hr>
 
     <?php if ($licencie): ?>
-        <p>Voulez-vous vraiment supprimer le contact "<?php echo $licencie->getNumeroLicencie(); ?>;
-        <?php echo $licencie->getNom(); ?> <?php echo $licencie->getPrenom(); ?>" ?
-    
-    </p>
+        <p>
+            Voulez-vous vraiment supprimer le licencié "<?php echo $licencie->getNom(); ?>
+             <?php echo $licencie->getPrenom(); ?>"
+            dont le numéro de licencié est : <?php echo $licencie->getNumeroLicencie(); ?>?
+        </p>
+
         <form action="DeleteLicencieController.php?id=<?php echo $licencie->getId(); ?>" method="post">
             <input type="submit" value="Oui, Supprimer">
         </form>

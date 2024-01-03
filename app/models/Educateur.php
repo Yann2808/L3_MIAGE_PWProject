@@ -1,50 +1,69 @@
 <?php
+    // class Educateur extends Licencie
+    class Educateur {
+        private $id;
+        private $licencie_id;
+        private $email;
+        private $motDePasse;
+        private $isAdmin;
 
-require_once 'Licencie.php';
+        public function __construct($id, $licencie_id, $email, $motDePasse, $isAdmin) {
+            if(is_int($id))
+            {
+                $this->id = $id;
+            }
+            $this->licencie_id = $licencie_id;
+            $this->email = $email;
+            $this->motDePasse = $motDePasse;
+            $this->isAdmin = $isAdmin;
+        }
 
+        public function addEducateur($licencie_id, $email, $motDePasse, $isAdmin){
+            $this->licencie_id = $licencie_id;
+            $this->email = $email;
+            $this->motDePasse = $motDePasse;
+            $this->isAdmin = $isAdmin;
+        }
 
-class Educateur extends Licencie
-{
-    //private $specialite;
-    private $email;
-    private $motDePasse;
-    private $administrateur;
+        // Getters et Setters pour les propriétés spécifiques à Educateur
 
-    public function __construct($numeroLicence, $nom, $prenom, Contact $contact, $email, $motDePasse, $administrateur)
-    {
-        parent::__construct($numeroLicence, $nom, $prenom, $contact);
-        $this->email = $email;
-        $this->motDePasse = $motDePasse;
-        $this->administrateur = $administrateur;
+        public function getId() { 
+            return $this->id;
+        }
+
+        public function setId($id) { 
+            $this->id = $id;
+        }
+
+        public function getEducateurByLicencieId() { 
+            return $this->licencie_id;
+        }
+
+        public function setEducateurByLicencieId($licencie_id) { 
+            $this->licencie_id = $licencie_id;
+        }
+
+        public function getEmail() {
+            return $this->email;
+        }
+
+        public function setEmail($email) {
+            $this->email = $email;
+        }
+
+        public function getMotDePasse() {
+            return $this->motDePasse;
+        }
+
+        public function setMotDePasse($motDePasse) {
+            $this->motDePasse = $motDePasse;
+        }
+
+        public function isAdmin() {
+            return $this->isAdmin;
+        }
+
+        public function setAdministrateur($isAdmin) {
+            $this->isAdmin = $isAdmin;
+        }
     }
-
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    public function getMotDePasse()
-    {
-        return $this->motDePasse;
-    }
-
-    public function setMotDePasse($motDePasse)
-    {
-        $this->motDePasse = $motDePasse;
-    }
-
-    public function getAdministrateur()
-    {
-        return $this->administrateur;
-    }
-
-    public function setAdministrateur($administrateur)
-    {
-        $this->administrateur = $administrateur;
-    }
-}

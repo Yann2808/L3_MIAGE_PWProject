@@ -20,17 +20,20 @@ class DeleteLicencieController {
             // Supprimer le licencié en appelant la méthode du modèle (LicencieDAO)
             if ($this->licencieDAO->delete($licencieId)) {
                 // Rediriger vers la page d'accueil après la suppression
-                header('Location:../IndexLicencieController.php');
+                echo"contact supprimé";
+                header('Location: ../contact/IndexLicencieController.php');
                 exit();
             } else {
-                // Gérer les erreurs de suppression du licencié
-                echo "Erreur lors de la suppression du licencié.";
-                header('Location:../IndexLicencieController.php');
+                // Gérer les erreurs de suppression du contact
+                echo "Erreur lors de la suppression du contact.";
+                header('Location: ../contact/IndexLicencieController.php');
+                exit();
             }
+            
         }
- 
-        // Inclure la vue pour afficher la confirmation de suppression du licencié
-        include('../../Views/licencie/delete_licencie.php');
+
+        // Inclure la vue pour afficher la confirmation de suppression du contact
+        include('../../views/licencie/delete_licencie.php');
     }
 }
  

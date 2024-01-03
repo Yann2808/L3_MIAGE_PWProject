@@ -73,7 +73,7 @@
     <a href="../../controllers/licencie/IndexLicencieController.php">Retour à la liste des licenciés</a>
 
     <form action="AddLicencieController.php" method="post">
-    <label for="numero_licencie">Numero Licencié :</label>
+        <label for="numero_licencie">Numero Licencié :</label>
         <input type="text" id="numero_licencie" name="numero_licencie" required><br>
 
         <label for="nom">Nom :</label>
@@ -82,22 +82,23 @@
         <label for="prenom">Prénom :</label>
         <input type="text" id="prenom" name="prenom" required><br>
         <label for="contact_id">Contact:</label>
-    <select name="contact_id" required>
-        <?php foreach ($contacts as $contact): ?>
-            <option value="<?= $contact->getId(); ?>"><?= $contact->getEmail(); ?></option>
-        <?php endforeach; ?>
-    </select>
-    <br>
- 
-    <label for="categorie_id">Catégorie:</label>
-    <select name="categorie_id" required>
-        <?php foreach ($categories as $categorie): ?>
-            <option value="<?= $categorie->getId(); ?>"><?= $categorie->getCode(); ?></option>
-        <?php endforeach; ?>
-    </select>
-    <br>
- 
-
+        <select name="contact_id" required>
+            <option value="">Sélectionner un contact</option>
+            <?php foreach ($contacts as $contact): ?>
+                <option value="<?= $contact->getId(); ?>"><?= $contact->getNom().' '.$contact->getPrenom(); ?></option>
+            <?php endforeach; ?>
+        </select>
+        <br>
+    
+        <label for="categorie_id">Catégorie:</label>
+        <select name="categorie_id" required>
+            <option value="">Sélectionner une catégorie</option>
+            <?php foreach ($categories as $categorie): ?>
+                <option value="<?= $categorie->getId(); ?>"><?= $categorie->getNom(); ?></option>
+            <?php endforeach; ?>
+        </select>
+        <br>
+        
         <input type="submit" name="action" value="Ajouter">
     </form>
 
@@ -107,4 +108,3 @@
 
 </body>
 </html>
-
