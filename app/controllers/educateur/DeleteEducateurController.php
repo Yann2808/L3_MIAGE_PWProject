@@ -17,7 +17,7 @@
             }
             if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 if ($this->educateurDAO->deleteById($eudcateurId)) {
-                    header('Location:ListEducateurController.php');
+                    header('Location: ../educateur/IndexEducateurController.php');
                     exit();
                 } else {
                     // Gérer les erreurs de suppression du contact
@@ -27,7 +27,7 @@
         }
     }
     require_once("../../config/config.php");
-    require_once("../../classes/dao/Connexion.php");
+    require_once("../../config/Connexion.php");
     require_once("../../models/Educateur.php");
     require_once("../../models/Licencie.php");
     require_once("../../models/dao/educateurDAO.php");

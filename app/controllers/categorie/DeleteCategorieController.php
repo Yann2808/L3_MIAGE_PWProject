@@ -12,7 +12,7 @@ class DeleteCategorieController {
 
         if (!$category) {
             // La catégorie n'a pas été trouvée, vous pouvez rediriger ou afficher un message d'erreur
-            echo "Lea catégorie n'a pas été trouvé.";
+            echo "La catégorie n'a pas été trouvé.";
             return;
         }
 

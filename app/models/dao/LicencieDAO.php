@@ -32,16 +32,6 @@ class LicencieDAO {
     }
     public function update(Licencie $licencie) {
 
-        
-       // $contactDAO = new ContactDAO($this->connexion);
-       // $categorieDAO= new CategorieDAO($this->connexion);
-
-        // Mettre à jour le contact associé
-        //$contactDAO->update($licencie->getContact());
-        
-        // Mettre à jour la categorie associé
-       // $categorieDAO->update($licencie->getCategorie());
-        // Mettre à jour le licencié
         try {
             $stmt = $this->connexion->pdo->prepare("UPDATE licencies SET numero_licencie=?, nom=?, prenom=?, contact_id=?, categorie_id=? WHERE id=?");
             $stmt->execute([$licencie->getNumeroLicencie(), $licencie->getNom(), $licencie->getPrenom(), $licencie->getContact()->getId(), $licencie->getCategorie()->getId(), $licencie->getId()]);

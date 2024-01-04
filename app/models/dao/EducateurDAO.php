@@ -74,7 +74,7 @@
                 $query = "UPDATE educateurs SET id = ?, licencie_id = ?, email = ?, mot_de_passe = ?, isAdmin = ? 
                             WHERE id= ?";
                 $stmt = $this->connexion->pdo->prepare($query);
-                $stmt->execute([$educateur->getId(), $educateur->getEducateurByLicencieId(), $educateur->getEmail(), $educateur->getMotDePasse(), $educateur->isAdmin(), $educateur->getId()]);
+                $stmt->execute([$educateur->getEducateurByLicencieId(), $educateur->getEmail(), $educateur->getMotDePasse(), $educateur->isAdmin(), $educateur->getId()]);
                 return true;
             } catch (PDOException $e) {
                 print_r($e->getMessage());

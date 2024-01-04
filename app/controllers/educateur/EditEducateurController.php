@@ -8,11 +8,7 @@ class EditEducateurController {
         $this->licencieDAO = $licencieDAO;
     }
 
-    public function index($id){
-        $licence = $this->licencieDAO->getAll();
-        $educateur = $this->educateurDAO->getById($id);
-        include('../../views/educateur/edit_educateur.php');
-    }
+   
 
     public function editEducateur($id) {
         try {
@@ -24,7 +20,7 @@ class EditEducateurController {
                 echo "L'educateur n'a pas été trouvé.";
                 return;
             }
-
+            $licence = $this->licencieDAO->getAll();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Récupérer les données du formulaire
                 $licencie_id = $_POST['licencie_id'];
@@ -40,19 +36,24 @@ class EditEducateurController {
                 $educateur->setEmail($email);
                 // $educateur->setMotDePasse($hmot_de_passe);
                 $educateur->setAdministrateur($isAdmin  == 'oui' ? 1 : 0);
-
+                 // Récupérer les objets Contact et Categorie
+            $licencie = $this->licencieDAO->getById($licencie_id);
                 if ($this->educateurDAO->update($educateur)) {
                     // Rediriger vers la page de détails après la modification
-                    header('Location:ListEducateurController.php');
+                    echo "educateur modifié";
+                    header('Location: ../educateur/IndexEducateurController.php');
                     exit();
                 } else {
                     // Gérer les erreurs de mise à jour
                     echo "Erreur lors de la modification";
+                    header('Location: ../educateur/IndexEducateurController.php');
                 }
             }
         } catch (Exception $e) {
             echo "Une erreur est survenue: " . $e->getMessage();
         }
+         // Inclure la vue pour afficher le formulaire de modification du licencié avec les menus déroulants
+         include('../../Views/educateur/edit_educateur.php');
     }
 }
 
@@ -66,9 +67,5 @@ require_once("../../models/dao/licencieDAO.php");
 $educateurDAO = new EducateurDAO(new Connexion());
 $licencieDAO = new LicencieDAO(new Connexion());
 $controller = new EditEducateurController($educateurDAO, $licencieDAO);
-if(!isset($_POST['action'])){
-    $controller->index($_GET["id"]);
-} else{
-    $id = $_POST['id'];
-    $controller->editEducateur($id);
-}
+$controller->editEducateur($_GET['id']);
+?>

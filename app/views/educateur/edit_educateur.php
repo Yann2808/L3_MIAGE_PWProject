@@ -46,8 +46,8 @@
     </style>
 </head>
 <body>
-<ul class="menu">
-        <li>
+<ul class="menu">  
+<li>
             <a href="../../controllers/HomeController.php">Accueil</a>
         </li>
 
@@ -64,27 +64,30 @@
         </li>
 
         <li>
-            <a href="../controllers/educateur/IndexEducateurController.php">Educateurs</a>
+            <a href="../educateur/IndexEducateurController.php">Educateurs</a>
         </li>
     </ul>
-    <h1>Modifier un éducateur</h1>
-    <a href="../../controllers/licencie/IndexLicencieController.php">Retour à la liste des éducateurs</a>
+    <h1>Modifier un educateur</h1>
+    <a href="../../controllers/educateur/IndexEducateurController.php">Retour à la liste des educateurs</a>
+ 
  
     <?php if ($educateur): ?>
         <form action="EditEducateurController.php?id=<?php echo $educateur->getId(); ?>" method="post">
             <label for="licencie_id">Numéro du Licencie :</label>
             <input type="text" id="licencie_id" name="licencie_id" value="<?php echo $educateur->getEducateurByLicencieId(); ?>" required disabled><br>
+            <label for="email">Email  :</label>
+            <input type="text" id="email" name="email" value="<?php echo $educateur->getEmail(); ?>" required><br>
 
             <label for="isAdmin">Administrateur :</label>
             <select id="isAdmin" name="isAdmin" required>
                 <option value="1" <?php if ($educateur->isAdmin() == 1) { echo 'selected'; } ?>>Oui</option>
                 <option value="0" <?php if ($educateur->isAdmin() == 0) { echo 'selected'; } ?>>Non</option>
             </select><br><br>
-            
+            <p>voulez-vous modifier les informations de l'éducateur?</p>
             <input type="submit" value="Modifier">
         </form>
     <?php else: ?>
-        <p>Le licencié n'a pas été trouvé.</p>
+        <p>L'educateur n'a pas été trouvé.</p>
     <?php endif; ?>
  
 </body>

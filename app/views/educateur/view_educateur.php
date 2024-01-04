@@ -74,12 +74,12 @@
     <hr>
 
     <?php if ($educateur): ?>
-        <p><strong>Numéro de Licence :</strong> <?php echo $educateur->getEducateurByLicencieId(); ?></p>
-        <p><strong>Nom :</strong> <?php echo $educateur->getEducateurByLicencieId() ?></p>
-        <p><strong>Prénom :</strong> <?php echo $educateur->getEducateurByLicencieId() ?></p>
+        <p><strong>Numéro de Licencie :</strong> <?php echo $educateur->getEducateurByLicencieId(); ?></p>
+        <p><strong>Email :</strong> <?php echo $educateur->getEmail() ?></p>
+        <p><strong>Mot de passe :</strong> <?php echo $educateur->getMotDePasse() ?></p>
         <p><strong>Administrateur :</strong> <?php echo $educateur->isAdmin(); ?></p>
     <?php else: ?>
-        <p>Le licencié n'a pas été trouvé.</p>
+        <p>L'éducateur  n'a pas été trouvé.</p>
     <?php endif; ?>
 </body>
 </html>

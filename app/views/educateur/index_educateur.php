@@ -26,7 +26,7 @@
         <tbody>
         <?php foreach ($educateurs as $educateur): ?>
             <tr>
-                <td><?php echo $educateur->getNumeroLicencie(); ?></td>
+                <td><?php echo $educateur->getEducateurByLicencieId(); ?></td>
                 <td><?php echo $educateur->getEmail(); ?></td>
                 <td><?php echo $educateur->isAdmin() == 1 ? 'oui' : 'non'; ?></td>
                 <td>
