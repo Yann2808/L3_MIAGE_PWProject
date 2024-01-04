@@ -8,10 +8,10 @@
             $this->licencieDAO = $licencieDAO;
         }
 
-        public function viewEducateur($educateurId) {
+        public function viewEducateur($id) {
             // Récupérer le educateur à afficher en utilisant son ID
-            $educateur = $this->educateurDAO->getById($educateurId);
-            $licencie = $this->licencieDAO->getById($educateur->getEducateurByLicencieId());
+            $educateur = $this->educateurDAO->getById($id);
+            $licencie = $this->licencieDAO->getById($educateur->getEducateurByLicencieId($id));
 
             // Inclure la vue pour afficher les détails du educateur
             include('../../views/educateur/view_educateur.php');
@@ -28,4 +28,5 @@ require_once("../../models/dao/licencieDAO.php");
     $educateurDAO = new EducateurDAO(new Connexion());
     $licencieDAO = new LicencieDAO(new Connexion());
     $controller = new ViewEducateurController($educateurDAO, $licencieDAO);
-    $controller->viewEducateur($_GET['id']);
+    $id = $_GET['id'];
+    $controller->viewEducateur($id);
