@@ -26,13 +26,13 @@
         <tbody>
         <?php foreach ($educateurs as $educateur): ?>
             <tr>
-                <td><?php echo $educateur->getNumeroLicence(); ?></td>
+                <td><?php echo $educateur->getEducateurByLicencieId(); ?></td>
                 <td><?php echo $educateur->getEmail(); ?></td>
-                <td><?php echo $educateur->getEstAdministrateur() == 1 ? 'oui' : 'non'; ?></td>
+                <td><?php echo $educateur->isAdmin() == 1 ? 'oui' : 'non'; ?></td>
                 <td>
-                    <a href="ViewEducateurController.php?id=<?php echo $educateur->getIdEducateur(); ?>">Voir</a>
-                    <a href="EditEducateurController.php?id=<?php echo $educateur->getIdEducateur(); ?>">Modifier</a>
-                    <a href="DeleteEducateurController.php?id=<?php echo $educateur->getIdEducateur(); ?>">Supprimer</a>
+                    <a href="ViewEducateurController.php?id=<?php echo $educateur->getId(); ?>">Voir</a>
+                    <a href="EditEducateurController.php?id=<?php echo $educateur->getId(); ?>">Modifier</a>
+                    <a href="DeleteEducateurController.php?id=<?php echo $educateur->getId(); ?>">Supprimer</a>
                 </td>
             </tr>
         <?php endforeach; ?>

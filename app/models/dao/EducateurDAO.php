@@ -56,10 +56,11 @@
             try {
                 $query = "SELECT * FROM educateurs";
                 $stmt = $this->connexion->pdo->prepare($query);
+                $stmt -> execute();
                 $educateurs = [];
 
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $educateurs[] = new Educateur($row['id_educateur'], $row['licencie_id'], $row['email'], $row['mot_de_passe'], $row['isAdmin']);
+                    $educateurs[] = new Educateur($row['id'], $row['licencie_id'], $row['email'], $row['mot_de_passe'], $row['isAdmin']);
                 }
 
                 return $educateurs;
