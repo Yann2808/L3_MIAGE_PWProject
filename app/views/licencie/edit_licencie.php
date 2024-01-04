@@ -46,8 +46,7 @@
     </style>
 </head>
 <body>
-
-    <ul class="menu">
+<ul class="menu">
         <li>
             <a href="../../controllers/HomeController.php">Accueil</a>
         </li>
@@ -65,49 +64,42 @@
         </li>
 
         <li>
-            <a href="../educateur/IndexEducateurController.php">Educateurs</a>
+            <a href="../controllers/educateur/IndexEducateurController.php">Educateurs</a>
         </li>
     </ul>
-    
     <h1>Modifier un Licencié</h1>
     <a href="../../controllers/licencie/IndexLicencieController.php">Retour à la liste des licenciés</a>
-    <hr>
-    
+ 
     <?php if ($licencie): ?>
         <form action="EditLicencieController.php?id=<?php echo $licencie->getId(); ?>" method="post">
-            <label for="numero_licence">Numéro du Licencie :</label>
-            <input type="text" id="numero_licencie" name="numero_licencie" value="<?php echo $licencie->getNumeroLicencie(); ?>"required><br>
+            <label for="numero_licencie">Numéro du Licencie :</label>
+            <input type="text" id="numero_licencie" name="numero_licencie" value="<?php echo $licencie->getNumeroLicencie(); ?>" required><br>
 
             <label for="nom">Nom :</label>
             <input type="text" id="nom" name="nom" value="<?php echo $licencie->getNom(); ?>" required><br>
-
+ 
             <label for="prenom">Prénom :</label>
             <input type="prenom" id="prenom" name="prenom" value="<?php echo $licencie->getPrenom(); ?>"><br>
-
-            <label for="contact">Contact :</label>
             <select name="contact_id" required>
-                <option value=""></option>
-                <?php foreach ($contacts as $contact): ?>
-                    <option value="<?= $contact->getId(); ?>"><?= $contact->getNom(); ?></option>
-                <?php endforeach; ?>
-            </select>
-            <br>
+        <?php foreach ($contacts as $contact): ?>
+            <option value="<?= $contact->getId(); ?>"><?= $contact->getEmail(); ?></option>
+        <?php endforeach; ?>
+    </select>
+    <br>
  
-            <label for="categorie_id">Catégorie:</label>
-            <select name="categorie_id" required>
-                        <option value=""></option>
-                <?php foreach ($categories as $categorie): ?>
-                    <option value="<?= $categorie->getId(); ?>"><?= $categorie->getCode(); ?></option>
-                <?php endforeach; ?>
-            </select>
-            <br>
+    <label for="categorie_id">Catégorie:</label>
+    <select name="categorie_id" required>
+        <?php foreach ($categories as $categorie): ?>
+            <option value="<?= $categorie->getId(); ?>"><?= $categorie->getCode(); ?></option>
+        <?php endforeach; ?>
+    </select>
+    <br>
             
-            <input type="submit" value="Modifier" name="action">
+            <input type="submit" value="Modifier">
         </form>
     <?php else: ?>
         <p>Le licencié n'a pas été trouvé.</p>
     <?php endif; ?>
-
+ 
 </body>
 </html>
-

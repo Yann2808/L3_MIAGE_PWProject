@@ -77,8 +77,8 @@
         <p><strong>Numéro de Licence :</strong> <?php echo $licencie->getNumeroLicencie(); ?></p>
         <p><strong>Nom :</strong> <?php echo $licencie->getNom(); ?></p>
         <p><strong>Prénom :</strong> <?php echo $licencie->getPrenom(); ?></p>
-        <p><strong>Contact :</strong> <?php echo $licencie->getContact(); ?></p>
-        <p><strong>Catégorie :</strong> <?php echo $licencie->getCategorie(); ?></p>
+        <p><strong>Email du Contact :</strong> <?php echo $licencie->getContact()->getEmail(); ?></p>
+        <p><strong>code de la categorie :</strong> <?php echo $licencie->getCategorie()->getCode(); ?></p>
     <?php else: ?>
         <p>Le licencié n'a pas été trouvé.</p>
     <?php endif; ?>
