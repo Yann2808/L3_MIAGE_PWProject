@@ -10,7 +10,7 @@
 
         public function viewEducateur($id) {
             // Récupérer le educateur à afficher en utilisant son ID
-            $educateur = $this->educateurDAO->getById($educateurId);
+            $educateur = $this->educateurDAO->getById($id);
             $licencie = $this->licencieDAO->getById($educateur->getEducateurByLicencieId());
 
             // Inclure la vue pour afficher les détails du educateur
