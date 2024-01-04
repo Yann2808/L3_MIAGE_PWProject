@@ -20,13 +20,13 @@
 
         public function getById($id) {
             try {
-                $query = "SELECT * FROM educateurs WHERE id_educateur = ?";
+                $query = "SELECT * FROM educateurs WHERE id = ?";
                 $stmt = $this->connexion->pdo->prepare($query);
                 $stmt->execute([$id]);
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if ($row) {
-                    return new Educateur($row['id_educateur'], $row['licencie_id'], $row['email'], $row['mot_de_passe'], $row['isAdmin']);
+                    return new Educateur($row['id'], $row['licencie_id'], $row['email'], $row['mot_de_passe'], $row['isAdmin']);
                 } else {
                     return null;
                 }
