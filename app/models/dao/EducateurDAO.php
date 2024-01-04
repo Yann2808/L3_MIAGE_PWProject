@@ -56,6 +56,7 @@
             try {
                 $query = "SELECT * FROM educateurs";
                 $stmt = $this->connexion->pdo->prepare($query);
+                $stmt -> execute();
                 $educateurs = [];
 
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
