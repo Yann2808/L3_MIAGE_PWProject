@@ -66,6 +66,10 @@
     <hr>
 
 </body>
-
+ <div> <img src="../views/images/gallery2.jpg" alt=""  >
+ 
+ 
+ 
+  </div>
 </html>
 

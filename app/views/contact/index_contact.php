@@ -79,8 +79,8 @@
     <hr>
  
     <h1>Liste des Contacts</h1>
-    <a href="../contact/AddContactController.php">Ajouter un contact</a>
- 
+    <a href="../contact/AddContactController.php">Ajouter un contact</a><br>
+    <a href="../../views/logout.php">Deconnexion</a>
     <?php if ($contacts) : ?>
         <table border="3">
             <thead>

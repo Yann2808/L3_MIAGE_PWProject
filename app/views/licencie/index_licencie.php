@@ -80,8 +80,8 @@
     <hr>
  
     <h1>Liste des Liceniés</h1>
-    <a href="../licencie/AddLicencieController.php">Ajouter un licencié</a>
-   
+    <a href="../licencie/AddLicencieController.php">Ajouter un licencié</a><br>
+    <a href="../../views/logout.php">Deconnexion</a>
     <?php if ($licencies) : ?>
         <table border="3">
             <thead>

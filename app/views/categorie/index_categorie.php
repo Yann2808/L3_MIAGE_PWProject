@@ -78,7 +78,8 @@
     <hr>
 
     <h1>Liste des Catégories</h1>
-    <a href="../categorie/AddCategorieController.php">Ajouter une catégorie</a>
+    <a href="../categorie/AddCategorieController.php">Ajouter une catégorie</a><br>
+    <a href="../../views/logout.php">Deconnexion</a>
 
     <?php if ($categories) : ?>
         <table border="3">
