@@ -43,6 +43,7 @@
             color: #aef;
             border-color: #fae;
         }
+        
     </style>
 </head>
 <body>
@@ -71,17 +72,15 @@
  
     <h1>Liste des Liceniés</h1>
     <a href="../licencie/AddLicencieController.php">Ajouter un licencié</a>
- 
+   
     <?php if ($licencies) : ?>
-        <table>
+        <table border="3">
             <thead>
                 <tr>
                     <th>Numéro licencié</th>
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Contact</th>
-                    <th>Action</th>
-                    <th>Catégorie</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -94,9 +93,9 @@
                         <td><?php echo $licencie->getContact()->getId(); ?></td>
                         
                         <td>
-                            <a href="../licencie/ViewLicencieController.php?id=<?php echo $licencie->getId(); ?>">Voir</a>
-                            <a href="../licencie/EditLicencieController.php?id=<?php echo $licencie->getId(); ?>">Modifier</a>
-                            <a href="../licencie/DeleteLicencieController.php?id=<?php echo $licencie->getId(); ?>">Supprimer</a>
+                            <a href="../licencie/ViewLicencieController.php?id=<?php echo $licencie->getId(); ?>"><button type="button" class="btn btn-primary">Voir</button></a>
+                            <a href="../licencie/EditLicencieController.php?id=<?php echo $licencie->getId(); ?>"><button type="button" class="btn btn-secondary">Modifier</button></a>
+                            <a href="../licencie/DeleteLicencieController.php?id=<?php echo $licencie->getId(); ?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -106,4 +105,5 @@
         <p>Aucun licencié trouvé.</p>
     <?php endif; ?>
 </body>
+
 </html>

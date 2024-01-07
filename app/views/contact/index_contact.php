@@ -73,7 +73,7 @@
     <a href="../contact/AddContactController.php">Ajouter un contact</a>
  
     <?php if ($contacts) : ?>
-        <table>
+        <table border="3">
             <thead>
                 <tr>
                     <th>Nom</th>
@@ -91,9 +91,9 @@
                         <td><?php echo $contact->getEmail(); ?></td>
                         <td><?php echo $contact->getNumeroTel(); ?></td>
                         <td>
-                            <a href="../contact/ViewContactController.php?id=<?php echo $contact->getId(); ?>">Voir</a>
-                            <a href="../contact/EditContactController.php?id=<?php echo $contact->getId(); ?>">Modifier</a>
-                            <a href="../contact/DeleteContactController.php?id=<?php echo $contact->getId(); ?>">Supprimer</a>
+                            <a href="../contact/ViewContactController.php?id=<?php echo $contact->getId(); ?>"><button type="button" class="btn btn-primary">Voir</button></a>
+                            <a href="../contact/EditContactController.php?id=<?php echo $contact->getId(); ?>"><button type="button" class="btn btn-primary">Modifier</button></a>
+                            <a href="../contact/DeleteContactController.php?id=<?php echo $contact->getId(); ?>"><button type="button" class="btn btn-primary">Supprimer</button></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

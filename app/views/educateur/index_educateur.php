@@ -14,7 +14,7 @@
 <a href="AddEducateurController.php">Ajouter un educateur</a>
 
 <?php if (count($educateurs) > 0): ?>
-    <table>
+    <table border="3">
         <thead>
         <tr>
             <th>Numero de licence</th>
@@ -30,9 +30,9 @@
                 <td><?php echo $educateur->getEmail(); ?></td>
                 <td><?php echo $educateur->isAdmin() == 1 ? 'oui' : 'non'; ?></td>
                 <td>
-                    <a href="ViewEducateurController.php?id=<?php echo $educateur->getId(); ?>">Voir</a>
-                    <a href="EditEducateurController.php?id=<?php echo $educateur->getId(); ?>">Modifier</a>
-                    <a href="DeleteEducateurController.php?id=<?php echo $educateur->getId(); ?>">Supprimer</a>
+                    <a href="ViewEducateurController.php?id=<?php echo $educateur->getId(); ?>"><button type="button" class="btn btn-primary">Voir</button></a>
+                    <a href="EditEducateurController.php?id=<?php echo $educateur->getId(); ?>"><button type="button" class="btn btn-primary">Modifier</button></a>
+                    <a href="DeleteEducateurController.php?id=<?php echo $educateur->getId(); ?>"><button type="button" class="btn btn-primary">Supprimer</button></a>
                 </td>
             </tr>
         <?php endforeach; ?>

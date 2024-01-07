@@ -31,3 +31,4 @@ require_once("../../models/dao/licencieDAO.php");
     $id = $_GET['id'];
     $controller = new ViewEducateurController($educateurDAO, $licencieDAO);
     $controller->viewEducateur($_GET['id']);
+    

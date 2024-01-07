@@ -72,7 +72,7 @@
     <a href="../categorie/AddCategorieController.php">Ajouter une catégorie</a>
 
     <?php if ($categories) : ?>
-        <table>
+        <table border="3">
             <thead>
                 <tr>
                     <th>N°</th>
@@ -88,9 +88,9 @@
                         <td><?php echo $category->getNom(); ?></td>
                         <td><?php echo $category->getCode(); ?></td>
                         <td>
-                            <a href="../categorie/ViewCategorieController.php?id=<?php echo $category->getId(); ?>">Voir</a>
-                            <a href="../categorie/EditCategorieController.php?id=<?php echo $category->getId(); ?>">Modifier</a>
-                            <a href="../categorie/DeleteCategorieController.php?id=<?php echo $category->getId(); ?>">Supprimer</a>
+                            <a href="../categorie/ViewCategorieController.php?id=<?php echo $category->getId(); ?>"><button type="button" class="btn btn-primary">Voir</button></a>
+                            <a href="../categorie/EditCategorieController.php?id=<?php echo $category->getId(); ?>"><button type="button" class="btn btn-primary">Modifier</button></a>
+                            <a href="../categorie/DeleteCategorieController.php?id=<?php echo $category->getId(); ?>"><button type="button" class="btn btn-primary">Supprimer</button></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

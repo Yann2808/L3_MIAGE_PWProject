@@ -68,7 +68,7 @@
     <a href="../controllers/contact/AddContactController.php">Ajouter un contact</a>
     
     <?php if ($contacts) : ?>
-        <table>
+        <table border="3">
             <thead>
                 <tr>
                     <th>Nom</th>

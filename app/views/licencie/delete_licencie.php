@@ -67,7 +67,7 @@
             <a href="../educateur/IndexEducateurController.php">Educateurs</a>
         </li>
     </ul>
-    <h1>Supprimer un Contact</h1>
+    <h1>Supprimer un Licencié</h1>
     <a href="../../controllers/licencie/IndexLicencieController.php">Retour à la liste des contacts</a>
     <hr>
 

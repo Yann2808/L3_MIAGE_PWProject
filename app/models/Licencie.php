@@ -1,7 +1,5 @@
 <?php
-require_once 'Contact.php';
 
-require_once 'Categorie.php';
 
 class Licencie
 {
