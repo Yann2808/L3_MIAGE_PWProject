@@ -1,11 +1,10 @@
 <?php
-//require_once '../Licencie.php';
-require_once("../../models/Licencie.php");
-require_once("../../models/dao/LicencieDAO.php");
-require_once("../../models/Contact.php");
-require_once("../../models/dao/ContactDAO.php");
-require_once("../../models/Categorie.php");
-require_once("../../models/dao/CategorieDAO.php");
+require_once(__DIR__ . '/../../models/Licencie.php');
+require_once(__DIR__ . '/../../models/dao/LicencieDAO.php');
+require_once(__DIR__ . '/../../models/Contact.php');
+require_once(__DIR__ . '/../../models/dao/ContactDAO.php');
+require_once(__DIR__ . '/../../models/Categorie.php');
+require_once(__DIR__ . '/../../models/dao/CategorieDAO.php');
 
 class LicencieDAO {
     private $connexion;

@@ -25,8 +25,9 @@ class AuthentificationController
 
     public function processLogin()
     {
+        session_start();
         if (isset($_SESSION['email'])) {
-            header('Location: ../views/home.php');
+            header('Location: educateur/IndexEducateurController.php');
             exit();
         }
 
@@ -34,21 +35,27 @@ class AuthentificationController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'];
             $motDePasse = $_POST['mot_de_passe'];
-            session_start();
             try {
                 $educateur = $this->educateurDAO->getByEmail($email);
-
                 if ($educateur && password_verify($motDePasse, $educateur->getMotDePasse()) && $educateur->isAdmin()) {
                     // Authentification réussie, enregistrez les informations de l'éducateur dans la session
                     $_SESSION['id'] = $educateur->getId();
                     $_SESSION['email'] = $educateur->getEmail();
 
                     // Rediriger vers la page d'accueil des éducateurs
-                    header('Location: ../views/home.php');
+                    echo"auth reussi";
+                  header('Location: ../views/home.php');
+                   // var_dump($educateur);
                     exit();
                 } else {
                     // Authentification échouée ou non-administrateur, rediriger vers le formulaire de connexion avec un message d'erreur
-                    header('Location: ../views/login.php?error=1');
+                    echo"erreur";
+
+                   // header('Location: ../views/login.php?error=1');
+                    var_dump($educateur);
+
+                
+                    
                     exit();
                 }
             } catch (Exception $e) {
@@ -56,6 +63,7 @@ class AuthentificationController
                 echo $e->getMessage();
                 // Gérer l'erreur de manière appropriée, par exemple, rediriger avec un message d'erreur
                 header('Location: ../views/login.php?error=1');
+
                 exit();
             }
         }
@@ -78,11 +86,12 @@ class AuthentificationController
 }
 
 require_once("../config/config.php");
-require_once("../config/connexion.php");
+require_once("../config/Connexion.php");
 require_once("../models/Educateur.php");
 require_once("../models/Licencie.php");
 require_once("../models/dao/EducateurDAO.php");
-require_once("../models/dao/LicencieDAO.php");
+require_once("../models/dao/licencieDAO.php");
+
 
 $educateurDAO = new EducateurDAO(new Connexion());
 $controller = new AuthentificationController($educateurDAO);
@@ -90,8 +99,9 @@ $controller = new AuthentificationController($educateurDAO);
 // Gérer les actions du formulaire
 if (!isset($_POST['action'])) {
     //$controller->index();
-} elseif ($_POST['action'] === 'logout') {
-    $controller->logout();
-} else {
+}elseif ($_POST['action'] === 'logout') {
+   $controller->logout();
+} 
+else {
     $controller->processLogin();
 }

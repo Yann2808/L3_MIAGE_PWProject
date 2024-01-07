@@ -11,7 +11,8 @@
 </head>
 <body>
 <h1>Liste des Educateurs</h1>
-<a href="AddEducateurController.php">Ajouter un educateur</a>
+<a href="AddEducateurController.php">Ajouter un educateur</a><br>
+<a href="../../views/logout.php">Deconnexion</a>
 
 <?php if (count($educateurs) > 0): ?>
     <table border="3">

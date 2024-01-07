@@ -43,6 +43,10 @@
             color: #aef;
             border-color: #fae;
         }
+        .btn-primary {
+    background-color: #3498db; /* Couleur de fond */
+    
+}
         
     </style>
 </head>

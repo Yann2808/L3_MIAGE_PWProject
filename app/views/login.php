@@ -9,21 +9,19 @@
 </head>
 <body>
     <h1>Authentification</h1>
-    <hr>
-
+   
+    
     <form action="../controllers/AuthentificationController.php" method="post">
         <label for="email"> Email :</label>
         <input type="text" id="email" name="email" required><br>
 
-        <label for="motDePasse">motDePasse :</label>
-        <input type="text" id="motDePasse" name="motDePasse"><br>
+        <label for="mot_de_passe">motDePasse :</label>
+        <input type="text" id="mot_de_passe" name="mot_de_passe"><br>
 
-        <input type="submit" name="action" value="connecter">
+        <button type="submit" name="action">Connexion</button>
     </form>
 
-    <?php
-
-    ?>
+    
 
 </body>
 </html>

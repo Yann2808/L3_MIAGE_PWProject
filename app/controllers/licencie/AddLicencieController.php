@@ -1,4 +1,5 @@
 <?php
+session_start();
 class AddLicencieController {
     private $licencieDAO;
     private $contactDAO;
@@ -9,9 +10,17 @@ class AddLicencieController {
         $this->contactDAO = $contactDAO;
         $this->categorieDAO = $categorieDAO;
     }
+    private function checkAuthentication() {
+        // Vérifier si l'utilisateur est authentifié en tant qu'administrateur
+        if (!isset($_SESSION['email'])) {
+            // Rediriger vers la page de connexion si non authentifié
+            header('Location: ../../views/login.php');
+            exit();
+        }
+    }
  
     public function index() {
-       
+        $this->checkAuthentication();
         $contacts =$this->contactDAO->getAll();
         $categories =$this->categorieDAO->getAll();
         // Inclure la vue pour afficher le formulaire d'ajout de contact

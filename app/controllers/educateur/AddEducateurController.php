@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 class AddEducateurController
 {
     private $educateurDAO;
@@ -9,8 +9,16 @@ class AddEducateurController
         $this->educateurDAO = $educateurDAO;
         $this->licencieDAO = $licencieDAO;
     }
-
+    private function checkAuthentication() {
+        // Vérifier si l'utilisateur est authentifié en tant qu'administrateur
+        if (!isset($_SESSION['email'])) {
+            // Rediriger vers la page de connexion si non authentifié
+            header('Location: ../../views/login.php');
+            exit();
+        }
+    }
     public function index(){
+        $this->checkAuthentication();
         $licencies = $this->licencieDAO->getAll();
         include('../../views/educateur/create_educateur.php');
     }

@@ -4,24 +4,24 @@
         private $id;
         private $licencie_id;
         private $email;
-        private $motDePasse;
+        private $mot_de_passe;
         private $isAdmin;
 
-        public function __construct($id, $licencie_id, $email, $motDePasse, $isAdmin) {
+        public function __construct($id, $licencie_id, $email, $mot_de_passe, $isAdmin) {
             if(is_int($id))
             {
                 $this->id = $id;
             }
             $this->licencie_id = $licencie_id;
             $this->email = $email;
-            $this->motDePasse = $motDePasse;
+            $this->mot_de_passe = $mot_de_passe;
             $this->isAdmin = $isAdmin;
         }
 
-        public function addEducateur($licencie_id, $email, $motDePasse, $isAdmin){
+        public function addEducateur($licencie_id, $email, $mot_de_passe, $isAdmin){
             $this->licencie_id = $licencie_id;
             $this->email = $email;
-            $this->motDePasse = $motDePasse;
+            $this->mot_de_passe = $mot_de_passe;
             $this->isAdmin = $isAdmin;
         }
 
@@ -52,11 +52,11 @@
         }
 
         public function getMotDePasse() {
-            return $this->motDePasse;
+            return $this->mot_de_passe;
         }
 
-        public function setMotDePasse($motDePasse) {
-            $this->motDePasse = $motDePasse;
+        public function setMotDePasse($mot_de_passe) {
+            $this->mot_de_passe = $mot_de_passe;
         }
 
         public function isAdmin() {
