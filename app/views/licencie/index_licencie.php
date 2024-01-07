@@ -44,9 +44,14 @@
             border-color: #fae;
         }
         .btn-primary {
-    background-color: #3498db; /* Couleur de fond */
-    
-}
+    background-color: #aef; /* Couleur de fond */
+    }
+    .btn-success {
+    background-color: #1ABC9C; /* Couleur de fond */
+    }
+    .btn-danger {
+    background-color: wheat; /* Couleur de fond */
+    }
         
     </style>
 </head>

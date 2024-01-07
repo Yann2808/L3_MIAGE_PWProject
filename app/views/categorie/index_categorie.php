@@ -43,6 +43,15 @@
             color: #aef;
             border-color: #fae;
         }
+        .btn-primary {
+    background-color: #aef; /* Couleur de fond */
+    }
+    .btn-success {
+    background-color: #1ABC9C; /* Couleur de fond */
+    }
+    .btn-danger {
+    background-color: wheat; /* Couleur de fond */
+    }
     </style>
 </head>
 <body>
@@ -89,8 +98,8 @@
                         <td><?php echo $category->getCode(); ?></td>
                         <td>
                             <a href="../categorie/ViewCategorieController.php?id=<?php echo $category->getId(); ?>"><button type="button" class="btn btn-primary">Voir</button></a>
-                            <a href="../categorie/EditCategorieController.php?id=<?php echo $category->getId(); ?>"><button type="button" class="btn btn-primary">Modifier</button></a>
-                            <a href="../categorie/DeleteCategorieController.php?id=<?php echo $category->getId(); ?>"><button type="button" class="btn btn-primary">Supprimer</button></a>
+                            <a href="../categorie/EditCategorieController.php?id=<?php echo $category->getId(); ?>"><button type="button" class="btn btn-success">Modifier</button></a>
+                            <a href="../categorie/DeleteCategorieController.php?id=<?php echo $category->getId(); ?>"><button type="button" class="btn btn-danger">Supprimer</button></a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

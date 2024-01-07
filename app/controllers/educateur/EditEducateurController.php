@@ -13,20 +13,18 @@ class EditEducateurController {
     public function editEducateur($id) {
         try {
             // Récupérer le contact à modifier en utilisant son ID
-            print_r($id);
+           // print_r($id);
             $educateur = $this->educateurDAO->getById($id);
 
             if (!$educateur) {
                 echo "L'educateur n'a pas été trouvé.";
                 return;
             }
-            $licence = $this->licencieDAO->getAll();
+            $licencie = $this->licencieDAO->getAll();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Récupérer les données du formulaire
                 $licencie_id = $_POST['licencie_id'];
                 $email = $_POST['email'];
-                // $mot_de_passe = $_POST['mot_de_passe'];
-                // $hmot_de_passe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
                 $isAdmin = $_POST['isAdmin'];
 
                 // Valider les données du formulaire (ajoutez des validations si nécessaire)
@@ -41,6 +39,7 @@ class EditEducateurController {
                 if ($this->educateurDAO->update($educateur)) {
                     // Rediriger vers la page de détails après la modification
                     echo "educateur modifié";
+                    //var_dump($educateur);
                     header('Location: ../educateur/IndexEducateurController.php');
                     exit();
                 } else {

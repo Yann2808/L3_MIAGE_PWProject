@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Modifier un Contact</title>
+    <title>Modifier un Educateur</title>
     <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
         <link rel="stylesheet" href="../css/styles.css">
 
@@ -74,7 +74,7 @@
     <?php if ($educateur): ?>
         <form action="EditEducateurController.php?id=<?php echo $educateur->getId(); ?>" method="post">
             <label for="licencie_id">Numéro du Licencie :</label>
-            <input type="text" id="licencie_id" name="licencie_id" value="<?php echo $educateur->getEducateurByLicencieId(); ?>" required disabled><br>
+            <input type="text" id="licencie_id" name="licencie_id" value="<?php echo $educateur->getEducateurByLicencieId(); ?>" readonly><br>
             <label for="email">Email  :</label>
             <input type="text" id="email" name="email" value="<?php echo $educateur->getEmail(); ?>" required><br>
 

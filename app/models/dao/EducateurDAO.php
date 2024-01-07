@@ -75,15 +75,15 @@
                             WHERE id= ?";
                 $stmt = $this->connexion->pdo->prepare($query);
                 $stmt->execute(
-                    [   $educateur->getId(),
-                        $educateur->getEducateurByLicencieId(),
+                     [$educateur->getId(),
+                      $educateur->getEducateurByLicencieId(),
                      $educateur->getEmail(), 
                      $educateur->getMotDePasse(), 
                      $educateur->isAdmin(), 
                      $educateur->getId()]);
                 return true;
             } catch (PDOException $e) {
-                print_r($e->getMessage());
+                echo $e->getMessage();
                 return false;
             }
         }
