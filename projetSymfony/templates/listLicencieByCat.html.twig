@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des licenciés par Catégorie</title>
+</head>
+<body>
+    <h1>Liste des licenciés par Catégorie</h1>
+
+    <h2>Catégorie : {{ categorie.nom }}</h2>
+
+    <ul>
+        {% for licencie in licencies %}
+            <li>{{ licencie.getNumeroLicence() }} {{ licencie.getNom() }} {{ licencie.getPrenom() }} </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

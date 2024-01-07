@@ -1,0 +1,23 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+categorie:
+    path: /categorie
+    controller: App\Controller\ViewController::listByCategory
+    methods: ['GET']
+
+listLicencieByCat:
+    path: /categorie/{categorieId}/licencie
+    controller: App\Controller\ViewController::listLicencieByCategory
+    methods: ['GET']
+
+
+listContactByCategorie:
+    path: '/categorie/{categorieId}/contact'
+    controller: 'App\Controller\ViewController::listContactByCategory'
+    methods: ['GET']
+    requirements:
+        categorieId: '\d+'  
