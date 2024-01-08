@@ -66,7 +66,7 @@ class ViewController extends AbstractController
                 }
         
                 // Passe les données à la vue
-                return $this->render('categorie.html.twig', [
+                return $this->render('listContactByCategorie.html.twig', [
                     'categorie' => $categorie,
                     'contacts' => $contacts,
                 ]);
