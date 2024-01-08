@@ -37,11 +37,19 @@ class Educateur
     #[ORM\OneToMany(mappedBy: 'expediteur', targetEntity: MailEducateur::class)]
     private Collection $expediteur;
 
+    #[ORM\OneToMany(mappedBy: 'expediteur', targetEntity: MailContact::class)]
+    private Collection $mailContactEnv;
+
+    #[ORM\OneToMany(mappedBy: 'expediteur', targetEntity: MailContact::class)]
+    private Collection $mailEducateurEnvoye;
+
     public function __construct()
     {
         $this->mailEducateurs = new ArrayCollection();
        
         $this->expediteur = new ArrayCollection();
+        $this->mailContactEnv = new ArrayCollection();
+        $this->mailEducateurEnvoye = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -151,6 +159,66 @@ class Educateur
             // set the owning side to null (unless already changed)
             if ($expediteur->getExpediteur() === $this) {
                 $expediteur->setExpediteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MailContact>
+     */
+    public function getMailContactEnv(): Collection
+    {
+        return $this->mailContactEnv;
+    }
+
+    public function addMailContactEnv(MailContact $mailContactEnv): static
+    {
+        if (!$this->mailContactEnv->contains($mailContactEnv)) {
+            $this->mailContactEnv->add($mailContactEnv);
+            $mailContactEnv->setExpediteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMailContactEnv(MailContact $mailContactEnv): static
+    {
+        if ($this->mailContactEnv->removeElement($mailContactEnv)) {
+            // set the owning side to null (unless already changed)
+            if ($mailContactEnv->getExpediteur() === $this) {
+                $mailContactEnv->setExpediteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MailContact>
+     */
+    public function getMailEducateurEnvoye(): Collection
+    {
+        return $this->mailEducateurEnvoye;
+    }
+
+    public function addMailEducateurEnvoye(MailContact $mailEducateurEnvoye): static
+    {
+        if (!$this->mailEducateurEnvoye->contains($mailEducateurEnvoye)) {
+            $this->mailEducateurEnvoye->add($mailEducateurEnvoye);
+            $mailEducateurEnvoye->setExpediteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMailEducateurEnvoye(MailContact $mailEducateurEnvoye): static
+    {
+        if ($this->mailEducateurEnvoye->removeElement($mailEducateurEnvoye)) {
+            // set the owning side to null (unless already changed)
+            if ($mailEducateurEnvoye->getExpediteur() === $this) {
+                $mailEducateurEnvoye->setExpediteur(null);
             }
         }
 

@@ -33,10 +33,14 @@ class Contact
     #[ORM\OneToMany(mappedBy: 'expediteur', targetEntity: MailContact::class)]
     private Collection $mailContacts;
 
+    #[ORM\ManyToMany(targetEntity: MailContact::class, mappedBy: 'destinataire')]
+    private Collection $mailRecu;
+
     public function __construct()
     {
         $this->licencie_id = new ArrayCollection();
         $this->mailContacts = new ArrayCollection();
+        $this->mailRecu = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,6 +121,33 @@ class Contact
             if ($licencieId->getContactId() === $this) {
                 $licencieId->setContactId(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, MailContact>
+     */
+    public function getMailRecu(): Collection
+    {
+        return $this->mailRecu;
+    }
+
+    public function addMailRecu(MailContact $mailRecu): static
+    {
+        if (!$this->mailRecu->contains($mailRecu)) {
+            $this->mailRecu->add($mailRecu);
+            $mailRecu->addDestinataire($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMailRecu(MailContact $mailRecu): static
+    {
+        if ($this->mailRecu->removeElement($mailRecu)) {
+            $mailRecu->removeDestinataire($this);
         }
 
         return $this;

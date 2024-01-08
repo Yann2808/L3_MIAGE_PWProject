@@ -45,6 +45,7 @@ class ViewController extends AbstractController
         if (!$categorie) {
             throw $this->createNotFoundException('La catégorie n\'existe pas.');
         }
+        
 
         return $this->render('listLicencieByCat.html.twig', [
             'categorie' => $categorie,

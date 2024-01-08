@@ -17,15 +17,18 @@ class MailContact
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date_envoi = null;
+    private ?\DateTimeInterface $date_envoie = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $objet = null;
 
     #[ORM\Column(length: 255)]
     private ?string $message = null;
 
-    #[ORM\ManyToMany(targetEntity: Educateur::class)]
+    #[ORM\ManyToOne(inversedBy: 'mailEducateurEnvoye')]
+    private ?Educateur $expediteur = null;
+
+    #[ORM\ManyToMany(targetEntity: Contact::class, inversedBy: 'mailRecu')]
     private Collection $destinataire;
 
     public function __construct()
@@ -38,14 +41,14 @@ class MailContact
         return $this->id;
     }
 
-    public function getDateEnvoi(): ?\DateTimeInterface
+    public function getDateEnvoie(): ?\DateTimeInterface
     {
-        return $this->date_envoi;
+        return $this->date_envoie;
     }
 
-    public function setDateEnvoi(\DateTimeInterface $date_envoi): static
+    public function setDateEnvoie(\DateTimeInterface $date_envoie): static
     {
-        $this->date_envoi = $date_envoi;
+        $this->date_envoie = $date_envoie;
 
         return $this;
     }
@@ -55,7 +58,7 @@ class MailContact
         return $this->objet;
     }
 
-    public function setObjet(string $objet): static
+    public function setObjet(?string $objet): static
     {
         $this->objet = $objet;
 
@@ -74,15 +77,27 @@ class MailContact
         return $this;
     }
 
+    public function getExpediteur(): ?Educateur
+    {
+        return $this->expediteur;
+    }
+
+    public function setExpediteur(?Educateur $expediteur): static
+    {
+        $this->expediteur = $expediteur;
+
+        return $this;
+    }
+
     /**
-     * @return Collection<int, Educateur>
+     * @return Collection<int, Contact>
      */
     public function getDestinataire(): Collection
     {
         return $this->destinataire;
     }
 
-    public function addDestinataire(Educateur $destinataire): static
+    public function addDestinataire(Contact $destinataire): static
     {
         if (!$this->destinataire->contains($destinataire)) {
             $this->destinataire->add($destinataire);
@@ -91,7 +106,7 @@ class MailContact
         return $this;
     }
 
-    public function removeDestinataire(Educateur $destinataire): static
+    public function removeDestinataire(Contact $destinataire): static
     {
         $this->destinataire->removeElement($destinataire);
 
