@@ -81,8 +81,8 @@ class EmailEduController extends AbstractController
             $now = new DateTime();
             $email->setDateEnvoi($now);
 
-           // $userId = $this->getUser()->getId();
-            $expediteur = $this->educateurRepository->findOneBy(['id'=> 4]);
+            $userId = $this->getUser()->getId();
+            $expediteur = $this->educateurRepository->findOneBy(['id'=> $userId]);
             $email->setExpediteur($expediteur);
 
             foreach ($data['destinataire'] as $educateur) {

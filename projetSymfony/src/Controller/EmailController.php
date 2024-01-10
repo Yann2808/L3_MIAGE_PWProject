@@ -86,8 +86,8 @@ public function sendMailContact(Request $request): Response {
         $mail->setMessage($data['message']);
         $now = new DateTime();
         $mail->setDateEnvoie($now);
-        //$userId = $this->getUser()->getId();
-        $expediteur = $this->educateurRepository->findOneBy(['id'=> 3]);
+        $userId = $this->getUser()->getId();
+        $expediteur = $this->educateurRepository->findOneBy(['id'=>$userId]);
         $mail->setExpediteur($expediteur);
         foreach ($data['destinataire'] as $categorie) {
             $contacts = $this->contactRepository->getContactByCategorie($categorie->getId());
