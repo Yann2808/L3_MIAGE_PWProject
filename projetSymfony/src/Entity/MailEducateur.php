@@ -35,6 +35,7 @@ class MailEducateur
     {
         $this->educateurs = new ArrayCollection();
     }
+    
 
     public function getId(): ?int
     {
@@ -112,4 +113,8 @@ class MailEducateur
 
         return $this;
     }
+   
+        
+
+    
 }

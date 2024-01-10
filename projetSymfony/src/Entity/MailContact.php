@@ -16,6 +16,7 @@ class MailContact
     #[ORM\Column]
     private ?int $id = null;
 
+    
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date_envoie = null;
 

@@ -20,6 +20,35 @@ class MailContactRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, MailContact::class);
     }
+    public function getByContactId($id)
+    {
+        return $this->createQueryBuilder('m')
+            ->leftJoin('m.expediteur', 's')
+            ->where('s.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function send(MailContact $mailContact): void
+    {
+        try {
+            $this->_em->persist($mailContact);
+            $this->_em->flush();
+        } catch (\Exception $e) {
+            // Handle the exception
+            echo "Erreur lors de l'envoie du message: " . $e->getMessage();
+        }
+    }
+
+    public function deleteById($id)
+    {
+        $item = $this->find($id);
+        if ($item) {
+            $this->_em->remove($item);
+            $this->_em->flush();
+        }
+    }
 
 //    /**
 //     * @return MailContact[] Returns an array of MailContact objects
