@@ -24,7 +24,6 @@
             <td>
                 Destinataire:
             </td>
-            
             <td>
                 action:
             </td>
@@ -49,11 +48,11 @@
 
             </td>
             <td>
-                {% for educateurs in email.educateurs %}
-                    {{ educateurs.email }}{% if not loop.last %}, {% endif %}
+                {% for expediteur in email.expediteur %}
+                    {{ expediteur.email }}
                 {% endfor %}
             </td>
-           <td>
+            <td>
             <td>
             <a href="{{ path('MailEdudelete', {'id':email.id}) }}"> Supprimer</a>
             </td>

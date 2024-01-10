@@ -49,7 +49,7 @@
             </td>
             <td>
                 {% for destinataire in email.destinataire %}
-                    {{ destinataire.email }}{% if not loop.last %}, {% endif %}
+                    {{ destinataire.email }}
                 {% endfor %}
             </td>
             <td>

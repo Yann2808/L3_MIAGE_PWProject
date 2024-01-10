@@ -55,53 +55,59 @@ class EmailController extends AbstractController
 
     //ENVOYER DES MAIL 
     #[Route(path: '/mail/contact/send', name: 'appSendEmailToContact')]
-public function sendMailContact(Request $request): Response {
-    $categories = $this->categorieRepository->findAll();
-    $form = $this->createFormBuilder()
-        ->add('objet', TextType::class, [
-        'label' => 'Objet: ',
-        'required' => true,
-        'attr' => [
-            'placeholder' => 'Objet...',
-        ]])
-        ->add('message', TextareaType::class, [
-        'required' => true,
-        'label' => 'Message: ',
-        'attr' => [
-            'placeholder' => 'Entrer votre message ici..',
-        ]])
-        ->add('destinataire', ChoiceType::class, [
-        'label' => 'Destinataire: ',
-        'choices' => $categories,
-        'choice_label' => 'nom',
-        'choice_value' => 'id',
-        'multiple' => true,
-        'expanded' => false,
-    ])->getForm();
-    $form->handleRequest($request);
-    if ($form->isSubmitted() && $form->isValid()) {
-        $data = $form->getData();
-        $mail  = new MailContact();
-        $mail->setObjet($data['objet']);
-        $mail->setMessage($data['message']);
-        $now = new DateTime();
-        $mail->setDateEnvoie($now);
-        $userId = $this->getUser()->getId();
-        $expediteur = $this->educateurRepository->findOneBy(['id'=>$userId]);
-        $mail->setExpediteur($expediteur);
-        foreach ($data['destinataire'] as $categorie) {
-            $contacts = $this->contactRepository->getContactByCategorie($categorie->getId());
-            foreach ($contacts as $value) {
-                $mail->addDestinataire($value);
+    public function sendMailContact(Request $request): Response {
+        $categories = $this->categorieRepository->findAll();
+        $form = $this->createFormBuilder()->add('objet', TextType::class, [
+            'label' => 'Objet: ',
+            'required' => true,
+            'attr' => [
+                'placeholder' => 'Objet...',
+            ]])->add('message', TextareaType::class, [
+            'required' => true,
+            'label' => 'Message: ',
+            'attr' => [
+                'placeholder' => 'Entrer votre message ici..',
+            ]])->add('destinataire', ChoiceType::class, [
+            'label' => 'Destinataire: ',
+            'choices' => $categories,
+            'choice_label' => 'nom',
+            'choice_value' => 'id',
+            'multiple' => true,
+            'expanded' => false,
+        ])->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $email  = new MailContact();
+            $email->setObjet($data['objet']);
+            $email->setMessage($data['message']);
+            $now = new DateTime();
+            $email->setDateEnvoie($now);
+
+           // $userId = $this->getUser()->getId();
+            $expediteur = $this->educateurRepository->findOneBy(['id'=> 3]);
+            $email->setExpediteur($expediteur);
+
+            foreach ($data['destinataire'] as $educateur) {
+                if ($educateur instanceof Educateur) {
+                    // Obtenez l'e-mail de l'éducateur (ajustez selon votre structure de classe Educateur)
+                    $educateurEmail = $educateur->getEmail();
+            
+                    // Ajoutez l'éducateur en tant que destinataire de l'e-mail
+                    $email->addDestinataire($educateurEmail);
+                }
+            
             }
+
+
+            $this->mailContactRepository->send($email);
+            return $this->redirectToRoute('appMailContact');
         }
-        $this->mailContactRepository->send($mail);
-        return $this->redirectToRoute('appMailContact');
+
+        return $this->render('email/sendEmailToContact.html.twig', [
+            'form'=>$form->createView()
+        ]);
     }
-
-    return $this->render('email/sendEmailToContact.html.twig', [
-        'form'=>$form->createView()
-    ]);
 }
-}
-
