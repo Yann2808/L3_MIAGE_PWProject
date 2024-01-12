@@ -30,11 +30,12 @@ class MailContactRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function send(MailContact $mailContact): void
+    public function send(MailContact $email): void
     {
         try {
-            $this->_em->persist($mailContact);
-            $this->_em->flush();
+            $entityManager = $this->getEntityManager();
+            $entityManager->persist($email);
+            $entityManager->flush();
         } catch (\Exception $e) {
             // Handle the exception
             echo "Erreur lors de l'envoie du message: " . $e->getMessage();

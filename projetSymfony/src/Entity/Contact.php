@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
+#[ORM\Table(name: "contacts")]
 class Contact
 {
     #[ORM\Id]
@@ -24,11 +25,11 @@ class Contact
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: "numeroTel", nullable: true)]
     private ?string $telephone = null;
 
-    #[ORM\OneToMany(mappedBy: 'contact_id', targetEntity: Licencie::class)]
-    private Collection $licencie_id;
+    #[ORM\OneToMany(mappedBy: 'contact', targetEntity: Licencie::class)]
+    private Collection $licencie;
 
     #[ORM\OneToMany(mappedBy: 'expediteur', targetEntity: MailContact::class)]
     private Collection $mailContacts;
@@ -38,7 +39,7 @@ class Contact
 
     public function __construct()
     {
-        $this->licencie_id = new ArrayCollection();
+        $this->licencie = new ArrayCollection();
         $this->mailContacts = new ArrayCollection();
         $this->mailRecu = new ArrayCollection();
     }
@@ -101,13 +102,13 @@ class Contact
      */
     public function getLicencieId(): Collection
     {
-        return $this->licencie_id;
+        return $this->licencie;
     }
 
     public function addLicencieId(Licencie $licencieId): static
     {
-        if (!$this->licencie_id->contains($licencieId)) {
-            $this->licencie_id->add($licencieId);
+        if (!$this->licencie->contains($licencieId)) {
+            $this->licencie->add($licencieId);
             $licencieId->setContactId($this);
         }
 
@@ -116,7 +117,7 @@ class Contact
 
     public function removeLicencieId(Licencie $licencieId): static
     {
-        if ($this->licencie_id->removeElement($licencieId)) {
+        if ($this->licencie->removeElement($licencieId)) {
             // set the owning side to null (unless already changed)
             if ($licencieId->getContactId() === $this) {
                 $licencieId->setContactId(null);

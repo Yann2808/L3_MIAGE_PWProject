@@ -6,9 +6,12 @@ use App\Repository\EducateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: EducateurRepository::class)]
-class Educateur
+#[ORM\Table(name: "educateurs")]
+class Educateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -23,12 +26,14 @@ class Educateur
 
     
 
-    #[ORM\Column]
+    #[ORM\Column(name: "isAdmin", type: "boolean", nullable: true)]
+
     private ?bool $isAdmin = null;
 
-    #[ORM\OneToOne(inversedBy: 'educateur', cascade: ['persist', 'remove'])]
+    //#[ORM\OneToOne(inversedBy: 'educateur', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Licencie $licencie_id = null;
+    
+    private ?Licencie $licencie = null;
 
     #[ORM\ManyToMany(targetEntity: MailEducateur::class, mappedBy: 'educateurs')]
     private Collection $mailEducateurs;
@@ -96,12 +101,12 @@ class Educateur
 
     public function getLicencieId(): ?Licencie
     {
-        return $this->licencie_id;
+        return $this->licencie;
     }
 
     public function setLicencieId(Licencie $licencie_id): static
     {
-        $this->licencie_id = $licencie_id;
+        $this->licencie = $licencie_id;
 
         return $this;
     }
@@ -224,4 +229,44 @@ class Educateur
 
         return $this;
     }
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+        // TODO: Implement getUserIdentifier() method.
+    }
+        public function getRoles(): array
+    {
+        $admin =$this->isAdmin;
+        // TODO: Implement getRoles() method.
+        if ($admin==1){
+            $roles[]='ROLE_ADMIN';
+        }
+        $roles[]='ROLE_USER';
+        return array_unique($roles);
+
+    }
+    public function setRoles(array $roles): self
+    {
+        $admin =$this->isAdmin;
+
+        return $this;
+    }
+        public function getPassword(): ?string
+    {
+        // TODO: Implement getPassword() method.
+        return $this->motDePasse;
+    }
+    public function setPassword(string  $motDePasse): self
+    {
+        // TODO: Implement getPassword() method.
+        $this->motDePasse = $motDePasse;
+        return $this;
+    }
+
+    public function eraseCredentials(): void
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+
 }

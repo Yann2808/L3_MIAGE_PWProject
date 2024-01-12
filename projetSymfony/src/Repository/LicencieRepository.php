@@ -23,7 +23,7 @@ class LicencieRepository extends ServiceEntityRepository
     public function findLicencieByCategory(int $categorieId)
     {
            return $this->createQueryBuilder('licenc')
-            ->leftJoin('licenc.categorie_id', 'c')
+            ->leftJoin('licenc.categorie', 'c')
             ->where('c.id = :categoryId') // filtrer les résultats par id de la categorie
             ->setParameter('categoryId', $categorieId)
             ->getQuery()

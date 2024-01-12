@@ -6,6 +6,7 @@ use App\Repository\LicencieRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LicencieRepository::class)]
+#[ORM\Table(name: "licencies")]
 class Licencie
 {
     #[ORM\Id]
@@ -13,7 +14,8 @@ class Licencie
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
+    
+    #[ORM\Column(name: "numero_licencie", nullable: true)]
     private ?int $numeroLicence = null;
 
     #[ORM\Column(length: 255)]
@@ -23,12 +25,14 @@ class Licencie
     private ?string $prenom = null;
 
     #[ORM\ManyToOne(inversedBy: 'licencies')]
-    private ?Contact $contact_id = null;
+    private ?Contact $contact = null;
 
-    #[ORM\ManyToOne]
-    private ?Categorie $categorie_id = null;
+   #[ORM\ManyToOne]
+    private ?Categorie $categorie = null;
 
-    #[ORM\OneToOne(mappedBy: 'licencie_id', cascade: ['persist', 'remove'])]
+     
+     
+    //#[ORM\OneToOne(mappedBy: 'licencie_id', cascade: ['persist', 'remove'])]
     private ?Educateur $educateur = null;
 
     public function getId(): ?int
@@ -74,24 +78,24 @@ class Licencie
 
     public function getContactId(): ?Contact
     {
-        return $this->contact_id;
+        return $this->contact;
     }
 
-    public function setContactId(?Contact $contact_id): static
+    public function setContactId(?Contact $contact): static
     {
-        $this->contact_id = $contact_id;
+        $this->contact= $contact;
 
         return $this;
     }
 
-    public function getCategorieId(): ?Categorie
+    public function getCategorie(): ?Categorie
     {
-        return $this->categorie_id;
+        return $this->categorie;
     }
 
-    public function setCategorieId(?Categorie $categorie_id): static
+    public function setCategorie(?Categorie $categorie): static
     {
-        $this->categorie_id = $categorie_id;
+        $this->categorie = $categorie;
 
         return $this;
     }

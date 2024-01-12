@@ -23,7 +23,7 @@ class CategorieRepository extends ServiceEntityRepository
     public function getCategorieContact(int $categoryId):array{
         return $this->createQueryBuilder('c')
         
-        ->leftjoin('c.licencie_id', 'l')
+        ->leftjoin('c.licencie', 'l')
         ->addSelect('l')
         ->leftjoin('l.contact_id', 'contact')
         ->addSelect('contact')

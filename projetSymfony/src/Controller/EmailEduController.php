@@ -31,13 +31,13 @@ class EmailEduController extends AbstractController
     #[Route('/email/edu', name: 'app_email_edu')]
     public function index(): Response
     {
-        //  $userId = $this->getUser()->getId();
-        $emails = $this->mailEducateurRepository->getEduById(4);
+          $userId = $this->getUser()->getId();
+        $emails = $this->mailEducateurRepository->getEduById($userId);
         return $this->render('email_edu/index.html.twig', [
             'emails' => $emails,
         ]);
     }
-    #[Route('/email/edu/delete/', name: 'MailEdudelete')]
+    #[Route(path:'/email/edu/delete/', name: 'MailEdudelete')]
     //SUPPRESION D'EMAIL
     public function delete(Request $request): Response
     {
@@ -47,13 +47,13 @@ class EmailEduController extends AbstractController
     }
 
 
-     //ENVOYER DES MAIL 
+    //ENVOYER DES MAIL 
 
     #[Route(path: '/email/edu/send', name: 'sendEmailToEdu')]
     public function sendMailEdu(Request $request): Response {
         $educateurs = $this->educateurRepository->findAll();
         $form = $this->createFormBuilder()->add('objet', TextType::class, [
-            'label' => 'Objet: ',
+            'label' => 'Objet: ',   
             'required' => true,
             'attr' => [
                 'placeholder' => 'Objet...',
@@ -81,24 +81,23 @@ class EmailEduController extends AbstractController
             $now = new DateTime();
             $email->setDateEnvoi($now);
 
-           // $userId = $this->getUser()->getId();
-            $expediteur = $this->educateurRepository->findOneBy(['id'=> 3]);
+           $userId = $this->getUser()->getId();
+            $expediteur = $this->educateurRepository->findOneBy(['id'=> $userId ]);
             $email->setExpediteur($expediteur);
 
-            foreach ($data['destinataire'] as $educateur) {
-                $educateurs = $this->educateurRepository->findAll($educateur->getId());
-                foreach ($educateurs as $value) {
-                    $email->addEducateur($value);
+            foreach ($data['destinataire'] as $value) {
+                $email->addEducateur($value);
                 }
+                $this->mailEducateurRepository->send($email);
+            return $this->redirectToRoute('app_email_edu');
             }
 
-
-            $this->mailEducateurRepository->send($email);
-            return $this->redirectToRoute('app_email_edu');
+            return $this->render('email_edu/sendEmailToEdu.html.twig', [
+                'form'=>$form->createView()
+            ]);
+            
         }
 
-        return $this->render('email_edu/sendEmailToEdu.html.twig', [
-            'form'=>$form->createView()
-        ]);
+        
     }
-}
+

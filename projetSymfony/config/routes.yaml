@@ -13,6 +13,10 @@ listLicencieByCat:
     path: /categorie/{categorieId}/licencie
     controller: App\Controller\ViewController::listLicencieByCategory
     methods: ['GET']
+home:
+    path: /home
+    controller: App\Controller\ViewController::index
+    methods: ['GET']
 
 
 listContactByCategorie:

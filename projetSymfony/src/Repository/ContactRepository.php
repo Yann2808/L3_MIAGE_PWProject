@@ -20,15 +20,15 @@ class ContactRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Contact::class);
     }
-    public function getContactByCategorie(int $categorieId):array{
+    public function getContactByCategorie(int $categorieId): array
+    {
         return $this->createQueryBuilder('c')
-        
-        ->leftjoin('c.licencie_id', 'l')
-        ->leftjoin('l.categorie_id', 'cat')
-        ->where('cat.id = :id')
-        ->setParameter('id', $categorieId)
-        ->getQuery()
-        ->getResult();
+            ->leftJoin('c.licencie', 'l')
+            ->leftJoin('l.categorie', 'cat')
+            ->where('cat.id = :id')
+            ->setParameter('id', $categorieId)
+            ->getQuery()
+            ->getResult();
     }
 //    /**
 //     * @return Contact[] Returns an array of Contact objects

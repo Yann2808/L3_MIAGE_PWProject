@@ -36,8 +36,8 @@ class EmailController extends AbstractController
     #[Route('/mail/contact', name: 'appMailContact')]
     public function index(): Response
     {
-        //  $userId = $this->getUser()->getId();
-        $emails = $this->mailContactRepository->getByContactId(3);
+          $userId = $this->getUser()->getId();
+        $emails = $this->mailContactRepository->getByContactId($userId);
         return $this->render('email/index.html.twig', [
             'emails' => $emails,
         ]);
@@ -86,28 +86,22 @@ class EmailController extends AbstractController
             $now = new DateTime();
             $email->setDateEnvoie($now);
 
-           // $userId = $this->getUser()->getId();
-            $expediteur = $this->educateurRepository->findOneBy(['id'=> 3]);
+            $userId = $this->getUser()->getId();
+            $expediteur = $this->educateurRepository->findOneBy(['id'=>$userId]);
             $email->setExpediteur($expediteur);
-
-            foreach ($data['destinataire'] as $educateur) {
-                if ($educateur instanceof Educateur) {
-                    // Obtenez l'e-mail de l'éducateur (ajustez selon votre structure de classe Educateur)
-                    $educateurEmail = $educateur->getEmail();
-            
-                    // Ajoutez le contact en tant que destinataire de l'e-mail
-                    $email->addDestinataire($educateurEmail);
+            foreach ($data['destinataire'] as $categorie) {
+                $contacts = $this->contactRepository->getContactByCategorie($categorie->getId());
+                foreach ($contacts as $value) {
+                    $email->addDestinataire($value);
                 }
-            
             }
-
-
             $this->mailContactRepository->send($email);
             return $this->redirectToRoute('appMailContact');
         }
-
+    
         return $this->render('email/sendEmailToContact.html.twig', [
             'form'=>$form->createView()
         ]);
+    
     }
 }

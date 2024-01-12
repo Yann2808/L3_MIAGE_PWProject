@@ -1,68 +1,46 @@
 {% extends 'base.html.twig' %}
 
+{% block head %}
+    {{ parent() }}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+{% endblock %}
+
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
 <div class="example-wrapper">
-    <a  href="{{ path('sendEmailToEdu') }}"> Envoyer un nouveau mail</a>
-    <table border="3">
-        <thead>
-        <tr>
-            <td>
-                Date:
-                
-            </td>
-            <td>
-                Objet:
-            </td>
-            <td>
-                Message:
-            </td>
-            <td>
-                Destinataire:
-            </td>
-            <td>
-                action:
-            </td>
-        </tr>
+    <a href="{{ path('sendEmailToEdu') }}">Envoyer un nouveau mail</a>
+    <a href="{{ path('app_logout') }}">Deconnexion</a>
 
+    <table border="3" >
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Objet</th>
+                <th>Message</th>
+                <th>Destinataire</th>
+                <th>Action</th>
+            </tr>
         </thead>
         <tbody>
-        {% for email in emails %}
-
-        <tr>
-        <td>
-                {{ email.DateEnvoi| date('d/m/Y') }}
-
-            </td>
-           
-            <td>
-                {{ email.objet }}
-
-            </td>
-             <td>
-                {{ email.message }}
-
-            </td>
-            <td>
-                {% for expediteur in email.expediteur %}
-                    {{ expediteur.email }}
-                {% endfor %}
-            </td>
-            <td>
-            <td>
-            <a href="{{ path('MailEdudelete', {'id':email.id}) }}"> Supprimer</a>
-            </td>
-            </td>
-        </tr>
-        {% endfor %}
-
+            {% for email in emails %}
+                <tr>
+                    <td>{{ email.DateEnvoi|date('d/m/Y') }}</td>
+                    <td>{{ email.objet }}</td>
+                    <td>{{ email.message }}</td>
+                    <td>
+                        {% for educateur in email.educateurs %}
+                            {{ educateur.email }}
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{{ path('MailEdudelete', {'id': email.id}) }}">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
-    <ul>
-    </ul>
 </div>
 {% endblock %}

@@ -72,6 +72,10 @@ class ViewController extends AbstractController
                     'contacts' => $contacts,
                 ]);
     }
-
-    // ...
+/**
+     * @Route("/home", name="home")
+     */
+    public function index(){
+        return $this->render('home.html.twig');
+    }
 }
