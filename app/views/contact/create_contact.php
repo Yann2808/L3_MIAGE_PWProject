@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Ajouter un Contact</title>
+    
     <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
         <link rel="stylesheet" href="../css/styles.css">
    

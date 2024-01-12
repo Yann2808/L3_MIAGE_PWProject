@@ -2,17 +2,63 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Contacts par Catégorie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <h1>Liste des Contacts par Catégorie</h1>
 
     <h2>Catégorie : {{ categorie.nom }}</h2>
 
-    <ul>
-        {% for contact in contacts %}
-            <li>{{ contact.getNom() }} {{ contact.getPrenom() }} - {{ contact.getEmail() }} - {{ contact.getTelephone() }}</li>
-        {% endfor %}
-    </ul>
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{ contact.getNom() }}</td>
+                    <td>{{ contact.getPrenom() }}</td>
+                    <td>{{ contact.getEmail() }}</td>
+                    <td>{{ contact.getTelephone() }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

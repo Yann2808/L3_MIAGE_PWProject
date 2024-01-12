@@ -2,7 +2,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Liste des licenciés par Catégorie</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Contacts par Catégorie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
     <h1>Liste des licenciés par Catégorie</h1>
@@ -11,7 +42,9 @@
 
     <ul>
         {% for licencie in licencies %}
-            <li>{{ licencie.getNumeroLicence() }} {{ licencie.getNom() }} {{ licencie.getPrenom() }} </li>
+            <li>{{ licencie.getNumeroLicence() }} 
+            {{ licencie.getNom() }}
+             {{ licencie.getPrenom() }} </li>
         {% endfor %}
     </ul>
 </body>
