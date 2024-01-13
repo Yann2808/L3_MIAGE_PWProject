@@ -1,6 +1,5 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,37 +7,58 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
             background-color: #f4f4f4;
         }
 
-        h1, h2 {
-            color: #333;
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
         }
 
         table {
-            width: 100%;
+            width: 80%;
+            margin: 20px auto;
             border-collapse: collapse;
-            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
         }
 
         th, td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 12px;
             text-align: left;
         }
 
         th {
-            background-color: #007bff;
+            background-color: #333;
             color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <h1>Liste des Contacts par Catégorie</h1>
-
-    <h2>Catégorie : {{ categorie.nom }}</h2>
+    <header>
+        <h1>Liste des Contacts par Catégorie</h1>
+        <h2>Catégorie : {{ categorie.nom }}</h2>
+    </header>
 
     <table>
         <thead>
@@ -60,5 +80,7 @@
             {% endfor %}
         </tbody>
     </table>
+
+    
 </body>
 </html>

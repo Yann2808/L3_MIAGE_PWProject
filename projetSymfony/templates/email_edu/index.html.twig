@@ -2,18 +2,72 @@
 
 {% block head %}
     {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css.map') }}">
     <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            padding: 2em;
+            background-color: #f4f4f4;
+        }
+
+        .example-wrapper {
+            max-width: 1800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+            text-align: center;
+            margin: 2em auto;
+        }
+
+        .button-container {
+            margin-bottom: 1em;
+        }
+
+        .button-container button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+        }
     </style>
 {% endblock %}
 
 {% block body %}
 <div class="example-wrapper">
-    <a href="{{ path('sendEmailToEdu') }}">Envoyer un nouveau mail</a>
-    <a href="{{ path('app_logout') }}">Deconnexion</a>
+    <div class="button-container">
+        <button onclick="window.location.href='{{ path('sendEmailToEdu') }}'">Envoyer un nouveau mail</button>
+        <button onclick="window.location.href='{{ path('app_logout') }}'">Déconnexion</button>
+    </div>
 
-    <table border="3" >
+    <table border="3">
         <thead>
             <tr>
                 <th>Date</th>
@@ -36,7 +90,7 @@
                         {% endfor %}
                     </td>
                     <td>
-                        <a href="{{ path('MailEdudelete', {'id': email.id}) }}">Supprimer</a>
+                        <a href="{{ path('MailEdudelete', {'id': email.id}) }}" class="delete-button">Supprimer</a>
                     </td>
                 </tr>
             {% endfor %}
