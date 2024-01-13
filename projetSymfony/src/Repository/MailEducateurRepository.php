@@ -50,6 +50,7 @@ class MailEducateurRepository extends ServiceEntityRepository
         }
     }
 
+    }
 //    /**
 //     * @return MailEducateur[] Returns an array of MailEducateur objects
 //     */
@@ -74,4 +75,4 @@ class MailEducateurRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-}
+

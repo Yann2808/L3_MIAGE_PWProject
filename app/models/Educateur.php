@@ -2,24 +2,24 @@
     // class Educateur extends Licencie
     class Educateur {
         private $id;
-        private $licencie_id;
+        private $licencie;
         private $email;
         private $mot_de_passe;
         private $isAdmin;
 
-        public function __construct($id, $licencie_id, $email, $mot_de_passe, $isAdmin) {
+        public function __construct($id, $licencie, $email, $mot_de_passe, $isAdmin) {
             if(is_int($id))
             {
                 $this->id = $id;
             }
-            $this->licencie_id = $licencie_id;
+            $this->licencie = $licencie;
             $this->email = $email;
             $this->mot_de_passe = $mot_de_passe;
             $this->isAdmin = $isAdmin;
         }
 
-        public function addEducateur($licencie_id, $email, $mot_de_passe, $isAdmin){
-            $this->licencie_id = $licencie_id;
+        public function addEducateur($licencie, $email, $mot_de_passe, $isAdmin){
+            $this->licencie = $licencie;
             $this->email = $email;
             $this->mot_de_passe = $mot_de_passe;
             $this->isAdmin = $isAdmin;
@@ -36,11 +36,11 @@
         }
 
         public function getEducateurByLicencieId() { 
-            return $this->licencie_id;
+            return $this->licencie;
         }
 
-        public function setEducateurByLicencieId($licencie_id) { 
-            $this->licencie_id = $licencie_id;
+        public function setEducateurByLicencieId($licencie) { 
+            $this->licencie= $licencie;
         }
 
         public function getEmail() {

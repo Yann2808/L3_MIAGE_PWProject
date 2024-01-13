@@ -30,8 +30,8 @@ class Educateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     private ?bool $isAdmin = null;
 
-    //#[ORM\OneToOne(inversedBy: 'educateur', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\OneToOne(inversedBy: 'educateur', cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: "licencie", referencedColumnName: "id",nullable: false)]
     
     private ?Licencie $licencie = null;
 
@@ -104,9 +104,9 @@ class Educateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->licencie;
     }
 
-    public function setLicencieId(Licencie $licencie_id): static
+    public function setLicencieId(Licencie $licencie): static
     {
-        $this->licencie = $licencie_id;
+        $this->licencie = $licencie;
 
         return $this;
     }

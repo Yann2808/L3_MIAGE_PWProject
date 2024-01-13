@@ -6,36 +6,35 @@
     <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
         <link rel="stylesheet" href="../css/styles.css">
 
-    <style>
-        .menu{
-            display: flex;              /* Transformation en flexbox */
-            padding:0;                  /* Suppression des marges internes */
-            background-color: #ccc;     /* Ajout de la couleur d'arrière-plan */
+        <style>
+        /* Vos styles pour le menu */
+        .menu {
+            display: flex;
+            padding: 0;
+            background-color: #ccc;
             justify-content: center;
             text-align: justify center;
             text-decoration: none;
             text-transform: uppercase;
-            display:flex;
-
+            display: flex;
         }
 
         .menu li {
-            list-style-type: none ;       /* Suppression des puces */
+            list-style-type: none;
         }
 
         .menu a {
-            display:block;                /* Transformation en block */
-            min-width: 120px;             /* Largeur minimale des liens */
-
-            margin: 0.5rem;               /* Marges externes (1 valeurs = 4 directions) */
-            padding: 0.4rem 0;            /* Marges internes (2 valeurs = haut/bas et gauche/droite)*/
-            text-align: center;           /* Centrage du texte */   
-            background-color: #1ABC9C;    /* Couleur d'arrière-plan */
-            color: #fff;                  /* Couleur du texte */
-            text-decoration: none;        /* Suppression du soulignement */
-            border: 1px solid #fff;       /* Ajout d'une bordure */
-            border-radius: 4px;           /* Arrondis des bordures */
-            transition: all 1s ;          /* Ajout des effets de transition */
+            display: block;
+            min-width: 120px;
+            margin: 0.5rem;
+            padding: 0.4rem 0;
+            text-align: center;
+            background-color: #1ABC9C;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            transition: all 1s;
         }
 
         .menu a:hover {
@@ -43,30 +42,41 @@
             color: #aef;
             border-color: #fae;
         }
+
+        /* Nouveaux styles pour la mise en page des détails du licencié */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Styles pour la section des détails du licencié */
+        .details-section {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .details-section p {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
 
     <ul class="menu">
-        <li>
-            <a href="../../controllers/HomeController.php">Accueil</a>
-        </li>
-
-        <li>
-            <a href="../contact/IndexContactController.php">Contacts</a>
-        </li>
-
-        <li>
-            <a href="../categorie/IndexCategorieController.php">Catégories</a>
-        </li>
-
-        <li>
-            <a href="../licencie/IndexLicencieController.php">Licenciés</a>
-        </li>
-
-        <li>
-            <a href="../educateur/IndexEducateurController.php">Educateurs</a>
-        </li>
+        <li><a href="../../controllers/HomeController.php">Accueil</a></li>
+        <li><a href="../contact/IndexContactController.php">Contacts</a></li>
+        <li><a href="../categorie/IndexCategorieController.php">Catégories</a></li>
+        <li><a href="../licencie/IndexLicencieController.php">Licenciés</a></li>
+        <li><a href="../educateur/IndexEducateurController.php">Educateurs</a></li>
     </ul>
 
     <h1>Détails du Contact</h1>

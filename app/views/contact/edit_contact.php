@@ -5,70 +5,97 @@
     <title>Modifier un Contact</title>
     <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
         <link rel="stylesheet" href="../css/styles.css">
-
         <style>
-        .menu{
-            display: flex;              /* Transformation en flexbox */
-            padding:0;                  /* Suppression des marges internes */
-            background-color: #ccc;     /* Ajout de la couleur d'arrière-plan */
-            justify-content: center;
-            text-align: justify center;
-            text-decoration: none;
-            text-transform: uppercase;
-            display:flex;
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
+        .menu {
+            display: flex;
+            background-color: #ccc;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
         }
 
         .menu li {
-            list-style-type: none ;       /* Suppression des puces */
+            margin: 0.5rem;
         }
 
         .menu a {
-            display:block;                /* Transformation en block */
-            min-width: 120px;             /* Largeur minimale des liens */
-
-            margin: 0.5rem;               /* Marges externes (1 valeurs = 4 directions) */
-            padding: 0.4rem 0;            /* Marges internes (2 valeurs = haut/bas et gauche/droite)*/
-            text-align: center;           /* Centrage du texte */   
-            background-color: #1ABC9C;    /* Couleur d'arrière-plan */
-            color: #fff;                  /* Couleur du texte */
-            text-decoration: none;        /* Suppression du soulignement */
-            border: 1px solid #fff;       /* Ajout d'une bordure */
-            border-radius: 4px;           /* Arrondis des bordures */
-            transition: all 1s ;          /* Ajout des effets de transition */
+            display: block;
+            min-width: 120px;
+            padding: 0.4rem 0;
+            text-align: center;
+            background-color: #1ABC9C;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            transition: all 0.5s;
         }
 
         .menu a:hover {
             background-color: #fff;
-            color: #aef;
-            border-color: #fae;
+            color: #1ABC9C;
+            border-color: #1ABC9C;
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #1ABC9C;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        form {
+            width: 50%;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #1ABC9C;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #148F77;
         }
     </style>
 </head>
 <body>
-
-    <ul class="menu">
-        <li>
-            <a href="../../controllers/HomeController.php">Accueil</a>
-        </li>
-
-        <li>
-            <a href="../contact/IndexContactController.php">Contacts</a>
-        </li>
-
-        <li>
-            <a href="../categorie/IndexCategorieController.php">Catégories</a>
-        </li>
-
-        <li>
-            <a href="../licencie/IndexLicencieController.php">Licenciés</a>
-        </li>
-
-        <li>
-            <a href="../controllers/educateur/IndexEducateurController.php">Educateurs</a>
-        </li>
-    </ul>
-    
+   
     <h1>Modifier un Contact</h1>
     <a href="../../controllers/contact/IndexContactController.php">Retour à la liste des contacts</a>
     <hr>

@@ -3,103 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <title>Modifier un Licencié</title>
-    <!-- Ajoutez ici vos liens CSS ou styles pour la mise en forme -->
-        <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 
-        <style>
-        .menu{
-            display: flex;              /* Transformation en flexbox */
-            padding:0;                  /* Suppression des marges internes */
-            background-color: #ccc;     /* Ajout de la couleur d'arrière-plan */
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu {
+            display: flex;
+            background-color: #ccc;
             justify-content: center;
-            text-align: justify center;
-            text-decoration: none;
-            text-transform: uppercase;
-            display:flex;
-
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
         }
 
         .menu li {
-            list-style-type: none ;       /* Suppression des puces */
+            margin: 0.5rem;
         }
 
         .menu a {
-            display:block;                /* Transformation en block */
-            min-width: 120px;             /* Largeur minimale des liens */
-
-            margin: 0.5rem;               /* Marges externes (1 valeurs = 4 directions) */
-            padding: 0.4rem 0;            /* Marges internes (2 valeurs = haut/bas et gauche/droite)*/
-            text-align: center;           /* Centrage du texte */   
-            background-color: #1ABC9C;    /* Couleur d'arrière-plan */
-            color: #fff;                  /* Couleur du texte */
-            text-decoration: none;        /* Suppression du soulignement */
-            border: 1px solid #fff;       /* Ajout d'une bordure */
-            border-radius: 4px;           /* Arrondis des bordures */
-            transition: all 1s ;          /* Ajout des effets de transition */
+            display: block;
+            min-width: 120px;
+            padding: 0.4rem 0;
+            text-align: center;
+            background-color: #1ABC9C;
+            color: #fff;
+            text-decoration: none;
+            border: 1px solid #fff;
+            border-radius: 4px;
+            transition: all 0.5s;
         }
 
         .menu a:hover {
             background-color: #fff;
-            color: #aef;
-            border-color: #fae;
+            color: #1ABC9C;
+            border-color: #1ABC9C;
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #1ABC9C;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        form {
+            width: 50%;
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #1ABC9C;
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #148F77;
         }
     </style>
 </head>
 <body>
-<ul class="menu">
-        <li>
-            <a href="../../controllers/HomeController.php">Accueil</a>
-        </li>
+    
 
-        <li>
-            <a href="../contact/IndexContactController.php">Contacts</a>
-        </li>
-
-        <li>
-            <a href="../categorie/IndexCategorieController.php">Catégories</a>
-        </li>
-
-        <li>
-            <a href="../licencie/IndexLicencieController.php">Licenciés</a>
-        </li>
-
-        <li>
-            <a href="../controllers/educateur/IndexEducateurController.php">Educateurs</a>
-        </li>
-    </ul>
     <h1>Modifier un Licencié</h1>
     <a href="../../controllers/licencie/IndexLicencieController.php">Retour à la liste des licenciés</a>
- 
+
     <?php if ($licencie): ?>
         <form action="EditLicencieController.php?id=<?php echo $licencie->getId(); ?>" method="post">
-            <label for="numero_licencie">Numéro du Licencie :</label>
-            <input type="text" id="numero_licencie" name="numero_licencie" value="<?php echo $licencie->getNumeroLicencie(); ?>" required><br>
+            <label for="numero_licencie">Numéro du Licencié :</label>
+            <input type="text" id="numero_licencie" name="numero_licencie" value="<?php echo $licencie->getNumeroLicencie(); ?>" required>
 
             <label for="nom">Nom :</label>
-            <input type="text" id="nom" name="nom" value="<?php echo $licencie->getNom(); ?>" required><br>
- 
+            <input type="text" id="nom" name="nom" value="<?php echo $licencie->getNom(); ?>" required>
+
             <label for="prenom">Prénom :</label>
-            <input type="prenom" id="prenom" name="prenom" value="<?php echo $licencie->getPrenom(); ?>"><br>
+            <input type="prenom" id="prenom" name="prenom" value="<?php echo $licencie->getPrenom(); ?>">
+
+            <label for="contact_id">Contact:</label>
             <select name="contact_id" required>
-        <?php foreach ($contacts as $contact): ?>
-            <option value="<?= $contact->getId(); ?>"><?= $contact->getEmail(); ?></option>
-        <?php endforeach; ?>
-    </select>
-    <br>
- 
-    <label for="categorie_id">Catégorie:</label>
-    <select name="categorie_id" required>
-        <?php foreach ($categories as $categorie): ?>
-            <option value="<?= $categorie->getId(); ?>"><?= $categorie->getCode(); ?></option>
-        <?php endforeach; ?>
-    </select>
-    <br>
-            
+                <?php foreach ($contacts as $contact): ?>
+                    <option value="<?= $contact->getId(); ?>"><?= $contact->getEmail(); ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <label for="categorie_id">Catégorie:</label>
+            <select name="categorie_id" required>
+                <?php foreach ($categories as $categorie): ?>
+                    <option value="<?= $categorie->getId(); ?>"><?= $categorie->getCode(); ?></option>
+                <?php endforeach; ?>
+            </select>
+
             <input type="submit" value="Modifier">
         </form>
     <?php else: ?>
         <p>Le licencié n'a pas été trouvé.</p>
     <?php endif; ?>
- 
 </body>
 </html>

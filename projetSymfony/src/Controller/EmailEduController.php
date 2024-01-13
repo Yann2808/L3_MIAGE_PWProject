@@ -43,7 +43,7 @@ class EmailEduController extends AbstractController
     {
         $id=$request->query->get('id');
        $this->mailEducateurRepository->deleteById($id);
-        return $this->redirectToRoute('MailEdudelete');
+        return $this->redirectToRoute('app_email_edu');
     }
 
 
