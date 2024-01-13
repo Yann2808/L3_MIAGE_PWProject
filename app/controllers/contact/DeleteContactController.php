@@ -11,7 +11,7 @@ class DeleteContactController {
         $contact = $this->contactDAO->getById($id);
 
         if (!$contact) {
-            // Le contact n'a pas été trouvé, vous pouvez rediriger ou afficher un message d'erreur
+            // Le contact n'a pas été trouvé, 
             echo "Le contact n'a pas été trouvé.";
             return;
         }
@@ -31,8 +31,7 @@ class DeleteContactController {
             } catch (PDOException $e) {
                 // Intercepter l'exception PDOException pour les contraintes d'intégrité violées
                 $errorMessage = "Impossible de supprimer le contact. Assurez-vous qu'il n'est pas associé à d'autres enregistrements.";
-                // Vous pouvez personnaliser le message d'erreur comme vous le souhaitez.
-                // Vous pouvez également enregistrer les détails de l'exception dans un journal.
+               
                 echo $errorMessage;
             }
         }
