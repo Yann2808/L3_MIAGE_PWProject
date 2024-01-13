@@ -30,7 +30,7 @@ class DeleteContactController {
                 }
             } catch (PDOException $e) {
                 // Intercepter l'exception PDOException pour les contraintes d'intégrité violées
-                $errorMessage = "Impossible de supprimer le contact. Assurez-vous qu'il n'est pas associé à d'autres enregistrements.";
+                $errorMessage = "Impossible de supprimer le contact.";
                
                 echo $errorMessage;
             }
