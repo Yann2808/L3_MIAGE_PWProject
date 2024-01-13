@@ -28,8 +28,8 @@
             <option value="oui">Oui</option>
         </select>
         <br><br>
-        <label for="licencie_id">Licencié :</label>
-        <select name="licencie_id" required>
+        <label for="licencie">Licencié :</label>
+        <select name="licencie" required>
             <option value="">Sélectionner un contact</option>
             <?php foreach ($licencies as $licencie): ?>
                 <option value="<?= $licencie->getId(); ?>"><?= $licencie->getNom().' '.$licencie->getPrenom(); ?></option>

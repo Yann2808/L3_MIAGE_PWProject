@@ -1,68 +1,94 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            padding: 2em;
+            background-color: #f4f4f4;
+        }
+
+        .example-wrapper {
+            max-width: 1800px;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+            text-align: center;
+            margin: 2em auto;
+        }
+
+        .button-container {
+            margin-bottom: 1em;
+        }
+
+        .button-container button {
+            margin: 4px 2px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
 <div class="example-wrapper">
-    <a  href="{{ path('appSendEmailToContact') }}"> Envoyer un nouveau mail</a>
-    <table border="3">
-        <thead>
-        <tr>
-            <td>
-                Date:
-                
-            </td>
-            <td>
-                Objet:
-            </td>
-            <td>
-                Message:
-            </td>
-            <td>
-                Destinataire:
-            </td>
-            <td>
-                action:
-            </td>
-        </tr>
+    <div class="button-container">
+        <button class="btn btn-success" onclick="window.location.href='{{ path('sendEmailToEdu') }}'">Envoyer un nouveau mail</button>
+        <button class="btn btn-danger" onclick="window.location.href='{{ path('app_logout') }}'">Déconnexion</button>
+    </div>
 
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Date</th>
+                <th>Objet</th>
+                <th>Message</th>
+                <th>Destinataire</th>
+                <th>Action</th>
+            </tr>
         </thead>
         <tbody>
         {% for email in emails %}
-
-        <tr>
-        <td>
-                {{ email.DateEnvoie| date('d/m/Y') }}
-
-            </td>
-           
-            <td>
-                {{ email.objet }}
-
-            </td>
-             <td>
-                {{ email.message }}
-
-            </td>
-            <td>
-                {% for destinataire in email.destinataire %}
-                    {{ destinataire.email }}
-                {% endfor %}
-            </td>
-            <td>
-            <td>
-            <a href="{{ path('appMailContactdelete', {'id':email.id}) }}"> Supprimer</a>
-            </td>
-            </td>
-        </tr>
+            <tr>
+                <td>{{ email.DateEnvoie|date('d/m/Y') }}</td>
+                <td>{{ email.objet }}</td>
+                <td>{{ email.message }}</td>
+                <td>
+                    {% for destinataire in email.destinataire %}
+                        {{ destinataire.email }}<br>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a class="delete-link" href="{{ path('appMailContactdelete', {'id':email.id}) }}">Supprimer</a>
+                </td>
+            </tr>
         {% endfor %}
-
         </tbody>
     </table>
-    <ul>
-    </ul>
 </div>
 {% endblock %}

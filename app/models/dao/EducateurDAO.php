@@ -8,7 +8,7 @@
 
         public function create(Educateur $educateur) {
             try {
-                $query = "INSERT INTO educateurs (licencie_id, email, mot_de_passe, isAdmin) VALUES (?, ?, ?, ?)";
+                $query = "INSERT INTO educateurs (licencie, email, mot_de_passe, isAdmin) VALUES (?, ?, ?, ?)";
                 $stmt = $this->connexion->pdo->prepare($query);
                 $stmt->execute([$educateur->getEducateurByLicencieId(), $educateur->getEmail(), $educateur->getMotDePasse(), $educateur->isAdmin()]);
                 return true;
@@ -26,7 +26,7 @@
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if ($row) {
-                    return new Educateur($row['id'], $row['licencie_id'], $row['email'], $row['mot_de_passe'], $row['isAdmin']);
+                    return new Educateur($row['id'], $row['licencie'], $row['email'], $row['mot_de_passe'], $row['isAdmin']);
                 } else {
                     return null;
                 }
@@ -43,7 +43,7 @@
                 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if ($row) {
-                    return new Educateur($row['id'], $row['licencie_id'], $row['email'], $row['mot_de_passe'], $row['isAdmin']);
+                    return new Educateur($row['id'], $row['licencie'], $row['email'], $row['mot_de_passe'], $row['isAdmin']);
                 } else {
                     return null;
                 }
@@ -60,7 +60,7 @@
                 $educateurs = [];
 
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $educateurs[] = new Educateur($row['id'], $row['licencie_id'], $row['email'], $row['mot_de_passe'], $row['isAdmin']);
+                    $educateurs[] = new Educateur($row['id'], $row['licencie'], $row['email'], $row['mot_de_passe'], $row['isAdmin']);
                 }
 
                 return $educateurs;
@@ -71,7 +71,7 @@
 
         public function update(Educateur $educateur) {
             try {
-                $query = "UPDATE educateurs SET id = ?, licencie_id = ?, email = ?, mot_de_passe = ?, isAdmin = ? 
+                $query = "UPDATE educateurs SET id = ?, licencie= ?, email = ?, mot_de_passe = ?, isAdmin = ? 
                             WHERE id= ?";
                 $stmt = $this->connexion->pdo->prepare($query);
                 $stmt->execute(

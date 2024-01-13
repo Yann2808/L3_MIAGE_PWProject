@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block head %}
+{% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css.map') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,16 +24,7 @@
         }
 
         .button-container button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
             margin: 4px 2px;
-            cursor: pointer;
         }
 
         table {
@@ -56,6 +46,11 @@
 
         .delete-button {
             background-color: #f44336;
+            color: white;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
     </style>
 {% endblock %}
@@ -63,12 +58,12 @@
 {% block body %}
 <div class="example-wrapper">
     <div class="button-container">
-        <button onclick="window.location.href='{{ path('sendEmailToEdu') }}'">Envoyer un nouveau mail</button>
-        <button onclick="window.location.href='{{ path('app_logout') }}'">Déconnexion</button>
+        <button class="btn btn-success" onclick="window.location.href='{{ path('sendEmailToEdu') }}'">Envoyer un nouveau mail</button>
+        <button class="btn btn-danger" onclick="window.location.href='{{ path('app_logout') }}'">Déconnexion</button>
     </div>
 
-    <table border="3">
-        <thead>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
             <tr>
                 <th>Date</th>
                 <th>Objet</th>
@@ -90,7 +85,7 @@
                         {% endfor %}
                     </td>
                     <td>
-                        <a href="{{ path('MailEdudelete', {'id': email.id}) }}" class="delete-button">Supprimer</a>
+                        <a href="{{ path('MailEdudelete', {'id': email.id}) }}" class="btn btn-danger delete-button">Supprimer</a>
                     </td>
                 </tr>
             {% endfor %}

@@ -27,7 +27,7 @@ class AddEducateurController
         try {
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Récupérer les données du formulaire
-                $licencie_id = $_POST['licencie_id'];
+                $licencie = $_POST['licencie'];
                 $email = $_POST['email'];
                 $mot_de_passe = $_POST['mot_de_passe'];
                 $isAdmin = $_POST['isAdmin'];
@@ -45,7 +45,7 @@ class AddEducateurController
 
                 // Hasher le mot de passe
                 $hmot_de_passe = password_hash($mot_de_passe, PASSWORD_DEFAULT);
-                $educateur = new Educateur("", $licencie_id, $email, $hmot_de_passe, $isAdmin  == "oui" ? 1 : 0);
+                $educateur = new Educateur("", $licencie, $email, $hmot_de_passe, $isAdmin  == "oui" ? 1 : 0);
                 if ($this->educateurDAO->create($educateur)) {
                     // Rediriger vers la page d'accueil après l'ajout
                     header('Location:IndexEducateurController.php');

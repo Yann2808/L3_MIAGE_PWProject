@@ -32,6 +32,6 @@ CREATE TABLE educateurs (
     email VARCHAR(255) NOT NULL,
     mot_de_passe VARCHAR(255) NOT NULL,
     isAdmin BOOLEAN NOT NULL,
-    licencie_id INT,  -- Clé étrangère vers la table licencies
-    FOREIGN KEY (licencie_id) REFERENCES licencies(id)
+    licencie INT,  -- Clé étrangère vers la table licencies
+    FOREIGN KEY (licencie) REFERENCES licencies(id)
 );
